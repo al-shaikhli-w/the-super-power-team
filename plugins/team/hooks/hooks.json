@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "SubagentStart": [
+      {
+        "matcher": "^team[:-]",
+        "hooks": [
+          { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/live.sh\" start", "async": true }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "^team[:-]",
+        "hooks": [
+          { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/live.sh\" stop", "async": true }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/live.sh\" tool", "async": true }
+        ]
+      }
+    ]
+  }
+}
