@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.14.1
 
 - Arabic in the terminal: the setup language question lists one choice per line with no brackets (it showed `)Arabic( العربية`), and a new `Right-to-left in the terminal` rule in `team.md` keeps every reply readable — one direction per line, commands and ids on their own line. `/team-update` adds the rule to existing projects.
 - Arabic on the dashboard: an Arabic font first, no letter spacing (it broke the joins), taller lines for diacritics, the workflow canvas runs right to left, and English labels, ticket ids and times no longer flip (`30 min`, `11:43 PM`).
