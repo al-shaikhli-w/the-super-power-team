@@ -1,7 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.14.0
 
+- **New role: `team:security-engineer`.** On a project with code, setup scans it and writes `.claude/team/project/security.md` — what the system protects, its entry points, and a security to-do list (`SEC-1 · high · …`). Every ticket gets a threat check at step 2 (`02-security.md`, its rules go into the brief and the plan) and a security review at step 5 (`05-security.md`); QA's own security check moved to it.
+- **New role: `team:social-media` — Rafi.** Writes the marketing plan (`.claude/team/marketing/marketing-plan.md`: audience, message, channels, 30-day calendar, launch moments, numbers to watch), drafts social media posts for every merged feature, and a weekly round-up. Drafts only — you publish. `Social posts` in `team.md`: `after merge`, `ask` (default), `off`.
+- **`/team-social`**: the marketing plan; `post <ticket>`, `week`, `list`.
+- **`/team-security`**: scan or rescan, `list`, `fix SEC-<n>` (works the item as a ticket and ticks it on merge), `accept SEC-<n> <reason>`.
+- **Several tickets at once**: `/team-work RB-12 RB-13 RB-14` works like a real team — planners prepare tickets, then a developer pool and a QA pool take them. The pools grow and shrink by themselves, up to 3 each (`## Team size` in `team.md`).
+- One git worktree per ticket (`## Worktrees` in `team.md`); the crew hands you the `git worktree` commands. Tickets whose plans change the same files wait for each other; `<ticket> go anyway` overrides.
+- Approvals stay one at a time, tagged with their ticket: `[RB-13] … approve?` → `RB-13 approve`.
+- **Models per job** (`## Models` in `team.md`): haiku for the reply writer and agent maintainer, sonnet for the researcher and QA's CI and local-review checks, your model for the rest. Every agent stays a sub-agent with a short brief to keep your session small.
+- Dashboard: a Team card (who works on which ticket, free places, waiting tickets); a Security section with the to-do list and Fix buttons; a Marketing section with Rafi's plan, calendar and post drafts; the security engineer and Rafi in the Workflow; an open security to-dos counter. Workflow lines are redrawn after the page scrolls, so they no longer drift on long pages.
+- Doctor: checks for `security.md`, stale worktrees and Rafi's marketing plan. Every agent now knows where `security.md` and the marketing plan live. `/team-update` adds the new `team.md` sections. `/team-names` accepts several names for the developer, QA and security roles.
+- README: a section that explains the team for kids, and sections on several tickets, security, and models.
+- README: the workflow and the several-tickets diagrams are now images (`assets/workflow.png`, `assets/several-tickets.png`), with the text version kept under "Text version". Their sources are in `assets/diagrams/` (HTML, rendered with Playwright at 2×).
 - GitHub repository renamed to `al-shaikhli-w/the-super-power-team` (old links redirect); marketplace renamed to `the-super-power-team`.
 - New logo: a lightning bolt instead of the wrench, in the README, the dashboard header and the dashboard's browser tab.
 - One README for GitHub and npm: `scripts/build-npm-readme.js` copies it before every `npm publish`.

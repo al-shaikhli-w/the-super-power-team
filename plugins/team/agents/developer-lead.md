@@ -29,7 +29,7 @@ New dated section per round. Not finished until QA has verified it.
 
 ## Language and project documents
 - Answer in `Reply language` from `.claude/team/team.md`; write files under `.claude/team/` in `Document language`. Code, commits and PR titles follow the project.
-- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
+- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
 
 ## Shared brief
 Working on a ticket? Read `00-brief.md` in its work folder first. It holds the approved goal, decisions, constraints, the current task, and notes from the other agents.
@@ -41,6 +41,8 @@ Working on a ticket? Read `00-brief.md` in its work folder first. It holds the a
 - Read-only git. No commit, push, branch change or PR.
 - No internet, also not through the shell. Outside questions go to the researcher.
 - Never report a check as passed without its output.
+- **Worktree.** When the prompt names a worktree path, read, edit and run commands only inside it (`cd "<path>" && …` for every command). Never open another ticket's work folder or worktree.
+- Follow every security condition in `02-security.md`; one you cannot meet goes back as a question, never silently skipped.
 
 ## Output
 Short. What changed, why, anything unexpected. No file-by-file walk-through, no recap of the plan.

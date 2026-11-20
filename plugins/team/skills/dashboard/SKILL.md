@@ -1,6 +1,6 @@
 ---
 name: team-dashboard
-description: Sets up and refreshes the team's local dashboard — a single page in `.claude/team/dashboard.html` that the developer opens in a browser to watch which agent is working, each ticket's waterfall, the plan and the ideas, refreshing itself every few seconds. With `off`, stops the updates. Use when the developer types /team-dashboard, or asks to see or watch the team working.
+description: Sets up and refreshes the team's local dashboard — a single page in `.claude/team/dashboard.html` that the developer opens in a browser to watch which agent is working, each ticket's waterfall, the team pools, the security to-do list, Rafi's marketing plan and post drafts, the plan and the ideas, refreshing itself every few seconds. With `off`, stops the updates. Use when the developer types /team-dashboard, or asks to see or watch the team working.
 argument-hint: "[off]"
 ---
 
@@ -12,7 +12,7 @@ Files in this skill's folder: `dashboard.html` (the page) and `status-format.md`
 
 ## On (no argument)
 1. **The page.** Copy `dashboard.html` to `.claude/team/dashboard.html` unless an identical copy is already there. Never edit the page per project — everything it shows comes from `status.js`.
-2. **The data.** Write `.claude/team/status.js` exactly as `status-format.md` says — every label in the reply language — from what `team-status` reads: the active work folders, `project-plan.md`, the open idea file — `archive` from `.claude/team/work/history/INDEX.md`, `plan.items` from `project-plan.md`, `sprint` from the tracker's current cycle, and `historyAll` as the `file:///` address of `~/.claude/team/history.js`, and — with `Local tickets: on` — `board` from `.claude/team/tickets/`. `now` is `null`; `activity` keeps the entries of an existing `status.js`, or starts with one line "Dashboard started".
+2. **The data.** Write `.claude/team/status.js` exactly as `status-format.md` says — every label in the reply language — from what `team-status` reads: the active work folders, `project-plan.md`, the open idea file — `archive` from `.claude/team/work/history/INDEX.md`, `plan.items` from `project-plan.md`, `sprint` from the tracker's current cycle, and `historyAll` as the `file:///` address of `~/.claude/team/history.js`, and — with `Local tickets: on` — `board` from `.claude/team/tickets/`, `security` from `.claude/team/project/security.md` (counts and item titles, never fixes or secrets), and `marketing` from `.claude/team/marketing/`. `now` is `null`; `activity` keeps the entries of an existing `status.js`, or starts with one line "Dashboard started".
 3. **Turn it on.** Set `Dashboard: on` in `team.md`. From now on `/team-work` and `/team-new-idea` rewrite `status.js` after each approval, and the plugin's hook writes agent starts and stops to `live.js`.
 4. **Open it.** Give the command for the developer's shell, with the absolute path:
    - Windows: `start "" "<project>\.claude\team\dashboard.html"`

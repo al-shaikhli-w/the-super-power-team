@@ -14,6 +14,9 @@ Read-only: you change no file and start no agent. Speak `Reply language` from `.
 - `.claude/team/work/active/*/` — the status line of each step file (`draft`, `approved`, `done`), the Tasks table of `03-plan.md`, the verdict in `05-qa.md`, the PR number in `06-pr.md`, and `00-brief.md` → **Now**.
 - `.claude/team/project/project-plan.md` — rows by status.
 - The open `.claude/team/ideas/idea-v<N>.md` — rows with `new` or `question`.
+- `.claude/team/project/security.md` — open TODO items by severity.
+- `.claude/team/marketing/` — the marketing plan's status and post drafts not yet `posted`.
+- Several tickets running: the brief's `**Worktree:**` and who works on each ticket.
 
 A ticket id as argument: show only that ticket, plus its open questions and team notes from the brief. Nothing else is read.
 
@@ -34,7 +37,7 @@ ABC-123  Add login
 | ○ | not started |
 
 - **Build** shows `done/total` tasks from `03-plan.md`.
-- **QA** is ✔ only when `05-qa.md` passed and `05b-review.md` passed or does not exist; a `CHANGES` review is ✘.
+- **QA** is ✔ only when `05-qa.md` and `05-security.md` passed and `05b-review.md` passed or does not exist; a security FAIL or a `CHANGES` review is ✘.
 - **PR** shows `#<n>` once it is open, and `merged` when it is.
 - **waiting for:** `you — <the decision>`, or `<agent> — <task>`, or `blocked — <blocker>`. One line.
 
@@ -42,9 +45,16 @@ ABC-123  Add login
 ```text
 Plan:   7 of 12 features done · next: Search recipes
 Ideas:  idea-v3.md — 4 new, 1 question → /team-new-idea review
+Security: 5 open (1 high · 3 medium · 1 low) → /team-security list
+Marketing: plan approved · 2 drafts to post → /team-social list
 ```
 
-Nothing active: say so in one line, then the plan and ideas lines and the next `next` row as `/team-work "<feature>"`.
+Several tickets running: one more line before them —
+```text
+Team:   developers Omar RB-12 · Sami RB-13 · 1 free   QA: QA 1 RB-9 · 2 free   waiting: RB-14 (for RB-12)
+```
+
+Nothing active: say so in one line, then the plan, ideas, security and marketing lines and the next `next` row as `/team-work "<feature>"`.
 
 ## Output
-The blocks and the two lines, nothing else. Step names in the reply language; marks, ticket ids and file names stay as they are.
+The blocks and the summary lines, nothing else. Step names in the reply language; marks, ticket ids and file names stay as they are.

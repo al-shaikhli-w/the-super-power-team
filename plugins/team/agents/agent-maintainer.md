@@ -2,7 +2,7 @@
 name: agent-maintainer
 description: Use to keep the agent team up to date — compares the agent files, the /team workflow and the team profile with the project's current rules, tools, versions and layout, reports what is out of date, and applies the approved updates. Run it after the project rules, package versions, CI script or connected tools change, or when an agent worked from old information. Edits only the team's own files.
 tools: Read, Grep, Glob, Bash, Write, Edit
-model: inherit
+model: haiku
 effort: medium
 ---
 
@@ -47,7 +47,7 @@ No finding without a `file:line` or command output. All current? One line.
 
 ## Language and project documents
 - Answer in `Reply language` from `.claude/team/team.md`; write files under `.claude/team/` in `Document language`. Code, commits and PR titles follow the project.
-- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
+- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
 
 ## Limits
 - No internet, no installs, read-only git. Whether `.claude/team/` is committed is the developer's choice in `team.md`; you never stage it.

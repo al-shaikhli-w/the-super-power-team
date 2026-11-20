@@ -28,7 +28,12 @@ window.TEAM_STATUS = {
     "tabBoard": "Board", "board": "Tickets board", "newTicket": "New ticket", "open": "Open", "due": "due",
     "col_plan": "Plan", "col_do": "Do", "col_check": "Check", "col_done": "Done", "prio_high": "high", "prio_low": "low",
     "kindsShort": { "read": "Read", "edit": "Edit", "run": "Run", "search": "Search", "web": "Web", "tracker": "Tracker", "tool": "Other" },
-    "roles": { "product-manager": "Product Manager", "researcher": "Researcher", "project-manager": "Project Manager", "developer-lead": "Developer Lead", "qa-engineer": "QA Engineer", "reply-writer": "Reply Writer", "agent-maintainer": "Agent Maintainer", "reviewer": "Independent Reviewer" }
+    "roles": { "product-manager": "Product Manager", "researcher": "Researcher", "project-manager": "Project Manager", "developer-lead": "Developer Lead", "qa-engineer": "QA Engineer", "reply-writer": "Reply Writer", "agent-maintainer": "Agent Maintainer", "reviewer": "Independent Reviewer", "security-engineer": "Security Engineer", "social-media": "Social Media" },
+    "crew": "Team", "developers": "Developers", "qaPool": "QA", "free": "free", "waitsFor": "waits for",
+    "kpiSecurity": "Security to-dos", "kpiSecuritySub": "{high} high",
+    "security": "Security", "secOpen": "Open", "secFixed": "Fixed", "secAccepted": "Accepted risk", "secScan": "Scan again", "secFix": "Fix", "secNone": "No security list yet", "secAllDone": "Nothing open — well done",
+    "marketing": "Marketing", "mkPlan": "Marketing plan", "mkDrafts": "Post drafts", "mkCalendar": "Next on the calendar", "mkNoPlan": "No marketing plan yet", "mkMake": "Make the plan", "mkWeek": "Weekly round-up",
+    "draft": "draft", "posted": "posted", "approved": "approved", "threatCheck": "threat check", "securityReview": "security review", "posts": "posts" 
   },
   "now": { "agent": "team:developer-lead", "task": "RB-7 — task 3, validation", "since": "2026-11-20T14:01:40+01:00" },
   "tickets": [
@@ -68,6 +73,21 @@ window.TEAM_STATUS = {
     ]
   },
   "names": { "project-manager": "Maya", "developer-lead": "Omar" },
+  "security": { "open": 2, "high": 1, "medium": 1, "low": 0, "file": "project/security.md",
+    "items": [
+      { "id": "SEC-1", "severity": "high", "title": "Payment key in the repository", "effort": "S", "status": "open" },
+      { "id": "SEC-2", "severity": "medium", "title": "Any signed-in user can delete any recipe", "effort": "S", "status": "open" },
+      { "id": "SEC-3", "severity": "low", "title": "No rate limit on login", "status": "fixed", "note": "2026-11-22 · PR #41" }
+    ] },
+  "marketing": { "plan": "approved", "message": "Plan a week of meals in five minutes.",
+    "calendar": [ { "day": "2026-11-21", "channel": "X", "idea": "Before/after of the meal planner", "goal": "awareness" } ],
+    "posts": [ { "date": "2026-11-20", "ticket": "RB-9", "title": "Search by ingredient", "status": "draft", "channels": ["X", "LinkedIn"], "file": "2026-11-20-rb-9.md" } ] },
+  "crew": {
+    "developers": [ { "name": "Omar", "ticket": "RB-7", "step": "Build 3/4" }, { "name": "Sami", "ticket": "RB-8", "step": "Build 1/2" } ],
+    "qa": [ { "name": "QA 1", "ticket": "RB-6", "step": "QA" } ],
+    "max": { "developers": 3, "qa": 3, "planning": 3 },
+    "waiting": [ { "ticket": "RB-9", "for": "RB-7", "why": "both change src/lib/search.ts" } ]
+  },
   "customAgents": [ { "agent": "team-designer", "name": "Design Reviewer", "joins": "plan" } ],
   "todo": {
     "updated": "2026-11-20T08:55:00+01:00",
@@ -87,7 +107,10 @@ window.TEAM_STATUS = {
 
 - **Language:** every `labels` value (all of them — the page falls back to English for a missing one), `task`, `waiting` and `text` in `Reply language`. `dir` is `rtl` for Arabic, Hebrew, Persian and Urdu, else `ltr`.
 - **`steps`:** six values in the order of `labels.steps`: `done`, `current`, `fail` (QA FAIL, back to build) or `todo`.
-- **`now`:** the agent running right now, or `null` while the team waits for the developer.
+- **`now`:** the agent running right now, or `null` while the team waits for the developer. With several tickets: a list, one `{ agent, task, since, ticket }` per running agent.
+- **`security`:** from `.claude/team/project/security.md`, or `null` when the file does not exist. `open`, `high`, `medium`, `low`: open items by severity (accepted risks do not count). `items`: every item — `id`, `severity`, the short `title` from its line, `effort`, `status` (`open`, `fixed`, `accepted`) and a `note` (the fixed date and PR, or the accepted reason) — open ones first, most dangerous first, at most 30. Never the file location, the fix text, or any secret value: the page shows the title only, and the Security section has a Fix button that copies `/team-security fix <id>`.
+- **`marketing`:** from `.claude/team/marketing/`, or `null` when `Social posts` is `off` and the folder does not exist. `plan`: the status of `marketing-plan.md` (`draft`, `approved`) or `null`; `message`: its one-sentence message; `calendar`: the next five calendar rows from today — `day`, `channel`, `idea`, `goal`; `posts`: the drafts in `posts/`, newest first, at most 20 — `date`, `ticket` (or `week`), `title`, `status` (`draft`, `posted`), `channels`, `file`. The Marketing section shows them with buttons for `/team-social` and `/team-social week`.
+- **`crew`:** only while several tickets run (`/team-work` "Several tickets — the team"); leave it out otherwise and the Team card stays hidden. `developers` and `qa`: one entry per busy member — name, ticket, current step. `max`: the limits from `## Team size`. `waiting`: tickets held by the overlap check, with the ticket they wait for and why, one line in the reply language.
 - **`build`:** from the Tasks table of `03-plan.md`; `null` before the plan exists. **`pr`:** a number once open, `"merged"` when merged.
 - **`activity`:** newest first, at most 15 entries. One per approval, step change, and idea added — agent starts and stops come from `live.js`. One line each — no file contents, no secrets.
 - **`tickets`:** the folders in `.claude/team/work/active/`, oldest first.

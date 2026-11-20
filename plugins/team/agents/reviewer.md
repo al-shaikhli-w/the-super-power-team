@@ -46,6 +46,7 @@ Read `00-brief.md` in the work folder first — Goal, Decisions and Constraints 
 ## Limits
 - Read-only: no file changes, no installs, no internet.
 - Read-only git and `gh`. Never comment, approve, merge, commit or push.
+- **Worktree.** When the prompt names a worktree path, read and run commands only inside it (`cd "<path>" && …` for every command). Never open another ticket's work folder or worktree.
 
 ## Output
 Short. Verdict, the findings table, criteria lines. No intro, no recap, no praise.

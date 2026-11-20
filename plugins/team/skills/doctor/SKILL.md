@@ -30,12 +30,15 @@ Each check ends as ✔ (fine), ⚠ (works, but should be fixed), ✘ (the team w
 | 13 | Dashboard | ⚠ `Dashboard: on` but `.claude/team/dashboard.html` or `status.js` missing → `/team-dashboard`; ⚠ `Dashboard: on` and `bash` not on the path → no live agent events (install Git for Windows) |
 | 14 | Custom agents | ✘ a row under `## Custom agents` has no file in `.claude/agents/` or `~/.claude/agents/`, or the file's frontmatter has no `name` or `description`; ⚠ the file lacks the "Shared brief" or "Limits" section, or a `team-*.md` file is not in the table → `/team-new-agent list` |
 | 15 | Team version | ⚠ `Team version` in `team.md` is missing or differs from `version` in this plugin's `.claude-plugin/plugin.json` → `/team-update` |
+| 16 | Security list | ⚠ the project has code but `.claude/team/project/security.md` is missing → `/team-security`; ⚠ an item marked `high` has been open for more than 30 days (its line's date or the file's `Updated`) |
+| 17 | Worktrees | ⚠ a brief names a `**Worktree:**` path that does not exist, or `git worktree list` shows a worktree under `Worktree folder` with no active ticket → give the `git worktree add` or `remove` command |
+| 18 | Marketing | ⚠ `Social posts` is `after merge` or `ask` but `.claude/team/marketing/marketing-plan.md` is missing → `/team-social`; ⚠ `## Team names` has no row for `team:social-media` → `/team-names` (Rafi is the default) |
 
 ## Output
 All ✔:
 
 ```text
-✔ Team ready — 15 checks passed.
+✔ Team ready — 18 checks passed.
 ```
 
 Otherwise only the failing lines, ✘ first, each with its fix in a few words, then one count line:
@@ -43,7 +46,7 @@ Otherwise only the failing lines, ✘ first, each with its fix in a few words, t
 ```text
 ✘ 5  Full gate `pnpm run ci` — no script "ci" in package.json → name the right command
 ⚠ 8  gh is not signed in → gh auth login
-13 passed · 1 warning · 1 problem
+16 passed · 1 warning · 1 problem
 ```
 
 Without `fix`, end with one question: fix them now? Stop there.

@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><style>:root{--ink:#0E1530;--paper:#FCFCFE;--hair:rgba(168,135,79,.28);--hair2:rgba(168,135,79,.55);
+--gold:#A8874F;--gold2:#8A6B37;--goldbg:#F7F1E4;--text:#0E1530;--t2:#4A5370;--t3:#8A91AB;--rose:#B4234A;--rosebg:#FDF2F5;
+--pm:#7C5CE0;--rs:#0E9C86;--se:#C27A1A;--pj:#D08A12;--dl:#2F5BEA;--qa:#D63A5E;--rv:#0A93B8;--sm:#D2479A;--you:#A8874F}
+*{box-sizing:border-box}
+body{margin:0;background:transparent;font-family:"Avenir Next","Avenir","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#d{position:relative;overflow:hidden;color:var(--text);border-radius:28px;background:
+ radial-gradient(900px 520px at 88% -12%,rgba(47,91,234,.07),transparent 60%),
+ radial-gradient(760px 600px at -8% 112%,rgba(168,135,79,.09),transparent 60%),
+ linear-gradient(180deg,#FFFFFF,#F5F6FA);box-shadow:0 0 0 1px rgba(14,21,48,.06)}
+#d::after{content:"";position:absolute;inset:14px;border:1px solid var(--hair);border-radius:20px;pointer-events:none}
+.eyebrow{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif;font-weight:400;font-size:46px;letter-spacing:-.005em;margin:10px 0 8px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--gold2)}
+.lede{color:var(--t2);font-size:16px;margin:0}
+.cmd{font-family:Menlo,"SF Mono",monospace;font-size:13.5px;color:var(--ink);border:1px solid var(--hair2);border-radius:999px;padding:5px 13px;background:#fff;white-space:nowrap;box-shadow:0 2px 8px rgba(14,21,48,.05)}
+.mono{font-family:Menlo,"SF Mono",monospace;font-size:12px;color:var(--t3);letter-spacing:.01em}
+.ico{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
+ background:linear-gradient(145deg,color-mix(in srgb,var(--c) 14%,#fff),color-mix(in srgb,var(--c) 6%,#fff));
+ box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 28%,transparent),0 4px 12px color-mix(in srgb,var(--c) 14%,transparent)}
+.ico svg{width:18px;height:18px;stroke:var(--c);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tag{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);font-weight:600;white-space:nowrap}
+.seal{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gold2);border:1px solid var(--hair2);border-radius:999px;padding:7px 14px 7px 8px;background:linear-gradient(180deg,#FFFDF8,var(--goldbg));white-space:nowrap;box-shadow:0 2px 8px rgba(168,135,79,.12)}
+.seal i{width:20px;height:20px;border-radius:50%;background:linear-gradient(145deg,#E9D6A8,#A8874F);display:grid;place-items:center;color:#fff;font-style:normal;font-size:11px;font-weight:800}
+.back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--rose);border:1px solid rgba(180,35,74,.25);border-radius:999px;padding:7px 14px;background:var(--rosebg);white-space:nowrap}
+.note{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);border:1px solid rgba(14,21,48,.1);border-radius:999px;padding:6px 13px;white-space:nowrap;background:#fff}
+
+#d{padding:54px 58px 44px}
+h1{font-size:42px}
+.head{margin-bottom:36px}
+.lane{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.lane::before{content:"";position:absolute;left:12%;right:12%;top:27px;height:1px;background:var(--hair)}
+.col{display:flex;flex-direction:column;gap:10px;position:relative}
+.ch{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:6px}
+.ch .n{width:54px;height:54px;border-radius:50%;background:#fff;border:1px solid var(--hair2);display:grid;place-items:center;box-shadow:0 4px 14px rgba(168,135,79,.12);margin-bottom:12px}
+.ch .n svg{width:20px;height:20px;stroke:var(--gold2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ch b{font-family:Didot,"Bodoni 72",Georgia,serif;font-weight:400;font-size:23px}
+.ch span{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:4px;min-height:14px}
+.slot{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(14,21,48,.07);border-radius:14px;padding:11px 13px;box-shadow:0 1px 2px rgba(14,21,48,.04),0 8px 20px rgba(14,21,48,.05)}
+.slot.free{justify-content:center;background:transparent;border:1px dashed rgba(168,135,79,.35);box-shadow:none;color:var(--t3);font-size:12.5px;letter-spacing:.06em;padding:15px}
+.slot.wait{background:var(--rosebg);border-color:rgba(180,35,74,.2);color:#7A2440;font-size:13px;box-shadow:none}
+.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;flex:none;background:linear-gradient(145deg,color-mix(in srgb,var(--c) 75%,#fff),var(--c))}
+.nm{font-weight:600;font-size:14.5px}
+.tk{margin-left:auto;font-family:Menlo,monospace;font-size:11.5px;color:var(--gold2);border:1px solid var(--hair2);background:#FFFDF8;border-radius:7px;padding:2px 7px}
+.foot{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px;padding-top:24px;border-top:1px solid var(--hair);font-size:13.5px;color:var(--t2);line-height:1.5}
+.foot b{display:block;font-family:Didot,"Bodoni 72",Georgia,serif;font-weight:400;font-size:18px;color:var(--gold2);margin-bottom:2px}
+#d{width:1200px}</style></head><body><div id="d"><div class="head"><div class="eyebrow">The Super Power Team</div><h1>Several tickets, <em>one team</em></h1><p class="lede">Tickets move left to right. The team grows and shrinks by itself.</p></div>
+<div class="lane"><div class="col"><div class="ch"><span class="n"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"/></svg></span><b>Planning</b><span>max 3</span></div><div class="slot"><span class="av" style="--c:var(--pm)">PM</span><span class="nm">Requirements</span><span class="tk">RB-15</span></div><div class="slot free">free</div><div class="slot free">free</div></div><div class="col"><div class="ch"><span class="n"><svg viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span><b>Building</b><span>max 3 developers</span></div><div class="slot"><span class="av" style="--c:var(--dl)">OM</span><span class="nm">Omar</span><span class="tk">RB-12</span></div><div class="slot"><span class="av" style="--c:var(--dl)">SA</span><span class="nm">Sami</span><span class="tk">RB-13</span></div><div class="slot wait">⏸&nbsp; <b>RB-14</b>&nbsp;waits — same file as RB-12</div></div><div class="col"><div class="ch"><span class="n"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.3 2.3 4.7-5"/></svg></span><b>Checking</b><span>max 3 QA</span></div><div class="slot"><span class="av" style="--c:var(--qa)">Q1</span><span class="nm">QA 1 + security</span><span class="tk">RB-9</span></div><div class="slot free">free</div><div class="slot free">free</div></div><div class="col"><div class="ch"><span class="n"><svg viewBox="0 0 24 24"><path d="M21 3 10 14"/><path d="M21 3 14.5 21l-4.5-7-7-4.5z"/></svg></span><b>Hand-over</b><span>you open the PR</span></div><div class="slot"><span class="av" style="--c:var(--rs)">✓</span><span class="nm">Merged</span><span class="tk">RB-8</span></div><div class="slot"><span class="av" style="--c:var(--sm)">RA</span><span class="nm">Rafi posts</span><span class="tk">RB-8</span></div></div></div>
+<div class="foot"><div><b>Own worktree</b>Every developer works on their own copy — no one touches another's work.</div><div><b>Same file? Wait.</b>The second ticket starts after the first is merged.</div><div><b>You decide</b>One question at a time, tagged with its ticket.</div></div></div></body></html>

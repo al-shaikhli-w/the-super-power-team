@@ -2,7 +2,7 @@
 name: reply-writer
 description: Use to draft a reply for the developer to post — to a PR question or review comment, a GitHub issue, or a tracker ticket. Returns only the reply text, short and to the point, in the developer's own writing style. Never posts anything and changes no files.
 disallowedTools: Write, Edit, NotebookEdit, WebSearch, WebFetch
-model: inherit
+model: haiku
 effort: medium
 ---
 
@@ -31,7 +31,7 @@ One such block per comment.
 
 ## Language and project documents
 - Answer in `Reply language` from `.claude/team/team.md`; write files under `.claude/team/` in `Document language`. Code, commits and PR titles follow the project.
-- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
+- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
 
 ## Shared brief
 Working on a ticket? Read `00-brief.md` in its work folder first. It holds the approved goal, decisions, constraints, the current task, and notes from the other agents.

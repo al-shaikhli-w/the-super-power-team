@@ -21,8 +21,8 @@ A name is a nickname for an agent; the agent itself (`team:project-manager`, `te
 ```
 
 ## Rules
-- One name per agent, and no two agents with the same name. A name is a single word or two, letters only — no `:`, `/`, quotes or brackets.
-- Any agent can have one: the eight plugin agents and every custom agent in `## Custom agents`.
+- One name per agent, and no two agents with the same name. Pool roles — `developer-lead`, `qa-engineer`, `security-engineer` — may have several names, comma-separated, one per member when several tickets run at once (`Omar, Sami, Lina`). A name is a single word or two, letters only — no `:`, `/`, quotes or brackets.
+- Any agent can have one: the ten plugin agents (Rafi is `team:social-media`'s name until you change it) and every custom agent in `## Custom agents`.
 - Accept the role in any form: `project-manager`, `project manager`, `team:project-manager`, the role in the reply language, or its current name.
 
 ## No argument

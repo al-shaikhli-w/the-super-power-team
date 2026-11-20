@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><style>:root{--ink:#0E1530;--paper:#FCFCFE;--hair:rgba(168,135,79,.28);--hair2:rgba(168,135,79,.55);
+--gold:#A8874F;--gold2:#8A6B37;--goldbg:#F7F1E4;--text:#0E1530;--t2:#4A5370;--t3:#8A91AB;--rose:#B4234A;--rosebg:#FDF2F5;
+--pm:#7C5CE0;--rs:#0E9C86;--se:#C27A1A;--pj:#D08A12;--dl:#2F5BEA;--qa:#D63A5E;--rv:#0A93B8;--sm:#D2479A;--you:#A8874F}
+*{box-sizing:border-box}
+body{margin:0;background:transparent;font-family:"Avenir Next","Avenir","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#d{position:relative;overflow:hidden;color:var(--text);border-radius:28px;background:
+ radial-gradient(900px 520px at 88% -12%,rgba(47,91,234,.07),transparent 60%),
+ radial-gradient(760px 600px at -8% 112%,rgba(168,135,79,.09),transparent 60%),
+ linear-gradient(180deg,#FFFFFF,#F5F6FA);box-shadow:0 0 0 1px rgba(14,21,48,.06)}
+#d::after{content:"";position:absolute;inset:14px;border:1px solid var(--hair);border-radius:20px;pointer-events:none}
+.eyebrow{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif;font-weight:400;font-size:46px;letter-spacing:-.005em;margin:10px 0 8px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--gold2)}
+.lede{color:var(--t2);font-size:16px;margin:0}
+.cmd{font-family:Menlo,"SF Mono",monospace;font-size:13.5px;color:var(--ink);border:1px solid var(--hair2);border-radius:999px;padding:5px 13px;background:#fff;white-space:nowrap;box-shadow:0 2px 8px rgba(14,21,48,.05)}
+.mono{font-family:Menlo,"SF Mono",monospace;font-size:12px;color:var(--t3);letter-spacing:.01em}
+.ico{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;
+ background:linear-gradient(145deg,color-mix(in srgb,var(--c) 14%,#fff),color-mix(in srgb,var(--c) 6%,#fff));
+ box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 28%,transparent),0 4px 12px color-mix(in srgb,var(--c) 14%,transparent)}
+.ico svg{width:18px;height:18px;stroke:var(--c);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tag{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);font-weight:600;white-space:nowrap}
+.seal{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gold2);border:1px solid var(--hair2);border-radius:999px;padding:7px 14px 7px 8px;background:linear-gradient(180deg,#FFFDF8,var(--goldbg));white-space:nowrap;box-shadow:0 2px 8px rgba(168,135,79,.12)}
+.seal i{width:20px;height:20px;border-radius:50%;background:linear-gradient(145deg,#E9D6A8,#A8874F);display:grid;place-items:center;color:#fff;font-style:normal;font-size:11px;font-weight:800}
+.back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--rose);border:1px solid rgba(180,35,74,.25);border-radius:999px;padding:7px 14px;background:var(--rosebg);white-space:nowrap}
+.note{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);border:1px solid rgba(14,21,48,.1);border-radius:999px;padding:6px 13px;white-space:nowrap;background:#fff}
+
+#d{padding:54px 58px 44px}
+h1{font-size:42px}
+.head{margin-bottom:34px}
+.step{display:grid;grid-template-columns:56px 1fr 158px;gap:18px;align-items:center;position:relative;margin-bottom:12px}
+.step::before{content:"";position:absolute;left:27px;top:50%;height:calc(100% + 12px);width:1px;background:var(--hair)}
+.step:last-child::before{display:none}
+.n{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid var(--hair2);display:grid;place-items:center;font-family:Didot,"Bodoni 72",Georgia,serif;font-size:24px;color:var(--gold2);box-shadow:0 4px 14px rgba(168,135,79,.12)}
+.n.you{background:linear-gradient(145deg,#FFFDF8,var(--goldbg))}
+.n.sm{font-size:19px;font-style:italic}
+.card{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid rgba(14,21,48,.07);border-radius:16px;padding:14px 18px;box-shadow:0 1px 2px rgba(14,21,48,.04),0 8px 22px rgba(14,21,48,.05)}
+.card.you{background:linear-gradient(135deg,#FFFDF8,var(--goldbg));border-color:var(--hair)}
+.t b{display:block;font-weight:600;font-size:16.5px;color:var(--ink)}
+.t span{font-size:14px;color:var(--t2)}
+.pair{display:flex;gap:10px}
+.pair .card{flex:1}
+.foot{display:flex;gap:22px;align-items:center;margin-top:26px;padding-top:22px;border-top:1px solid var(--hair);font-size:13.5px;color:var(--t2)}
+.foot .r{margin-left:auto;color:var(--t3)}
+#d{width:900px}</style></head><body><div id="d"><div class="head"><div class="eyebrow">The Super Power Team</div><h1>One ticket, <em>step by step</em></h1><p class="lede">The team stops after every step and waits for you.</p></div>
+<div class="steps"><div class="step"><div class="n ">1</div><div class="card"><span class="ico" style="--c:var(--pm)"><svg viewBox="0 0 24 24"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 6H6.5A1.5 1.5 0 0 0 5 7.5v12A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 17.5 6H16"/><path d="M9 12h6M9 16h4"/></svg></span><div class="t"><b>Requirements</b><span>Product manager</span></div></div><div><span class="seal"><i>✓</i>You approve</span></div></div><div class="step"><div class="n ">2</div><div class="pair"><div class="card"><span class="ico" style="--c:var(--rs)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span><div class="t"><b>Feasibility</b><span>Researcher</span></div></div><div class="card"><span class="ico" style="--c:var(--se)"><svg viewBox="0 0 24 24"><path d="M12 21s7.5-3.5 7.5-9.5V6L12 3 4.5 6v5.5C4.5 17.5 12 21 12 21z"/><path d="m9.2 12 2 2 3.8-4"/></svg></span><div class="t"><b>Threat check</b><span>Security engineer</span></div></div></div><div><span class="seal"><i>✓</i>You approve</span></div></div><div class="step"><div class="n ">3</div><div class="card"><span class="ico" style="--c:var(--pj)"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"/></svg></span><div class="t"><b>Plan</b><span>Project manager</span></div></div><div><span class="seal"><i>✓</i>You approve</span></div></div><div class="step"><div class="n you sm">you</div><div class="card you"><span class="ico" style="--c:var(--you)"><svg viewBox="0 0 24 24"><circle cx="6" cy="5.5" r="2"/><circle cx="6" cy="18.5" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7.5v9M18 10c0 4-6 3.5-11 7"/></svg></span><div class="t"><b>Create the branch</b><span>You — the team gives the commands</span></div></div><div></div></div><div class="step"><div class="n ">4</div><div class="card"><span class="ico" style="--c:var(--dl)"><svg viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span><div class="t"><b>Build</b><span>Developer lead, one task at a time</span></div></div><div><span class="seal"><i>✓</i>Each task</span></div></div><div class="step"><div class="n ">5</div><div class="pair"><div class="card"><span class="ico" style="--c:var(--qa)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.3 2.3 4.7-5"/></svg></span><div class="t"><b>QA</b><span>QA engineer</span></div></div><div class="card"><span class="ico" style="--c:var(--se)"><svg viewBox="0 0 24 24"><path d="M12 21s7.5-3.5 7.5-9.5V6L12 3 4.5 6v5.5C4.5 17.5 12 21 12 21z"/><path d="m9.2 12 2 2 3.8-4"/></svg></span><div class="t"><b>Security review</b><span>Security engineer</span></div></div></div><div><span class="back">↩ FAIL → 4</span></div></div><div class="step"><div class="n sm">5b</div><div class="card"><span class="ico" style="--c:var(--rv)"><svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg></span><div class="t"><b>Fresh eyes</b><span>Independent reviewer</span></div></div><div><span class="back">↩ Changes → 4</span></div></div><div class="step"><div class="n you">6</div><div class="card you"><span class="ico" style="--c:var(--you)"><svg viewBox="0 0 24 24"><path d="M21 3 10 14"/><path d="M21 3 14.5 21l-4.5-7-7-4.5z"/></svg></span><div class="t"><b>Open the PR</b><span>You — commit, push, open</span></div></div><div></div></div><div class="step"><div class="n sm">✦</div><div class="card"><span class="ico" style="--c:var(--sm)"><svg viewBox="0 0 24 24"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg></span><div class="t"><b>Posts</b><span>Rafi, after the merge</span></div></div><div></div></div></div>
+<div class="foot"><span class="seal"><i>✓</i>You approve</span><span><span class="back">↩ Back</span></span><span class="r">The team never commits, pushes or posts — you do.</span></div></div></body></html>

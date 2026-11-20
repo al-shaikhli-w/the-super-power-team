@@ -11,7 +11,7 @@
   --line: #e5e7eb; --line-2: #eef0f3; --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 1px 1px rgba(15, 23, 42, .03);
   --accent: #2563eb; --accent-soft: #eff4ff; --ok: #059669; --ok-soft: #ecfdf5; --bad: #dc2626; --bad-soft: #fef2f2;
   --warn: #b45309; --warn-soft: #fffbeb;
-  --r-pm: #7c3aed; --r-rs: #0d9488; --r-pj: #d97706; --r-dl: #2563eb; --r-qa: #e11d48; --r-rw: #475569; --r-am: #64748b; --r-rv: #0891b2;
+  --r-pm: #7c3aed; --r-rs: #0d9488; --r-pj: #d97706; --r-dl: #2563eb; --r-qa: #e11d48; --r-rw: #475569; --r-am: #64748b; --r-rv: #0891b2; --r-se: #b45309; --r-sm: #db2777;
   --r-x1: #0891b2; --r-x2: #c026d3; --r-x3: #65a30d; --r-x4: #ea580c; --r-x5: #4f46e5;
   --k-read: #64748b; --k-edit: #2563eb; --k-run: #7c3aed; --k-search: #0d9488; --k-web: #d97706; --k-tracker: #db2777; --k-tool: #94a3b8;
   --radius: 14px;
@@ -22,7 +22,7 @@
     --line: #232834; --line-2: #1b1f29; --shadow: none;
     --accent: #6d9bff; --accent-soft: #172341; --ok: #34d399; --ok-soft: #0f2a21; --bad: #f87171; --bad-soft: #2c1517;
     --warn: #fbbf24; --warn-soft: #2b2110;
-    --r-pm: #a78bfa; --r-rs: #2dd4bf; --r-pj: #fbbf24; --r-dl: #6d9bff; --r-qa: #fb7185; --r-rw: #94a3b8; --r-am: #8a94a6; --r-rv: #22d3ee;
+    --r-pm: #a78bfa; --r-rs: #2dd4bf; --r-pj: #fbbf24; --r-dl: #6d9bff; --r-qa: #fb7185; --r-rw: #94a3b8; --r-am: #8a94a6; --r-rv: #22d3ee; --r-se: #f59e0b; --r-sm: #f472b6;
     --r-x1: #22d3ee; --r-x2: #e879f9; --r-x3: #a3e635; --r-x4: #fb923c; --r-x5: #818cf8;
     --k-read: #94a3b8; --k-edit: #6d9bff; --k-run: #a78bfa; --k-search: #2dd4bf; --k-web: #fbbf24; --k-tracker: #f472b6; --k-tool: #6b7486;
   }
@@ -344,6 +344,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 .stat b { font-size: 13px; font-weight: 650; color: var(--text); font-variant-numeric: tabular-nums; }
 .stat b small { font-size: 11px; color: var(--text-3); font-weight: 500; }
 .stat.live b { color: var(--ok); }
+.stat.alert b { color: var(--r-qa); }
 .stat .mini { width: 44px; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .stat .mini i { display: block; height: 100%; background: var(--ok); border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { .fn.running .fn-box, .edge.active, .edge.aux.active, .fn.running .fn-badge::after { animation: none; } }
@@ -365,6 +366,21 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 .hm-sum b { color: var(--text); font-variant-numeric: tabular-nums; }
 @media (max-width: 720px) { .tl-range { margin-inline-start: 0; width: 100%; overflow-x: auto; } }
 [hidden] { display: none !important; }
+.sev { font-size: 11px; font-weight: 650; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--text-2); }
+.sev.high { color: #fff; background: var(--r-qa); border-color: var(--r-qa); }
+.sev.medium { color: var(--r-se); border-color: color-mix(in srgb, var(--r-se) 45%, var(--line)); }
+.sev.posted { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.list-row { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 11px 18px; border-top: 1px solid var(--line-2); font-size: 13px; }
+.list-row:first-of-type { border-top: 0; }
+.list-row .t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list-row .t span { color: var(--text-3); margin: 0 8px; }
+.crew { padding: 16px 18px; display: grid; gap: 12px; }
+.crew-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.crew-row > b { min-width: 110px; font-size: 13px; }
+.crew-slot { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); font-size: 12px; }
+.crew-slot.free { color: var(--text-3); border-style: dashed; background: transparent; }
+.crew-wait { color: var(--text-2); font-size: 12px; }
+.crew-wait svg { width: 14px; height: 14px; }
 </style>
 </head>
 <body>
@@ -428,9 +444,24 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     <div class="card timeline"><div class="tl" id="timeline"></div><div class="hm-wrap" id="heatmap" hidden></div><div class="legend" id="legend"></div></div>
   </section>
 
+  <section class="section" id="crew-section" hidden>
+    <div class="section-head"><h2 id="h-crew"></h2><span class="count" id="c-crew"></span></div>
+    <div class="card crew" id="crew"></div>
+  </section>
+
   <section class="section">
     <div class="section-head"><h2 id="h-tickets"></h2><span class="count" id="c-tickets"></span><div class="tickets-tools" id="tickets-tools"></div></div>
     <div id="tickets"></div>
+  </section>
+
+  <section class="section" id="sec-section" hidden>
+    <div class="section-head"><h2 id="h-sec"></h2><span class="count" id="c-sec"></span><div class="tickets-tools" id="sec-tools"></div></div>
+    <div id="sec"></div>
+  </section>
+
+  <section class="section" id="mk-section" hidden>
+    <div class="section-head"><h2 id="h-mk"></h2><span class="count" id="c-mk"></span><div class="tickets-tools" id="mk-tools"></div></div>
+    <div id="mk"></div>
   </section>
   </div>
 
@@ -462,6 +493,8 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     agents: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75',
     ticket: 'M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z',
     plan: 'M3 3v18h18 M7 14l4-4 4 4 5-5',
+    shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+    megaphone: 'M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z M16 8a5 5 0 0 1 0 8 M19 5a9 9 0 0 1 0 14',
     idea: 'M9 18h6 M10 22h4 M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z',
     clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2',
     copy: 'M20 9h-9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2z M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1',
@@ -470,12 +503,15 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
   };
   var ROLES = {
     'product-manager': ['PM', '--r-pm'], 'researcher': ['RS', '--r-rs'], 'project-manager': ['PJ', '--r-pj'],
-    'developer-lead': ['DL', '--r-dl'], 'qa-engineer': ['QA', '--r-qa'], 'reply-writer': ['RW', '--r-rw'], 'agent-maintainer': ['AM', '--r-am'], 'reviewer': ['RV', '--r-rv']
+    'developer-lead': ['DL', '--r-dl'], 'qa-engineer': ['QA', '--r-qa'], 'reply-writer': ['RW', '--r-rw'], 'agent-maintainer': ['AM', '--r-am'], 'reviewer': ['RV', '--r-rv'], 'security-engineer': ['SE', '--r-se'], 'social-media': ['SM', '--r-sm']
   };
   var KINDS = ['read', 'edit', 'run', 'search', 'web', 'tracker', 'tool'];
   var EN = {
     subtitle: 'Agent dashboard', live: 'Live', idle: 'Idle', updated: 'Updated', stale: 'No update for a while',
-    kpiAgents: 'Agents working', kpiAgentsSub: 'right now', kpiTickets: 'Active tickets', kpiPlan: 'Plan', kpiIdeas: 'Open ideas',
+    kpiAgents: 'Agents working', kpiAgentsSub: 'right now', kpiTickets: 'Active tickets', kpiPlan: 'Plan', kpiIdeas: 'Open ideas', kpiSecurity: 'Security to-dos', kpiSecuritySub: '{high} high',
+    security: 'Security', secOpen: 'Open', secFixed: 'Fixed', secAccepted: 'Accepted risk', secScan: 'Scan again', secFix: 'Fix', secNone: 'No security list yet', secAllDone: 'Nothing open — well done',
+    marketing: 'Marketing', mkPlan: 'Marketing plan', mkDrafts: 'Post drafts', mkCalendar: 'Next on the calendar', mkNoPlan: 'No marketing plan yet', mkMake: 'Make the plan', mkWeek: 'Weekly round-up', mkPost: 'Write posts', draft: 'draft', posted: 'posted', approved: 'approved', threatCheck: 'threat check', securityReview: 'security review', posts: 'posts',
+    crew: 'Team', developers: 'Developers', qaPool: 'QA', free: 'free', waitsFor: 'waits for',
     agents: 'Agents', timeline: 'Timeline', lastMinutes: 'last {n} min', tickets: 'Tickets', activity: 'Activity',
     task: 'Task', working: 'Working', finished: 'Finished', started: 'started', waiting: 'Waiting for',
     allQuiet: 'All quiet', allQuietSub: 'No agent is working — the team is waiting for you.', none: 'Nothing yet',
@@ -495,7 +531,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     steps: ['Requirements', 'Research', 'Plan', 'Build', 'QA', 'PR'],
     roles: {
       'product-manager': 'Product Manager', 'researcher': 'Researcher', 'project-manager': 'Project Manager',
-      'developer-lead': 'Developer Lead', 'qa-engineer': 'QA Engineer', 'reply-writer': 'Reply Writer', 'agent-maintainer': 'Agent Maintainer', 'reviewer': 'Independent Reviewer'
+      'developer-lead': 'Developer Lead', 'qa-engineer': 'QA Engineer', 'reply-writer': 'Reply Writer', 'agent-maintainer': 'Agent Maintainer', 'reviewer': 'Independent Reviewer', 'security-engineer': 'Security Engineer', 'social-media': 'Social Media'
     }
   };
 
@@ -650,6 +686,130 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     } else stat(box, 'plan', L.kpiPlan, '–');
     var i = d.ideas || {};
     stat(box, 'idea', L.kpiIdeas, (i.new || 0) + (i.question || 0), i.file || '');
+    var sec = d.security;
+    if (sec && typeof sec.open === 'number') {
+      var ss = stat(box, 'shield', L.kpiSecurity, sec.open, [sec.high ? String(L.kpiSecuritySub).replace('{high}', sec.high) : '', sec.file || ''].filter(Boolean).join(' · '));
+      if (sec.high) ss.classList.add('alert');
+    }
+  }
+
+  function renderSecurity(d, L) {
+    var s = d.security;
+    var sec = $('sec-section');
+    sec.hidden = !s;
+    if (!s) return;
+    var box = $('sec'); clear(box);
+    $('h-sec').textContent = L.security;
+    $('c-sec').textContent = String(s.open || 0);
+    var tools = $('sec-tools'); clear(tools);
+    tools.appendChild(copyButton(L.secScan, '/team-security', L.copiedStart, 'small', L.copyFailed));
+    var items = Array.isArray(s.items) ? s.items : [];
+    var card = el('div', 'card board');
+    box.appendChild(card);
+    var open = items.filter(function (x) { return x.status === 'open' || !x.status; });
+    var accepted = items.filter(function (x) { return x.status === 'accepted'; });
+    var fixed = items.filter(function (x) { return x.status === 'fixed'; });
+    groupHead(card, L.secOpen, s.open || open.length);
+    if (!open.length) card.appendChild(el('div', 'brows-empty', items.length || s.open === 0 ? L.secAllDone : L.secNone));
+    open.forEach(function (x) {
+      var r = el('div', 'list-row');
+      r.appendChild(el('span', 'sev ' + (x.severity || ''), x.severity || ''));
+      r.appendChild(el('span', 'tid', x.id || ''));
+      var tt = el('div', 't'); tt.appendChild(document.createTextNode(x.title || '')); if (x.effort) tt.appendChild(el('span', '', x.effort)); r.appendChild(tt);
+      r.appendChild(x.id ? copyButton(L.secFix, '/team-security fix ' + x.id, L.copiedStart, 'small', L.copyFailed) : el('span'));
+      card.appendChild(r);
+    });
+    [[L.secAccepted, accepted], [L.secFixed, fixed]].forEach(function (g) {
+      if (!g[1].length) return;
+      groupHead(card, g[0], g[1].length);
+      g[1].forEach(function (x) {
+        var r = el('div', 'list-row');
+        r.appendChild(el('span', 'sev', x.severity || ''));
+        r.appendChild(el('span', 'tid', x.id || ''));
+        var tt = el('div', 't'); tt.appendChild(document.createTextNode(x.title || '')); if (x.note) tt.appendChild(el('span', '', x.note)); r.appendChild(tt);
+        r.appendChild(el('span'));
+        card.appendChild(r);
+      });
+    });
+  }
+
+  function renderMarketing(d, L) {
+    var m = d.marketing;
+    var sec = $('mk-section');
+    sec.hidden = !m;
+    if (!m) return;
+    var box = $('mk'); clear(box);
+    $('h-mk').textContent = L.marketing;
+    var drafts = Array.isArray(m.posts) ? m.posts : [];
+    $('c-mk').textContent = String(drafts.filter(function (x) { return x.status !== 'posted'; }).length);
+    var tools = $('mk-tools'); clear(tools);
+    tools.appendChild(copyButton(L.mkWeek, '/team-social week', L.copiedStart, 'small', L.copyFailed));
+    var card = el('div', 'card board');
+    box.appendChild(card);
+    groupHead(card, L.mkPlan, '');
+    var pr = el('div', 'list-row');
+    var who = el('span', 'tid', roleName('team:social-media', L)); pr.appendChild(who);
+    pr.appendChild(el('span', 'sev' + (m.plan === 'approved' ? ' posted' : ''), m.plan ? (L[m.plan] || m.plan) : '—'));
+    var pt = el('div', 't'); pt.appendChild(document.createTextNode(m.plan ? (m.message || '') : L.mkNoPlan)); pr.appendChild(pt);
+    pr.appendChild(copyButton(m.plan ? L.refresh : L.mkMake, '/team-social', L.copiedStart, 'small', L.copyFailed));
+    card.appendChild(pr);
+    var cal = Array.isArray(m.calendar) ? m.calendar : [];
+    if (cal.length) {
+      groupHead(card, L.mkCalendar, cal.length);
+      cal.forEach(function (c) {
+        var r = el('div', 'list-row');
+        var dd = el('span', 'tid', c.day || ''); dd.dir = 'ltr'; r.appendChild(dd);
+        r.appendChild(el('span', 'sev', c.channel || ''));
+        var tt = el('div', 't'); tt.appendChild(document.createTextNode(c.idea || '')); if (c.goal) tt.appendChild(el('span', '', c.goal)); r.appendChild(tt);
+        r.appendChild(el('span'));
+        card.appendChild(r);
+      });
+    }
+    groupHead(card, L.mkDrafts, drafts.length);
+    if (!drafts.length) card.appendChild(el('div', 'brows-empty', L.none));
+    drafts.forEach(function (x) {
+      var r = el('div', 'list-row');
+      var dd = el('span', 'tid', x.date || ''); dd.dir = 'ltr'; r.appendChild(dd);
+      r.appendChild(el('span', 'sev' + (x.status === 'posted' ? ' posted' : ''), L[x.status] || x.status || L.draft));
+      var tt = el('div', 't'); tt.appendChild(document.createTextNode(x.title || x.ticket || '')); if (x.channels && x.channels.length) tt.appendChild(el('span', '', x.channels.join(' · '))); r.appendChild(tt);
+      r.appendChild(x.file ? el('span', 'tid', x.file) : el('span'));
+      card.appendChild(r);
+    });
+  }
+
+  function renderCrew(d, L) {
+    var sec = $('crew-section'), box = $('crew');
+    var c = d.crew;
+    sec.hidden = !c;
+    if (!c) return;
+    clear(box);
+    $('h-crew').textContent = L.crew;
+    var max = c.max || {};
+    var busyAll = 0;
+    [['developers', L.developers, max.developers || 3, 'team:developer-lead'], ['qa', L.qaPool, max.qa || 3, 'team:qa-engineer']].forEach(function (p) {
+      var row = el('div', 'crew-row');
+      row.appendChild(el('b', '', p[1]));
+      var busy = Array.isArray(c[p[0]]) ? c[p[0]] : [];
+      busyAll += busy.length;
+      busy.forEach(function (m) {
+        var s = el('span', 'crew-slot');
+        setRole(s, p[3]);
+        s.appendChild(el('b', '', m.name || ''));
+        s.appendChild(el('span', 'tid', m.ticket || ''));
+        if (m.step) s.appendChild(el('span', '', m.step));
+        row.appendChild(s);
+      });
+      for (var i = busy.length; i < p[2]; i++) row.appendChild(el('span', 'crew-slot free', L.free));
+      box.appendChild(row);
+    });
+    (Array.isArray(c.waiting) ? c.waiting : []).forEach(function (w) {
+      var row = el('div', 'crew-row crew-wait');
+      row.appendChild(icon('clock'));
+      row.appendChild(el('span', 'tid', w.ticket || ''));
+      row.appendChild(el('span', '', L.waitsFor + ' ' + (w.for || '') + (w.why ? ' — ' + w.why : '')));
+      box.appendChild(row);
+    });
+    $('c-crew').textContent = String(busyAll);
   }
 
   var selected = null;
@@ -924,7 +1084,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
   function groupHead(box, label, count) {
     var h = el('div', 'grp-h');
     h.appendChild(el('span', '', label));
-    h.appendChild(el('i', '', count));
+    if (count !== '') h.appendChild(el('i', '', count));
     box.appendChild(h);
   }
 
@@ -1371,6 +1531,15 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     });
 
     var aux = [];
+    var curStep = states.indexOf('current');
+    var secCol = curStep >= 0 && curStep <= 2 ? 1 : 4;
+    var secRun = mine.filter(function (s) { return s.agent === 'team:security-engineer'; })[0];
+    var smRun = mine.concat(loose).filter(function (s) { return s.agent === 'team:social-media'; })[0];
+    [{ agent: 'team:security-engineer', col: 1, icon: 'shield', sub: L.threatCheck, run: secCol === 1 ? secRun : null },
+     { agent: 'team:security-engineer', col: 4, icon: 'shield', sub: L.securityReview, run: secCol === 4 ? secRun : null },
+     { agent: 'team:social-media', col: 5, icon: 'megaphone', sub: L.posts, run: smRun }].forEach(function (b) {
+      aux.push({ agent: b.agent, col: b.col, name: roleName(b.agent, L), run: b.run, icon: b.icon, sub: b.sub, builtin: true });
+    });
     (Array.isArray(d.customAgents) ? d.customAgents : []).forEach(function (c) {
       var col = stepIndex(c.joins);
       if (col < 0) return;
@@ -1382,21 +1551,23 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
       FLOW.forEach(function (f, i) { if (f.agent === s.agent) idx = i; });
       var isMain = idx >= 0 && states[idx] === 'current';
       if (isMain || aux.some(function (a) { return a.agent === s.agent; })) return;
+      if (s.agent === 'team:social-media') return;
       var cur = states.indexOf('current');
       aux.push({ agent: s.agent, col: idx >= 0 ? idx : Math.max(0, cur), name: roleName(s.agent, L), run: s });
     });
     loose.forEach(function (s) {
       if (aux.some(function (a) { return a.run && a.run.id === s.id; })) return;
+      if (s.agent === 'team:social-media' || s.agent === 'team:security-engineer') return;
       aux.push({ agent: s.agent, col: 5, name: roleName(s.agent, L), run: s, loose: true });
     });
     var used = {};
     aux.sort(function (a, b) { return (a.loose ? 1 : 0) - (b.loose ? 1 : 0); });
     aux.forEach(function (a) {
-      if (!a.loose) { while (used[a.col] && a.col < 5) a.col++; used[a.col] = true; }
-      var n = flowNode('aux ' + (a.run ? 'running' : 'todo'), a.agent, 'agents', a.name, a.loose ? L.noTicket : a.run ? L.working : '', a.run ? 'spin' : null);
+      if (!a.loose && !a.builtin) { while (used[a.col] && a.col < 5) a.col++; used[a.col] = true; }
+      var n = flowNode('aux ' + (a.run ? 'running' : 'todo'), a.agent, a.icon || 'agents', a.name, a.loose ? L.noTicket : a.run ? L.working : (a.sub || ''), a.run ? 'spin' : null);
       if (a.run) clickable(n, a.run.id);
       if (a.run) n.appendChild(liveBubble(a.run, L, now));
-      n.style.gridColumn = a.loose ? 'auto' : String(a.col + 1); n.style.gridRow = a.loose ? '3' : '2';
+      n.style.gridColumn = a.loose ? 'auto' : String(a.col + 1); n.style.gridRow = a.loose ? '4' : a.builtin ? '2' : '3';
       grid.appendChild(n);
       a.node = n;
     });
@@ -1420,6 +1591,8 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 
   var lastLive = [], lastActions = [];
   window.addEventListener('resize', function () { if (lastEdges) drawEdges($('flow'), lastEdges); });
+  var edgeTimer = null;
+  window.addEventListener('scroll', function () { clearTimeout(edgeTimer); edgeTimer = setTimeout(function () { if (lastEdges) drawEdges($('flow'), lastEdges); }, 120); }, { passive: true });
 
   function render(d, live, actions) {
     lastData = d; lastLive = live; lastActions = actions;
@@ -1432,7 +1605,10 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     renderTop(d, L, running.length, stale);
     renderKpis(d, L, running.length);
     renderTimeline(list, L, now);
+    renderCrew(d, L);
     renderTickets(d, L);
+    renderSecurity(d, L);
+    renderMarketing(d, L);
     renderArchive(d, L);
     renderBoard(d, L);
     $('tab-live-text').textContent = L.tabLive;

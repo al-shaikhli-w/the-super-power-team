@@ -1,6 +1,6 @@
 ---
 name: team-setup
-description: Sets up the team in the current project — asks the reply language and how many agents to use, reads the code or interviews the developer when there is no code yet, writes the project profile and the project documents (info, tech, plan) under `.claude/team/`, and asks whether they belong in git. Use when the developer types /team-setup, or asks to onboard or install the team in a project.
+description: Sets up the team in the current project — asks the reply language and how many agents to use, reads the code or interviews the developer when there is no code yet, writes the project profile and the project documents (info, tech, plan, and a security to-do list when there is code) under `.claude/team/`, and asks whether they belong in git. Use when the developer types /team-setup, or asks to onboard or install the team in a project.
 ---
 
 # team — setup
@@ -46,6 +46,8 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 
    Then: "Do you want a live dashboard in your browser? Agents appear live by themselves; each step update is one more approval prompt." — yes or no. Note it as `Dashboard` in `team.md`.
 
+   Then: "Rafi, the team's social media manager, can draft posts for every feature you ship and a marketing plan (`/team-social`). Drafts only — you publish." — 1. **after every merge** (`after merge`), 2. **ask each time** (`ask`, default), 3. **never** (`off`). Note it as `Social posts` in `team.md`.
+
 3. **Look.** Is this a git repository? Is there a `CLAUDE.md`? Does `.claude/team/` exist?
    - `.claude/team/team.md` or `.claude/team/project/` exists: show what is there and ask — keep, or write again. Never overwrite without a yes. Never touch `.claude/team/work/`.
    - Create `.claude/team/work/active/` and `.claude/team/work/history/INDEX.md` with the header `| Date | Ticket | Title | PR | Result | Days | Summary |`.
@@ -55,7 +57,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 ### A — the project has code
 
 5. **No `CLAUDE.md`?** Say the agents take the project rules from it, suggest `/init`, and ask whether to continue without it.
-6. **Project scan.** Start `team:researcher`, job **Project scan**. Fill `project-tech.md` from its report — every fact with its evidence.
+6. **Project scan.** Start `team:researcher`, job **Project scan**, and `team:security-engineer`, job **Security scan** (template: `../security/security-template.md`), side by side. Fill `project-tech.md` from the researcher's report — every fact with its evidence. The security engineer writes `.claude/team/project/security.md` itself; show its open count by severity and the three most dangerous items, and say the full to-do list is in that file and `/team-security fix SEC-<n>` fixes one.
 7. **Profile facts**, from the repository only: OS and shell; commands (manifest scripts, CI workflow files, rules files); test folders; repository and default branch (`git remote -v`, `git symbolic-ref refs/remotes/origin/HEAD`); a local review tool on the path; the ticket id pattern (recent `git log` subjects).
 8. **What the code cannot show** — ask, one at a time, only what is still open: the idea in two sentences, the users, the goals, what comes next, rules the code cannot show. Write `project-info.md`.
 9. **Plan.** Draft `project-plan.md`: what already works goes under "Done" without tickets; what the developer named as next goes into "Features in order".
@@ -76,6 +78,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 8. **Write `project-plan.md`**: the version 1 capabilities as features in order, the first one small — usually the project skeleton with one working page or endpoint and its first test. Show it; approve or change.
    Things the developer named as "not in version 1": offer to keep them in `.claude/team/ideas/idea-v1.md` (template: `../new-idea/idea-template.md`) with status `later`.
 9. **Profile facts**: commands come from the approved tech proposal, marked `(planned)` until they exist.
+   **Security:** no scan without code. Say in one line that the security engineer checks every ticket from the first one, and that `/team-security` writes the to-do list once there is code.
 
 ### Both
 
@@ -83,6 +86,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 11. **Ask for the rest**, one at a time, only what is still `<…>`:
     - **Branch name:** the tracker's own branch name for the ticket, or `<user>/<ticket>-<slug>`, or `<user>/<feature>` — show the developer's `git config user.name`, made lower case with dashes.
     - **Full CI gate** (code only), **review tool** or `none`, **product notes**.
+    - **Worktree setup** (code only): what a fresh checkout needs before the gate runs — suggest the install command from the lock file (`npm ci`, `pnpm install --frozen-lockfile`, `uv sync`, …) or `none`. `Worktree folder` defaults to `../<repo folder>-worktrees`; `## Team size` and `## Models` keep the template's values.
 12. **Tracker tools.** `none`: skip. A tracker with a connector (Linear, Jira, Notion, another): check that its read tools are available in this session. Not connected: say that `team:product-manager`, `team:project-manager` and `team:reply-writer` cannot read tickets until it is connected (`/mcp`).
 13. **Git.** Ask, and note the answer under `Git` in `team.md`:
     1. **Local only** — add `.claude/team/` to `.git/info/exclude` (local, never committed).
@@ -92,4 +96,4 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
     No git repository yet: note the choice and give the commands for later. Write only the exclude lines; never stage or commit. For 2 and 3, give the `git add` and `git commit` commands in a block for the developer's shell.
 14. **Dashboard** `on`: run the `team-dashboard` skill.
 15. **Doctor.** Run the `team-doctor` skill. Any ✘ or ⚠: offer to fix them now, one at a time (its `fix` part).
-16. **Report**, short, in the reply language: files written, the doctor's result line, and the next command — `/team-work`, or for a new project `/team-work "<first feature from the plan>"`. New wishes any time: `/team-new-idea`; personal names for the agents: `/team-names`.
+16. **Report**, short, in the reply language: files written, the doctor's result line, the open security items (with code), and the next command — `/team-work`, or for a new project `/team-work "<first feature from the plan>"`. New wishes any time: `/team-new-idea`; personal names for the agents: `/team-names`; a marketing plan from Rafi: `/team-social`.

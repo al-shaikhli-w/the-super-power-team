@@ -9,14 +9,28 @@ Team version: <plugin version> — `/team-update` brings this project up to the 
 - Document language: <language> — the files under `.claude/team/`; code, commits and PR titles follow the project
 - Agents per ticket: <one at a time | several in parallel> — the default; `/team-work` asks per ticket
 - Dashboard: <on | off> — `/team-dashboard`
+- Social posts: <after merge | ask | off> — Rafi (`team:social-media`) drafts posts for every merged feature; `/team-social`
 - Independent review: <after QA | ask | off> — a fresh `team:reviewer` after QA passes; `/team-work review` runs it any time
 - Shell: <PowerShell | bash | zsh>
 - Git: <local only | share .claude/team except work/ | commit all of .claude/team>
+
+## Team size
+Several tickets at once (`/team-work RB-12 RB-13`): the team grows and shrinks by itself, up to these limits.
+- Max tickets in planning: 3
+- Max developers: 3
+- Max QA engineers: 3
+
+## Worktrees
+Each ticket worked next to others gets its own git worktree, so developers never touch each other's files.
+- Worktree folder: <../<repo folder>-worktrees>
+- Worktree setup: <the command a fresh checkout needs before the gate runs, e.g. `npm ci`, or "none">
 
 ## Project documents
 - `.claude/team/project/project-info.md` — the idea, users and goals (the developer's words)
 - `.claude/team/project/project-tech.md` — stack, structure, commands, risks (read from the code, or proposed)
 - `.claude/team/project/project-plan.md` — the features in order
+- `.claude/team/project/security.md` — the security picture and to-do list (`/team-security`)
+- `.claude/team/marketing/marketing-plan.md` and `marketing/posts/` — the marketing plan and post drafts (`/team-social`)
 - `.claude/team/ideas/idea-v<N>.md` — wishes not planned yet (`/team-new-idea`)
 
 ## Project
@@ -51,10 +65,24 @@ Team version: <plugin version> — `/team-update` brings this project up to the 
 ## Team names
 | Agent | Name |
 |---|---|
+| team:social-media | Rafi |
 
 ## Custom agents
 | Agent | Role | Joins at | May touch | Where |
 |---|---|---|---|---|
+
+## Models
+Which model each job runs on. `inherit` = your session's model. Cheaper models for simple jobs save tokens.
+| Agent | Job | Model |
+|---|---|---|
+| reply-writer | all | haiku |
+| agent-maintainer | all | haiku |
+| researcher | all | sonnet |
+| qa-engineer | CI gate, local review, PR round check | sonnet |
+| qa-engineer | code review | inherit |
+| security-engineer | all | inherit |
+| social-media | all | sonnet |
+| product-manager, project-manager, developer-lead, reviewer | all | inherit |
 
 ## Product notes
 - <rules about the product that the code cannot show>
