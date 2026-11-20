@@ -12,6 +12,12 @@
   "bugs": {
     "url": "https://github.com/al-shaikhli-w/Pit-Crew/issues"
   },
+  "bin": {
+    "the-super-power-team": "bin/install.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "claude-code",
     "claude-code-plugin",
@@ -25,5 +31,12 @@
     "jira",
     "github"
   ],
-  "files": [".claude-plugin", "agents", "skills", "hooks", "README.md"]
+  "files": [
+    ".claude-plugin",
+    "agents",
+    "skills",
+    "hooks",
+    "bin",
+    "README.md"
+  ]
 }

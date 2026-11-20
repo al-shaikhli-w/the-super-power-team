@@ -52,7 +52,8 @@ Start with the [Quick start](#quick-start) below.
 | **Where it keeps its work** | Plain markdown files in `.claude/team/` inside your project. |
 | **Trackers** | Linear, Jira, Notion, GitHub Issues, any connected tool, or a local board. |
 | **Runs on** | Windows, macOS, Linux — terminal, desktop app or IDE extension. |
-| **Install** | `/plugin marketplace add al-shaikhli-w/Pit-Crew` then `/plugin install team@my-super-team` |
+| **Install** | `npx the-super-power-team` |
+| **Update** | `npx the-super-power-team@latest` |
 | **npm** | [`the-super-power-team`](https://www.npmjs.com/package/the-super-power-team) |
 | **License** | MIT |
 
@@ -105,33 +106,47 @@ the crew does the work.
 
 ## Quick start
 
-**Requirements:** Claude Code (terminal, desktop app or IDE extension), `bash`
-(on Windows: Git for Windows, which Claude Code normally uses anyway), and
-[`gh`](https://cli.github.com/) signed in for pull-request rounds. Cloud
-sessions do not load local plugins.
+**Requirements:**
 
-Install the plugin in Claude Code:
+| You need | Why |
+| --- | --- |
+| [Node.js](https://nodejs.org/) 18 or newer | Runs the one-line installer (`npx`). |
+| [Claude Code](https://claude.com/claude-code) | Terminal, desktop app or IDE extension. Cloud sessions do not load local plugins. |
+| `bash` | Runs the dashboard hooks. On Windows: Git for Windows, which Claude Code normally uses anyway. |
+| [`gh`](https://cli.github.com/) signed in | Only for pull-request rounds (`/team-work pr`). |
 
-```text
-/plugin marketplace add al-shaikhli-w/Pit-Crew
-/plugin install team@my-super-team
-```
+### 1. Install
 
-<details>
-<summary><strong>Prefer npm?</strong> The same plugin files are published as <code>the-super-power-team</code>.</summary>
+Run this in any terminal:
 
 ```bash
-npm install the-super-power-team
+npx the-super-power-team
 ```
 
-The package holds the plugin folder (`.claude-plugin`, `agents`, `skills`,
-`hooks`). Claude Code loads plugins through a marketplace, so the marketplace
-commands above remain the recommended way to install and update. Use the npm
-package to pin a version, mirror it internally, or inspect the files.
+That is the whole install. The installer:
+
+1. copies the plugin to `~/.claude/the-super-power-team/`;
+2. registers it with Claude Code as `team@the-super-power-team`;
+3. tells you what to do next.
+
+No git, no GitHub account and no `/plugin` commands needed.
+
+<details>
+<summary>The <code>claude</code> command is not on your PATH?</summary>
+
+The installer still copies the files, then prints two commands. Paste them
+into Claude Code:
+
+```text
+/plugin marketplace add ~/.claude/the-super-power-team
+/plugin install team@the-super-power-team
+```
 
 </details>
 
-Start a new session in your project, then set it up once:
+### 2. Set up your project
+
+Start a new Claude Code session in your project, then set it up once:
 
 ```text
 /team-setup
@@ -426,27 +441,33 @@ back.
 
 ## Status and updates
 
-Update the plugin, then the crew's files in each project:
+| Task | Command |
+| --- | --- |
+| **Update to the newest version** | `npx the-super-power-team@latest` |
+| **Install a specific version** | `npx the-super-power-team@0.12.0` |
+| **See which version you have** | `claude plugin list` |
+| **Uninstall** | `npx the-super-power-team uninstall` |
+| **Help** | `npx the-super-power-team help` |
 
-```bash
-claude plugin marketplace update my-super-team
-claude plugin update team@my-super-team
-```
+After an update, start a new session and run `/team-update` in each project.
+It shows what changed — new profile fields, the dashboard page, new sections
+for your own agents — and applies only what you approve. Your project
+documents and ticket work are never touched. `/team-doctor` warns when the
+files are older than the plugin.
 
-Start a new session and run `/team-update`. It shows what changed — new
-profile fields, the dashboard page, new sections for your own agents — and
-applies only what you approve. Your project documents and ticket work are never
-touched. `/team-doctor` warns when the files are older than the plugin.
+Uninstalling removes the plugin and `~/.claude/the-super-power-team/`; the
+`.claude/team/` files in your projects stay.
 
-Auto-update is off for community marketplaces; you can turn it on in `/plugin`
-under Marketplaces.
+See what changed in each version in the [Changelog](CHANGELOG.md).
 
 ### Troubleshooting
 
 | Problem | Fix |
 | --- | --- |
 | Something does not work | `/team-doctor`, then `/team-doctor fix` |
-| `/team-work` is unknown | Run `/plugin`, check that `team` is installed and enabled, start a new session |
+| `npx` is not found | Install [Node.js](https://nodejs.org/) 18 or newer, open a new terminal |
+| `/team-work` is unknown | Run `npx the-super-power-team` again, then start a new session; `claude plugin list` should show `team@the-super-power-team` |
+| Commands appear twice | You also have the older GitHub install: `claude plugin uninstall team@my-super-team` |
 | An agent cannot read tickets | Connect your tracker (`/mcp`), or set it to `GitHub Issues` or `none` in `.claude/team/team.md` |
 | An agent uses an old command or path | `/team-work sync` |
 | Crew files show up in `git status` | Run `/team-setup` again and choose a git option, or add `.claude/team/` to `.git/info/exclude` |

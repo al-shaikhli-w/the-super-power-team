@@ -4,6 +4,7 @@
 
 - Renamed to **The Super Power Team**: README, dashboard title and logo labels. Install commands, the `team` plugin and the `/team-*` commands are unchanged.
 - Published on npm as [`the-super-power-team`](https://www.npmjs.com/package/the-super-power-team), with its own README.
+- Install from npm with one command: `npx the-super-power-team`. It copies the plugin to `~/.claude/the-super-power-team/` and registers it with Claude Code as `team@the-super-power-team` — no git or `/plugin` commands. `npx the-super-power-team@latest` updates, `uninstall` removes it.
 - README: an "At a glance" summary, a table of contents and npm install notes.
 
 ## 0.12.0

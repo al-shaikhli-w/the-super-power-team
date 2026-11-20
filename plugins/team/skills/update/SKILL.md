@@ -16,12 +16,13 @@ The plugin itself is updated by Claude Code, not by this skill. This skill only 
 - **Installed:** `version` in this plugin's `.claude-plugin/plugin.json`, two folders up from this skill.
 - **Project:** `Team version` in `team.md`. Missing means the project was set up before 0.11.0.
 - Same version and argument is not `check`: still run the comparison below — files can drift by hand — but say the versions match.
-- Project newer than installed: say the plugin is older than this project's files, give the commands to update it, and stop:
+- Project newer than installed: say the plugin is older than this project's files, give the command to update it, and stop:
 
   ```text
-  claude plugin marketplace update my-super-team
-  claude plugin update team@my-super-team
+  npx the-super-power-team@latest
   ```
+
+  If `claude plugin list` shows `team@my-super-team` (the older GitHub install) instead, the commands are `claude plugin marketplace update my-super-team` and `claude plugin update team@my-super-team`.
 
   Then a new session, so Claude Code loads the new agents and skills.
 
