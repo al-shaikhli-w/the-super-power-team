@@ -1,6 +1,6 @@
 {
   "name": "my-super-team",
-  "owner": { "name": "<owner name>" },
+  "owner": { "name": "Waleed Al Shaikhli" },
   "description": "A Claude Code agent team that works tickets step by step with your approval.",
   "plugins": [
     {
