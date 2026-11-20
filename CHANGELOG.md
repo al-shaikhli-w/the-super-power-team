@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Arabic in the terminal: the setup language question lists one choice per line with no brackets (it showed `)Arabic( العربية`), and a new `Right-to-left in the terminal` rule in `team.md` keeps every reply readable — one direction per line, commands and ids on their own line. `/team-update` adds the rule to existing projects.
+- Arabic on the dashboard: an Arabic font first, no letter spacing (it broke the joins), taller lines for diacritics, the workflow canvas runs right to left, and English labels, ticket ids and times no longer flip (`30 min`, `11:43 PM`).
+
 ## 0.14.0
 
 - **New role: `team:security-engineer`.** On a project with code, setup scans it and writes `.claude/team/project/security.md` — what the system protects, its entry points, and a security to-do list (`SEC-1 · high · …`). Every ticket gets a threat check at step 2 (`02-security.md`, its rules go into the brief and the plan) and a security review at step 5 (`05-security.md`); QA's own security check moved to it.

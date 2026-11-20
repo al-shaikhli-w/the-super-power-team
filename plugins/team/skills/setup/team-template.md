@@ -6,6 +6,12 @@ Team version: <plugin version> — `/team-update` brings this project up to the 
 
 ## Developer
 - Reply language: <English | Deutsch | العربية | …> — every message to the developer
+- Right-to-left in the terminal (Arabic, Hebrew, Persian, Urdu): the terminal reorders any line that mixes directions, so
+  - one direction per line: a line is all Arabic, or all English, numbers and code;
+  - commands, file names, paths, ticket ids, branch names and code go on their own line or in a code block, never inside an Arabic sentence;
+  - no brackets or quotes around English inside an Arabic line — they flip;
+  - choice lists: one choice per line, the Arabic text after the number (`1. موافقة`);
+  - Arabic punctuation: `،` `؛` `؟`; no tatweel (ـ) and no decorative letter spacing.
 - Document language: <language> — the files under `.claude/team/`; code, commits and PR titles follow the project
 - Agents per ticket: <one at a time | several in parallel> — the default; `/team-work` asks per ticket
 - Dashboard: <on | off> — `/team-dashboard`

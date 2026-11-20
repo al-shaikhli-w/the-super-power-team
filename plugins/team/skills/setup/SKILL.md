@@ -20,7 +20,14 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 1. **Reply language.** Ask first, in English, with each choice in its own language:
 
    > Which language should the team answer in?
-   > 1. English  2. Deutsch  3. العربية (Arabic)  4. Other — name it
+   > 1. English
+   > 2. Deutsch
+   > 3. Arabic — العربية
+   > 4. Other — name it
+
+   Keep each choice on its own line, the English name first and no brackets: terminals reorder a line that mixes left-to-right and right-to-left text, and `العربية (Arabic)` shows as `)Arabic( العربية`.
+
+   From the answer on, speak that language. For a right-to-left one, follow **Right-to-left in the terminal** in `team-template.md` from here on.
 
    Then: "Write the project documents in the same language?" — yes, or name another. Code, commits and PR titles always follow the project.
 

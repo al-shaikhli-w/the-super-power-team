@@ -34,6 +34,21 @@ body {
   font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI Variable", "Segoe UI", Roboto, "Noto Sans Arabic", "Noto Sans", sans-serif;
   -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01", "tnum";
 }
+/* Right-to-left (Arabic, Hebrew, Persian, Urdu): a font with the script first, room for
+   diacritics, and no tracking — letter-spacing breaks the joins of connected scripts. */
+:root[dir="rtl"] body {
+  font-family: "SF Arabic", "Geeza Pro", "Noto Sans Arabic", "Segoe UI", Tahoma, "Noto Sans Hebrew", system-ui, sans-serif;
+  line-height: 1.65; font-feature-settings: "tnum";
+}
+:root[dir="rtl"] *, :root[dir="rtl"] *::before, :root[dir="rtl"] *::after { letter-spacing: normal !important; font-style: normal; }
+:root[dir="rtl"] .title b, :root[dir="rtl"] .section-head h2 { line-height: 1.4; }
+:root[dir="rtl"] .tl-label { direction: rtl; }
+:root[dir="rtl"] .flow { direction: rtl; }
+/* Mixed text (English labels, ticket ids, times inside Arabic): each piece takes its direction
+   from its own first letter, so "30 min" or "RB-7" never flip to "min 30" or "7-RB". */
+:root[dir="rtl"] :is(button, a, b, i, span, small, label, td, th, li, p, h2, h3, h4, summary, option) { unicode-bidi: plaintext; }
+:root[dir="rtl"] code, :root[dir="rtl"] pre, :root[dir="rtl"] .file span { direction: ltr; unicode-bidi: isolate; }
+bdi, .ltr { unicode-bidi: isolate; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 56px; }
 .top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); margin-bottom: 24px; }
 .top .wrap { display: flex; align-items: center; gap: 14px; padding-top: 14px; padding-bottom: 14px; }
@@ -301,7 +316,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 .fn.waiting .fn-box { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 .fn.fail .fn-box { border-color: var(--bad); color: var(--bad); }
 @keyframes glow { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--role) 10%, transparent), 0 6px 22px color-mix(in srgb, var(--role) 30%, transparent); } }
-.fn-badge { position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--surface); color: #fff; font-size: 11px; font-weight: 700; }
+.fn-badge { position: absolute; top: -8px; inset-inline-end: -8px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--surface); color: #fff; font-size: 11px; font-weight: 700; }
 .fn-badge svg { width: 11px; height: 11px; }
 .fn.done .fn-badge { background: var(--ok); }
 .fn.fail .fn-badge { background: var(--bad); }
@@ -555,7 +570,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
   }
   function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); }
   function ms(iso) { var t = new Date(iso).getTime(); return isNaN(t) ? 0 : t; }
-  function hhmm(iso) { var d = new Date(iso); return isNaN(d) ? '' : d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
+  function hhmm(iso) { var d = new Date(iso); return isNaN(d) ? '' : '\u2068' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + '\u2069'; }
   function dur(fromMs, toMs) {
     var s = Math.max(0, Math.round((toMs - fromMs) / 1000));
     var h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), r = s % 60;
@@ -1460,8 +1475,9 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
         var my = (y1 + y2) / 2;
         d = 'M' + x1 + ' ' + y1 + ' C' + x1 + ' ' + my + ' ' + x2 + ' ' + my + ' ' + x2 + ' ' + y2;
       } else {
-        x1 = a.right - base.left; y1 = a.top + a.height / 2 - base.top;
-        x2 = b.left - base.left; y2 = b.top + b.height / 2 - base.top;
+        var rtl = b.left < a.left; // right-to-left pages run the steps from right to left
+        x1 = (rtl ? a.left : a.right) - base.left; y1 = a.top + a.height / 2 - base.top;
+        x2 = (rtl ? b.right : b.left) - base.left; y2 = b.top + b.height / 2 - base.top;
         var mx = (x1 + x2) / 2;
         d = 'M' + x1 + ' ' + y1 + ' C' + mx + ' ' + y1 + ' ' + mx + ' ' + y2 + ' ' + x2 + ' ' + y2;
       }
