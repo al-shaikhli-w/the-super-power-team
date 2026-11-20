@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- GitHub repository renamed to `al-shaikhli-w/the-super-power-team` (old links redirect); marketplace renamed to `the-super-power-team`.
+- New logo: a lightning bolt instead of the wrench, in the README, the dashboard header and the dashboard's browser tab.
+- One README for GitHub and npm: `scripts/build-npm-readme.js` copies it before every `npm publish`.
+
 ## 0.13.0
 
 - Renamed to **The Super Power Team**: README, dashboard title and logo labels. Install commands, the `team` plugin and the `/team-*` commands are unchanged.

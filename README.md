@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
+  <img src="https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
 </p>
 
 <h1 align="center">The Super Power Team</h1>
@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/version-0.13.0-155eef?style=flat-square" alt="version 0.13.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
-  <a href="https://github.com/al-shaikhli-w/Pit-Crew/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
+  <a href="https://github.com/al-shaikhli-w/the-super-power-team/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
 </p>
 
 <p align="center">
@@ -18,8 +18,8 @@
   <a href="#the-workflow">Workflow</a> |
   <a href="#live-dashboard">Dashboard</a> |
   <a href="#command-map">Commands</a> |
-  <a href="https://github.com/al-shaikhli-w/Pit-Crew/blob/master/CHANGELOG.md">Changelog</a> |
-  <a href="https://github.com/al-shaikhli-w/Pit-Crew/issues">Issues</a>
+  <a href="https://github.com/al-shaikhli-w/the-super-power-team/blob/master/CHANGELOG.md">Changelog</a> |
+  <a href="https://github.com/al-shaikhli-w/the-super-power-team/issues">Issues</a>
 </p>
 
 The Super Power Team gives Claude Code a crew of eight specialised agents — product
@@ -245,7 +245,7 @@ See every agent, every ticket and everything that waits for you in one page in
 your browser. It refreshes every 4 seconds, works offline, and needs no server
 or install.
 
-![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/dashboard-live.png)
+![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
 
 ```text
 /team-dashboard
@@ -347,7 +347,7 @@ board**, alone or next to your tracker:
 | --- | --- | --- | --- |
 | written down; requirements and plan not approved yet | being built | QA, independent review, PR open | merged or closed |
 
-![The Super Power Team board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/dashboard-board.png)
+![The Super Power Team board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-board.png)
 
 `/team-ticket new` first asks where the ticket comes from:
 
@@ -456,7 +456,7 @@ files are older than the plugin.
 Uninstalling removes the plugin and `~/.claude/the-super-power-team/`; the
 `.claude/team/` files in your projects stay.
 
-See what changed in each version in the [Changelog](https://github.com/al-shaikhli-w/Pit-Crew/blob/master/CHANGELOG.md).
+See what changed in each version in the [Changelog](https://github.com/al-shaikhli-w/the-super-power-team/blob/master/CHANGELOG.md).
 
 ### Troubleshooting
 
@@ -474,9 +474,9 @@ See what changed in each version in the [Changelog](https://github.com/al-shaikh
 ## Support and contributing
 
 Found a bug or an agent that works from old information? Open an
-[issue](https://github.com/al-shaikhli-w/Pit-Crew/issues). Changes are
-listed in the [Changelog](https://github.com/al-shaikhli-w/Pit-Crew/blob/master/CHANGELOG.md).
+[issue](https://github.com/al-shaikhli-w/the-super-power-team/issues). Changes are
+listed in the [Changelog](https://github.com/al-shaikhli-w/the-super-power-team/blob/master/CHANGELOG.md).
 
 ## License
 
-MIT — see [LICENSE](https://github.com/al-shaikhli-w/Pit-Crew/blob/master/LICENSE).
+MIT — see [LICENSE](https://github.com/al-shaikhli-w/the-super-power-team/blob/master/LICENSE).

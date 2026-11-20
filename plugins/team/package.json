@@ -4,13 +4,13 @@
   "description": "The Super Power Team: eight Claude Code agents that take a ticket from idea to pull request, with your approval after every step.",
   "license": "MIT",
   "author": "Waleed Al Shaikhli",
-  "homepage": "https://github.com/al-shaikhli-w/Pit-Crew#readme",
+  "homepage": "https://github.com/al-shaikhli-w/the-super-power-team#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/al-shaikhli-w/Pit-Crew.git"
+    "url": "git+https://github.com/al-shaikhli-w/the-super-power-team.git"
   },
   "bugs": {
-    "url": "https://github.com/al-shaikhli-w/Pit-Crew/issues"
+    "url": "https://github.com/al-shaikhli-w/the-super-power-team/issues"
   },
   "bin": {
     "the-super-power-team": "bin/install.js"
