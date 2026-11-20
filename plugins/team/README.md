@@ -1,4 +1,3 @@
-<!-- Generated from the repository README by scripts/build-npm-readme.js. Edit README.md, not this file. -->
 <p align="center">
   <img src="https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
 </p>

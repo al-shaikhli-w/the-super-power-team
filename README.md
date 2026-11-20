@@ -1,9 +1,5 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/mark-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/mark-light.svg">
-    <img src="assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
-  </picture>
+  <img src="https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
 </p>
 
 <h1 align="center">The Super Power Team</h1>
@@ -14,7 +10,7 @@
   <img src="https://img.shields.io/badge/version-0.13.0-155eef?style=flat-square" alt="version 0.13.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
+  <a href="https://github.com/al-shaikhli-w/Pit-Crew/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
 </p>
 
 <p align="center">
@@ -22,7 +18,7 @@
   <a href="#the-workflow">Workflow</a> |
   <a href="#live-dashboard">Dashboard</a> |
   <a href="#command-map">Commands</a> |
-  <a href="CHANGELOG.md">Changelog</a> |
+  <a href="https://github.com/al-shaikhli-w/Pit-Crew/blob/master/CHANGELOG.md">Changelog</a> |
   <a href="https://github.com/al-shaikhli-w/Pit-Crew/issues">Issues</a>
 </p>
 
@@ -190,29 +186,31 @@ Learn these three commands first:
 /team-work <ticket> -> /team-work pr -> /team-status
 ```
 
-```mermaid
-flowchart TD
-    S["/team-work ABC-123"] --> P1["1 · product-manager<br/>requirements"]
-    P1 --> G1{approve?}
-    G1 -->|change| P1
-    G1 -->|yes| P2["2 · researcher<br/>feasibility, code first"]
-    P2 --> G2{approve?}
-    G2 -->|not OK| P1
-    G2 -->|yes| P3["3 · project-manager<br/>plan"]
-    P3 --> G3{approve?}
-    G3 -->|yes| BR["you create the branch"]
-    BR --> P4["4 · developer-lead<br/>one task at a time"]
-    P4 --> G4{approve task?}
-    G4 -->|next task| P4
-    G4 -->|all done| P5["5 · qa-engineer<br/>CI · local review · code review · security"]
-    P5 -->|FAIL| P4
-    P5 -->|PASS| P5B["5b · reviewer<br/>requirements + diff only"]
-    P5B -->|changes| P4
-    P5B -->|PASS| P6["6 · PR title + commit message"]
-    P6 --> U["you commit, push, open the PR"]
+```text
+/team-work ABC-123
+ │
+ ▼
+1  product-manager   requirements         ✋ approve
+ │
+2  researcher        feasibility          ✋ approve
+ │                   not feasible → 1
+3  project-manager   plan                 ✋ approve
+ │
+ ├─ you create the branch
+ │
+4  developer-lead    one task at a time   ✋ each task
+ │
+5  qa-engineer       CI, reviews, security
+ │                   FAIL → 4
+5b reviewer          requirements + diff
+ │                   changes → 4
+6  hand-over         PR title + commit
+ │
+ ▼
+you commit, push and open the PR
 ```
 
-Every diamond is a stop. Each step has a narrow job:
+Every ✋ is a stop: nothing moves on until you approve. Each step has a narrow job:
 
 | Step | Who | Saved as | You do |
 | --- | --- | --- | --- |
@@ -247,7 +245,7 @@ See every agent, every ticket and everything that waits for you in one page in
 your browser. It refreshes every 4 seconds, works offline, and needs no server
 or install.
 
-![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](assets/dashboard-live.png)
+![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/dashboard-live.png)
 
 ```text
 /team-dashboard
@@ -349,7 +347,7 @@ board**, alone or next to your tracker:
 | --- | --- | --- | --- |
 | written down; requirements and plan not approved yet | being built | QA, independent review, PR open | merged or closed |
 
-![The Super Power Team board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](assets/dashboard-board.png)
+![The Super Power Team board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/dashboard-board.png)
 
 `/team-ticket new` first asks where the ticket comes from:
 
@@ -458,7 +456,7 @@ files are older than the plugin.
 Uninstalling removes the plugin and `~/.claude/the-super-power-team/`; the
 `.claude/team/` files in your projects stay.
 
-See what changed in each version in the [Changelog](CHANGELOG.md).
+See what changed in each version in the [Changelog](https://github.com/al-shaikhli-w/Pit-Crew/blob/master/CHANGELOG.md).
 
 ### Troubleshooting
 
@@ -477,8 +475,8 @@ See what changed in each version in the [Changelog](CHANGELOG.md).
 
 Found a bug or an agent that works from old information? Open an
 [issue](https://github.com/al-shaikhli-w/Pit-Crew/issues). Changes are
-listed in the [Changelog](CHANGELOG.md).
+listed in the [Changelog](https://github.com/al-shaikhli-w/Pit-Crew/blob/master/CHANGELOG.md).
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/al-shaikhli-w/Pit-Crew/blob/master/LICENSE).
