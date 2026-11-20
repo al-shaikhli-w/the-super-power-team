@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.13.0
 
 - Renamed to **The Super Power Team**: README, dashboard title and logo labels. Install commands, the `team` plugin and the `/team-*` commands are unchanged.
 - Published on npm as [`the-super-power-team`](https://www.npmjs.com/package/the-super-power-team), with its own README.

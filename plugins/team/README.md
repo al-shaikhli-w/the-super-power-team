@@ -1,3 +1,4 @@
+<!-- Generated from the repository README by scripts/build-npm-readme.js. Edit README.md, not this file. -->
 <p align="center">
   <img src="https://raw.githubusercontent.com/al-shaikhli-w/Pit-Crew/master/assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
 </p>
@@ -7,7 +8,7 @@
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.12.0-155eef?style=flat-square" alt="version 0.12.0">
+  <img src="https://img.shields.io/badge/version-0.13.0-155eef?style=flat-square" alt="version 0.13.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="https://github.com/al-shaikhli-w/Pit-Crew/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
@@ -188,29 +189,29 @@ Learn these three commands first:
 
 ```text
 /team-work ABC-123
-   │
-   ▼
- 1 · product-manager ── requirements ─────────────── you approve ◄─┐
-   │                                                                │ not OK
- 2 · researcher ─────── feasibility, code first ──── you approve ──┘
-   │
- 3 · project-manager ── plan ──────────────────────── you approve
-   │
-   ├── you create the branch (the team gives you the commands)
-   │
- 4 · developer-lead ─── one task at a time ────────── you approve each task ◄──┐
-   │                                                                            │
- 5 · qa-engineer ────── CI · local review · code review · security ─ FAIL ─────┤
-   │ PASS                                                                       │
- 5b· reviewer ───────── sees only requirements + diff ─ changes ───────────────┘
-   │ PASS
- 6 · PR title + commit message
-   │
-   ▼
- you commit, push and open the PR
+ │
+ ▼
+1  product-manager   requirements         ✋ approve
+ │
+2  researcher        feasibility          ✋ approve
+ │                   not feasible → 1
+3  project-manager   plan                 ✋ approve
+ │
+ ├─ you create the branch
+ │
+4  developer-lead    one task at a time   ✋ each task
+ │
+5  qa-engineer       CI, reviews, security
+ │                   FAIL → 4
+5b reviewer          requirements + diff
+ │                   changes → 4
+6  hand-over         PR title + commit
+ │
+ ▼
+you commit, push and open the PR
 ```
 
-Every diamond is a stop. Each step has a narrow job:
+Every ✋ is a stop: nothing moves on until you approve. Each step has a narrow job:
 
 | Step | Who | Saved as | You do |
 | --- | --- | --- | --- |
@@ -442,7 +443,7 @@ back.
 | Task | Command |
 | --- | --- |
 | **Update to the newest version** | `npx the-super-power-team@latest` |
-| **Install a specific version** | `npx the-super-power-team@0.12.0` |
+| **Install a specific version** | `npx the-super-power-team@0.13.0` |
 | **See which version you have** | `claude plugin list` |
 | **Uninstall** | `npx the-super-power-team uninstall` |
 | **Help** | `npx the-super-power-team help` |

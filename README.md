@@ -11,7 +11,7 @@
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.12.0-155eef?style=flat-square" alt="version 0.12.0">
+  <img src="https://img.shields.io/badge/version-0.13.0-155eef?style=flat-square" alt="version 0.13.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
@@ -444,7 +444,7 @@ back.
 | Task | Command |
 | --- | --- |
 | **Update to the newest version** | `npx the-super-power-team@latest` |
-| **Install a specific version** | `npx the-super-power-team@0.12.0` |
+| **Install a specific version** | `npx the-super-power-team@0.13.0` |
 | **See which version you have** | `claude plugin list` |
 | **Uninstall** | `npx the-super-power-team uninstall` |
 | **Help** | `npx the-super-power-team help` |
