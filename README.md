@@ -22,7 +22,7 @@
   <a href="#live-dashboard">Dashboard</a> |
   <a href="#command-map">Commands</a> |
   <a href="CHANGELOG.md">Changelog</a> |
-  <a href="https://github.com/<github-user>/my-super-team/issues">Issues</a>
+  <a href="https://github.com/al-shaikhli-w/Pit-Crew/issues">Issues</a>
 </p>
 
 Pit Crew gives Claude Code a crew of eight specialised agents — product
@@ -79,7 +79,7 @@ sessions do not load local plugins.
 Install the plugin in Claude Code:
 
 ```text
-/plugin marketplace add <github-user>/my-super-team
+/plugin marketplace add al-shaikhli-w/Pit-Crew
 /plugin install team@my-super-team
 ```
 
@@ -407,7 +407,7 @@ under Marketplaces.
 ## Support and contributing
 
 Found a bug or an agent that works from old information? Open an
-[issue](https://github.com/<github-user>/my-super-team/issues). Changes are
+[issue](https://github.com/al-shaikhli-w/Pit-Crew/issues). Changes are
 listed in the [Changelog](CHANGELOG.md).
 
 ## License
