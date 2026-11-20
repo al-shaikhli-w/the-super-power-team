@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pit Crew</title>
+<title>The Super Power Team</title>
 <style>
 :root {
   --bg: #f5f6f8; --surface: #ffffff; --surface-2: #f9fafb; --text: #0f172a; --text-2: #475569; --text-3: #94a3b8;
@@ -370,7 +370,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 <header class="top">
   <div class="wrap">
     <div class="logo" id="logo" aria-hidden="true"></div>
-    <div class="title"><b id="brand">Pit Crew</b><span id="project"></span></div>
+    <div class="title"><b id="brand">The Super Power Team</b><span id="project"></span></div>
     <div class="spacer"></div>
     <nav class="tabs" role="tablist" aria-label="Views">
       <button class="tab" role="tab" id="tab-live" aria-controls="view-live" aria-selected="true"><span id="tab-live-text">Live</span><span class="badge" id="tab-live-badge" hidden></span></button>
@@ -613,7 +613,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     $('logo').replaceChildren(icon('logo'));
     document.documentElement.dir = d.dir === 'rtl' ? 'rtl' : 'ltr';
     $('project').textContent = d.project || L.subtitle;
-    document.title = (d.project ? d.project + ' · ' : '') + (running ? '● ' : '') + 'Pit Crew';
+    document.title = (d.project ? d.project + ' · ' : '') + (running ? '● ' : '') + 'The Super Power Team';
     $('updated').textContent = d.updated ? L.updated + ' ' + hhmm(d.updated) : '';
     $('live').className = running ? 'pill on' : 'pill';
     $('live-text').textContent = running ? L.live : L.idle;

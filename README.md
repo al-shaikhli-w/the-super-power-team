@@ -2,16 +2,17 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/mark-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/mark-light.svg">
-    <img src="assets/mark-light.svg" alt="Pit Crew" width="64" height="64">
+    <img src="assets/mark-light.svg" alt="The Super Power Team" width="64" height="64">
   </picture>
 </p>
 
-<h1 align="center">Pit Crew</h1>
+<h1 align="center">The Super Power Team</h1>
 
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-0.12.0-155eef?style=flat-square" alt="version 0.12.0">
+  <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
 </p>
@@ -25,7 +26,7 @@
   <a href="https://github.com/al-shaikhli-w/Pit-Crew/issues">Issues</a>
 </p>
 
-Pit Crew gives Claude Code a crew of eight specialised agents — product
+The Super Power Team gives Claude Code a crew of eight specialised agents — product
 manager, researcher, project manager, developer lead, QA engineer, independent
 reviewer, reply writer and agent maintainer. They work one ticket at a time,
 step by step, and stop after every step for your approval. Requirements, plans,
@@ -40,12 +41,45 @@ It works with any stack, on Windows, macOS and Linux, and in English, Deutsch,
 
 Start with the [Quick start](#quick-start) below.
 
+## At a glance
+
+| | |
+| --- | --- |
+| **What it is** | A Claude Code plugin: eight agents, eleven commands, a live dashboard. |
+| **What it does** | Takes one ticket from idea → requirements → plan → code → QA → review → pull request. |
+| **Who decides** | You. The team stops after every step and waits for approve, change or stop. |
+| **What it never does** | Commit, push, open PRs, or write to your tracker. You run every git command yourself. |
+| **Where it keeps its work** | Plain markdown files in `.claude/team/` inside your project. |
+| **Trackers** | Linear, Jira, Notion, GitHub Issues, any connected tool, or a local board. |
+| **Runs on** | Windows, macOS, Linux — terminal, desktop app or IDE extension. |
+| **Install** | `/plugin marketplace add al-shaikhli-w/Pit-Crew` then `/plugin install team@my-super-team` |
+| **npm** | [`the-super-power-team`](https://www.npmjs.com/package/the-super-power-team) |
+| **License** | MIT |
+
+## Table of contents
+
+1. [Why use it?](#why-use-it)
+2. [Quick start](#quick-start)
+3. [The workflow](#the-workflow)
+4. [Parallel work](#parallel-work)
+5. [Live dashboard](#live-dashboard)
+6. [What do you need?](#what-do-you-need)
+7. [Command map](#command-map)
+8. [The team](#the-crew)
+9. [Tickets](#tickets)
+10. [File-backed project state](#file-backed-project-state)
+11. [Review and verification](#review-and-verification)
+12. [Rolling back](#rolling-back)
+13. [Tool support](#tool-support)
+14. [Status and updates](#status-and-updates)
+15. [Support and contributing](#support-and-contributing)
+
 ## Why use it?
 
 AI coding gets unreliable when the ticket, the plan and the proof live only in
 one long chat, and when "done" or "tested" is not backed by output.
 
-Pit Crew adds a controlled loop:
+The Super Power Team adds a controlled loop:
 
 - **One role per step.** A product manager writes requirements, a researcher
   checks feasibility in the code first, a project manager plans, a developer
@@ -82,6 +116,20 @@ Install the plugin in Claude Code:
 /plugin marketplace add al-shaikhli-w/Pit-Crew
 /plugin install team@my-super-team
 ```
+
+<details>
+<summary><strong>Prefer npm?</strong> The same plugin files are published as <code>the-super-power-team</code>.</summary>
+
+```bash
+npm install the-super-power-team
+```
+
+The package holds the plugin folder (`.claude-plugin`, `agents`, `skills`,
+`hooks`). Claude Code loads plugins through a marketplace, so the marketplace
+commands above remain the recommended way to install and update. Use the npm
+package to pin a version, mirror it internally, or inspect the files.
+
+</details>
 
 Start a new session in your project, then set it up once:
 
@@ -184,7 +232,7 @@ See every agent, every ticket and everything that waits for you in one page in
 your browser. It refreshes every 4 seconds, works offline, and needs no server
 or install.
 
-![Pit Crew dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](assets/dashboard-live.png)
+![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](assets/dashboard-live.png)
 
 ```text
 /team-dashboard
@@ -278,7 +326,7 @@ join at the step you choose.
 
 ## Tickets
 
-Pit Crew reads tickets from **Linear, Jira, Notion, GitHub Issues** or any tool
+The Super Power Team reads tickets from **Linear, Jira, Notion, GitHub Issues** or any tool
 with a connector — and never writes to them. It can also keep its own **local
 board**, alone or next to your tracker:
 
@@ -286,7 +334,7 @@ board**, alone or next to your tracker:
 | --- | --- | --- | --- |
 | written down; requirements and plan not approved yet | being built | QA, independent review, PR open | merged or closed |
 
-![Pit Crew board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](assets/dashboard-board.png)
+![The Super Power Team board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](assets/dashboard-board.png)
 
 `/team-ticket new` first asks where the ticket comes from:
 

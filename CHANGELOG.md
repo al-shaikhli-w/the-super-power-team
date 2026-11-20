@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Renamed to **The Super Power Team**: README, dashboard title and logo labels. Install commands, the `team` plugin and the `/team-*` commands are unchanged.
+- Published on npm as [`the-super-power-team`](https://www.npmjs.com/package/the-super-power-team), with its own README.
+- README: an "At a glance" summary, a table of contents and npm install notes.
+
 ## 0.12.0
 
 - Setup asks early where tickets live: Linear, Jira, Notion, GitHub Issues, another connector, local tickets, or none.
