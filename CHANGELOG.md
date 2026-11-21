@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.15.0
+
+- Dashboard in your language: a switch in the header for English (the default), German and the team's reply language. The page remembers the choice. `status.js` gains an optional `lang` code so the switch shows the reply language by its own name (`العربية`, `Français`).
+- Workflow characters: every step is now a small animated character in its role's colour with its own hat — a light bulb for the product manager, glasses for the researcher, a hard hat for the project manager, headphones for the developer lead, a detective cap for QA, a party hat for Rafi. It sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails. A sheet of paper travels along the line when one step hands work to the next. Reduced motion stops every animation.
+- New dashboard screenshots in the README.
+
 ## 0.14.1
 
 - Arabic in the terminal: the setup language question lists one choice per line with no brackets (it showed `)Arabic( العربية`), and a new `Right-to-left in the terminal` rule in `team.md` keeps every reply readable — one direction per line, commands and ids on their own line. `/team-update` adds the rule to existing projects.

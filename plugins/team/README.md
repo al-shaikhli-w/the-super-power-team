@@ -7,7 +7,7 @@
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.14.1-155eef?style=flat-square" alt="version 0.14.1">
+  <img src="https://img.shields.io/badge/version-0.15.0-155eef?style=flat-square" alt="version 0.15.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="https://github.com/al-shaikhli-w/the-super-power-team/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
@@ -431,9 +431,10 @@ on your model, and the crew says so.
 
 See every agent, every ticket and everything that waits for you in one page in
 your browser. It refreshes every 4 seconds, works offline, and needs no server
-or install.
+or install. It opens in English; the switch at the top changes it to German or to your
+team's reply language, and the page remembers your choice.
 
-![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow with the independent reviewer working and its live panel](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
+![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow as small characters — three done and happy, the developer lead working, the rest asleep — and the developer lead's live panel](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
 
 ```text
 /team-dashboard
@@ -443,7 +444,7 @@ or install.
 | --- | --- |
 | **Needs you** | The crew's open question with Approve, Change and Stop buttons that copy your answer. |
 | **Ready to commit** | The commit message and every command — stage, commit, push, PR — each with a copy button. The page never runs anything. |
-| **Workflow** | Each ticket's steps as connected nodes, with the security engineer under Research (threat check) and QA (security review) and Rafi under PR (posts); the running agent glows with what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
+| **Workflow** | Each ticket's steps as small animated characters, one per agent with its own hat, with the security engineer under Research (threat check) and QA (security review) and Rafi under PR (posts). A character sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails; a sheet of paper travels along the line when work is handed on. The running agent shows what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
 | **Team** | With several tickets: each developer and QA engineer with the ticket and step they are on, the free places, and the tickets waiting for another one. |
 | **Security** | Your security to-do list from `security.md`: open items by severity with a **Fix** button (copies `/team-security fix SEC-<n>`), accepted risks and fixed items. A counter in the workflow bar turns red when an item is high. Only titles are shown — never the fix or a secret. |
 | **Marketing** | Rafi's marketing plan and its one-sentence message, the next days on the post calendar, and every post draft with its channels and status (`draft` or `posted`). |
@@ -659,7 +660,7 @@ back.
 | Task | Command |
 | --- | --- |
 | **Update to the newest version** | `npx the-super-power-team@latest` |
-| **Install a specific version** | `npx the-super-power-team@0.14.1` |
+| **Install a specific version** | `npx the-super-power-team@0.15.0` |
 | **See which version you have** | `claude plugin list` |
 | **Uninstall** | `npx the-super-power-team uninstall` |
 | **Help** | `npx the-super-power-team help` |
