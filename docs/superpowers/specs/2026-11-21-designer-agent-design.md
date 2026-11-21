@@ -104,10 +104,11 @@ Default team name **Nour**, the same way Rafi is `team:social-media`'s name unti
 - `agents/agent-maintainer.md` — knows the new agent and files.
 - `README.md` (root and plugin), `CHANGELOG.md`, `plugin.json` description ("Eleven agents"), version **0.16.0**.
 
-## To verify before building
+## Verified (2026-11-21)
 
-- Plugin subagents cannot declare `mcpServers` in frontmatter; MCP servers come from the plugin's `.mcp.json`. Confirm in the Claude Code docs, and confirm the exact Playwright MCP tool names for the agent's `tools` list (or leave `tools` open if listing MCP tools by name is not supported for plugin agents).
-- Confirm the ui-ux-pro-max install command and the frontend-design plugin name.
+- Plugin agents ignore `mcpServers` in frontmatter (Claude Code sub-agents docs). The plugin ships Playwright in `.mcp.json`, and the designer leaves `tools` unset so it inherits every MCP tool in the session.
+- Playwright MCP blocks `file://` by default. The designer serves a folder on `127.0.0.1` with `npx -y http-server`; `--allow-unrestricted-file-access` is never used.
+- `install.js` (`PLUGIN_PARTS`) and `package.json` (`files`) must ship `.mcp.json`.
 
 ## Out of scope
 
