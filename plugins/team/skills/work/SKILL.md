@@ -39,7 +39,7 @@ No `.claude/team/team.md`? Say so and suggest `/team-setup`; stop. A command fro
 ## Custom agents
 `## Custom agents` in `team.md` lists agents the developer added with `/team-new-agent`. Each has a **Joins at** step.
 - After the step's own agent reports, start every custom agent that joins at that step, with the same brief rule, and show both results together before asking for approval. "After each Build task" means after every task, before its approval.
-- Save each result as a dated section in `<step-file>-<agent>.md` in the work folder, e.g. `03-plan-team-designer.md`, and copy its Team notes into the brief like any other agent's.
+- Save each result as a dated section in `<step-file>-<agent>.md` in the work folder, e.g. `03-plan-team-a11y.md`, and copy its Team notes into the brief like any other agent's.
 - "Only on request" agents run only when the developer names them.
 - A listed agent Claude Code cannot find: say so once, suggest a new session or `/team-doctor`, and continue without it.
 

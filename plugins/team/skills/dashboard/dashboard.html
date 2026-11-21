@@ -11,7 +11,7 @@
   --line: #e5e7eb; --line-2: #eef0f3; --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 1px 1px rgba(15, 23, 42, .03);
   --accent: #2563eb; --accent-soft: #eff4ff; --ok: #059669; --ok-soft: #ecfdf5; --bad: #dc2626; --bad-soft: #fef2f2;
   --warn: #b45309; --warn-soft: #fffbeb;
-  --r-pm: #7c3aed; --r-rs: #0d9488; --r-pj: #d97706; --r-dl: #2563eb; --r-qa: #e11d48; --r-rw: #475569; --r-am: #64748b; --r-rv: #0891b2; --r-se: #b45309; --r-sm: #db2777;
+  --r-pm: #7c3aed; --r-rs: #0d9488; --r-pj: #d97706; --r-dl: #2563eb; --r-qa: #e11d48; --r-rw: #475569; --r-am: #64748b; --r-rv: #0891b2; --r-se: #b45309; --r-sm: #db2777; --r-ds: #9333ea;
   --r-x1: #0891b2; --r-x2: #c026d3; --r-x3: #65a30d; --r-x4: #ea580c; --r-x5: #4f46e5;
   --k-read: #64748b; --k-edit: #2563eb; --k-run: #7c3aed; --k-search: #0d9488; --k-web: #d97706; --k-tracker: #db2777; --k-tool: #94a3b8;
   --radius: 14px;
@@ -22,7 +22,7 @@
     --line: #232834; --line-2: #1b1f29; --shadow: none;
     --accent: #6d9bff; --accent-soft: #172341; --ok: #34d399; --ok-soft: #0f2a21; --bad: #f87171; --bad-soft: #2c1517;
     --warn: #fbbf24; --warn-soft: #2b2110;
-    --r-pm: #a78bfa; --r-rs: #2dd4bf; --r-pj: #fbbf24; --r-dl: #6d9bff; --r-qa: #fb7185; --r-rw: #94a3b8; --r-am: #8a94a6; --r-rv: #22d3ee; --r-se: #f59e0b; --r-sm: #f472b6;
+    --r-pm: #a78bfa; --r-rs: #2dd4bf; --r-pj: #fbbf24; --r-dl: #6d9bff; --r-qa: #fb7185; --r-rw: #94a3b8; --r-am: #8a94a6; --r-rv: #22d3ee; --r-se: #f59e0b; --r-sm: #f472b6; --r-ds: #c084fc;
     --r-x1: #22d3ee; --r-x2: #e879f9; --r-x3: #a3e635; --r-x4: #fb923c; --r-x5: #818cf8;
     --k-read: #94a3b8; --k-edit: #6d9bff; --k-run: #a78bfa; --k-search: #2dd4bf; --k-web: #fbbf24; --k-tracker: #f472b6; --k-tool: #6b7486;
   }
@@ -601,6 +601,11 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     <div id="sec"></div>
   </section>
 
+  <section class="section" id="des-section" hidden>
+    <div class="section-head"><h2 id="h-des"></h2><span class="count" id="c-des"></span><div class="tickets-tools" id="des-tools"></div></div>
+    <div id="des"></div>
+  </section>
+
   <section class="section" id="mk-section" hidden>
     <div class="section-head"><h2 id="h-mk"></h2><span class="count" id="c-mk"></span><div class="tickets-tools" id="mk-tools"></div></div>
     <div id="mk"></div>
@@ -636,6 +641,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     ticket: 'M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z',
     plan: 'M3 3v18h18 M7 14l4-4 4 4 5-5',
     shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+    palette: 'M12 22a10 10 0 1 1 10-10c0 2.2-1.8 3-3.5 3H16a2 2 0 0 0-1.5 3.3A2 2 0 0 1 12 22z M7.5 11.5h.01 M10.5 7.5h.01 M15.5 8.5h.01',
     megaphone: 'M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z M16 8a5 5 0 0 1 0 8 M19 5a9 9 0 0 1 0 14',
     idea: 'M9 18h6 M10 22h4 M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z',
     clock: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2',
@@ -645,13 +651,14 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
   };
   var ROLES = {
     'product-manager': ['PM', '--r-pm'], 'researcher': ['RS', '--r-rs'], 'project-manager': ['PJ', '--r-pj'],
-    'developer-lead': ['DL', '--r-dl'], 'qa-engineer': ['QA', '--r-qa'], 'reply-writer': ['RW', '--r-rw'], 'agent-maintainer': ['AM', '--r-am'], 'reviewer': ['RV', '--r-rv'], 'security-engineer': ['SE', '--r-se'], 'social-media': ['SM', '--r-sm']
+    'developer-lead': ['DL', '--r-dl'], 'qa-engineer': ['QA', '--r-qa'], 'reply-writer': ['RW', '--r-rw'], 'agent-maintainer': ['AM', '--r-am'], 'reviewer': ['RV', '--r-rv'], 'security-engineer': ['SE', '--r-se'], 'social-media': ['SM', '--r-sm'], 'designer': ['DS', '--r-ds']
   };
   var KINDS = ['read', 'edit', 'run', 'search', 'web', 'tracker', 'tool'];
   var EN = {
     subtitle: 'Agent dashboard', live: 'Live', idle: 'Idle', updated: 'Updated', stale: 'No update for a while',
     kpiAgents: 'Agents working', kpiAgentsSub: 'right now', kpiTickets: 'Active tickets', kpiPlan: 'Plan', kpiIdeas: 'Open ideas', kpiSecurity: 'Security to-dos', kpiSecuritySub: '{high} high',
     security: 'Security', secOpen: 'Open', secFixed: 'Fixed', secAccepted: 'Accepted risk', secScan: 'Scan again', secFix: 'Fix', secNone: 'No security list yet', secAllDone: 'Nothing open — well done',
+    design: 'Design', desOpen: 'Open', desFixed: 'Fixed', desSkipped: 'Skipped', desScan: 'Scan again', desFix: 'Fix', desNone: 'No design list yet', desAllDone: 'Nothing open — looks great', prototype: 'prototype', visualCheck: 'visual check', openPrototype: 'Open prototype', kpiDesign: 'Design to-dos',
     marketing: 'Marketing', mkPlan: 'Marketing plan', mkDrafts: 'Post drafts', mkCalendar: 'Next on the calendar', mkNoPlan: 'No marketing plan yet', mkMake: 'Make the plan', mkWeek: 'Weekly round-up', mkPost: 'Write posts', draft: 'draft', posted: 'posted', approved: 'approved', threatCheck: 'threat check', securityReview: 'security review', posts: 'posts',
     crew: 'Team', developers: 'Developers', qaPool: 'QA', free: 'free', waitsFor: 'waits for',
     agents: 'Agents', timeline: 'Timeline', lastMinutes: 'last {n} min', tickets: 'Tickets', activity: 'Activity',
@@ -673,7 +680,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     steps: ['Requirements', 'Research', 'Plan', 'Build', 'QA', 'PR'],
     roles: {
       'product-manager': 'Product Manager', 'researcher': 'Researcher', 'project-manager': 'Project Manager',
-      'developer-lead': 'Developer Lead', 'qa-engineer': 'QA Engineer', 'reply-writer': 'Reply Writer', 'agent-maintainer': 'Agent Maintainer', 'reviewer': 'Independent Reviewer', 'security-engineer': 'Security Engineer', 'social-media': 'Social Media'
+      'developer-lead': 'Developer Lead', 'qa-engineer': 'QA Engineer', 'reply-writer': 'Reply Writer', 'agent-maintainer': 'Agent Maintainer', 'reviewer': 'Independent Reviewer', 'security-engineer': 'Security Engineer', 'social-media': 'Social Media', 'designer': 'Designer'
     }
   };
 
@@ -681,6 +688,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     subtitle: 'Agenten-Dashboard', live: 'Live', idle: 'Ruhig', updated: 'Aktualisiert', stale: 'Seit einer Weile kein Update',
     kpiAgents: 'Agenten aktiv', kpiAgentsSub: 'gerade jetzt', kpiTickets: 'Aktive Tickets', kpiPlan: 'Plan', kpiIdeas: 'Offene Ideen', kpiSecurity: 'Sicherheits-To-dos', kpiSecuritySub: '{high} hoch',
     security: 'Sicherheit', secOpen: 'Offen', secFixed: 'Behoben', secAccepted: 'Akzeptiertes Risiko', secScan: 'Erneut prüfen', secFix: 'Beheben', secNone: 'Noch keine Sicherheitsliste', secAllDone: 'Nichts offen — gut gemacht',
+    design: 'Design', desOpen: 'Offen', desFixed: 'Behoben', desSkipped: 'Übersprungen', desScan: 'Erneut prüfen', desFix: 'Beheben', desNone: 'Noch keine Design-Liste', desAllDone: 'Nichts offen — sieht gut aus', prototype: 'Prototyp', visualCheck: 'visueller Check', openPrototype: 'Prototyp öffnen', kpiDesign: 'Design-Aufgaben',
     marketing: 'Marketing', mkPlan: 'Marketingplan', mkDrafts: 'Post-Entwürfe', mkCalendar: 'Als Nächstes im Kalender', mkNoPlan: 'Noch kein Marketingplan', mkMake: 'Plan erstellen', mkWeek: 'Wochenrückblick', mkPost: 'Posts schreiben', draft: 'Entwurf', posted: 'gepostet', approved: 'freigegeben', threatCheck: 'Risikoprüfung', securityReview: 'Sicherheitsreview', posts: 'Posts',
     crew: 'Team', developers: 'Entwickler', qaPool: 'QA', free: 'frei', waitsFor: 'wartet auf',
     agents: 'Agenten', timeline: 'Zeitachse', lastMinutes: 'letzte {n} Min.', tickets: 'Tickets', activity: 'Aktivität',
@@ -702,7 +710,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     steps: ['Anforderungen', 'Recherche', 'Plan', 'Umsetzung', 'QA', 'PR'],
     roles: {
       'product-manager': 'Produktmanager', 'researcher': 'Rechercheur', 'project-manager': 'Projektmanager',
-      'developer-lead': 'Lead-Entwickler', 'qa-engineer': 'QA-Ingenieur', 'reply-writer': 'Antwortschreiber', 'agent-maintainer': 'Agenten-Pfleger', 'reviewer': 'Unabhängiger Reviewer', 'security-engineer': 'Sicherheitsingenieur', 'social-media': 'Social Media'
+      'developer-lead': 'Lead-Entwickler', 'qa-engineer': 'QA-Ingenieur', 'reply-writer': 'Antwortschreiber', 'agent-maintainer': 'Agenten-Pfleger', 'reviewer': 'Unabhängiger Reviewer', 'security-engineer': 'Sicherheitsingenieur', 'social-media': 'Social Media', 'designer': 'Designer'
     }
   };
   // Page language: English by default; German; or 'team' = the labels the team writes in the reply language.
@@ -907,6 +915,11 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
       var ss = stat(box, 'shield', L.kpiSecurity, sec.open, [sec.high ? String(L.kpiSecuritySub).replace('{high}', sec.high) : '', sec.file || ''].filter(Boolean).join(' · '));
       if (sec.high) ss.classList.add('alert');
     }
+    var des = d.design;
+    if (des && typeof des.open === 'number') {
+      var ds = stat(box, 'palette', L.kpiDesign, des.open, [des.high ? String(L.kpiSecuritySub).replace('{high}', des.high) : '', des.file || ''].filter(Boolean).join(' · '));
+      if (des.high) ds.classList.add('alert');
+    }
   }
 
   function renderSecurity(d, L) {
@@ -941,6 +954,46 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
       g[1].forEach(function (x) {
         var r = el('div', 'list-row');
         r.appendChild(el('span', 'sev', x.severity || ''));
+        r.appendChild(el('span', 'tid', x.id || ''));
+        var tt = el('div', 't'); tt.appendChild(document.createTextNode(x.title || '')); if (x.note) tt.appendChild(el('span', '', x.note)); r.appendChild(tt);
+        r.appendChild(el('span'));
+        card.appendChild(r);
+      });
+    });
+  }
+
+  function renderDesign(d, L) {
+    var s = d.design;
+    var sec = $('des-section');
+    sec.hidden = !s;
+    if (!s) return;
+    var box = $('des'); clear(box);
+    $('h-des').textContent = L.design;
+    $('c-des').textContent = String(s.open || 0);
+    var tools = $('des-tools'); clear(tools);
+    tools.appendChild(copyButton(L.desScan, '/team-design', L.copiedStart, 'small', L.copyFailed));
+    var items = Array.isArray(s.items) ? s.items : [];
+    var card = el('div', 'card board');
+    box.appendChild(card);
+    var open = items.filter(function (x) { return x.status === 'open' || !x.status; });
+    var skipped = items.filter(function (x) { return x.status === 'skipped'; });
+    var fixed = items.filter(function (x) { return x.status === 'fixed'; });
+    groupHead(card, L.desOpen, s.open || open.length);
+    if (!open.length) card.appendChild(el('div', 'brows-empty', items.length || s.open === 0 ? L.desAllDone : L.desNone));
+    open.forEach(function (x) {
+      var r = el('div', 'list-row');
+      r.appendChild(el('span', 'sev ' + (x.priority || ''), x.priority || ''));
+      r.appendChild(el('span', 'tid', x.id || ''));
+      var tt = el('div', 't'); tt.appendChild(document.createTextNode(x.title || '')); if (x.effort) tt.appendChild(el('span', '', x.effort)); r.appendChild(tt);
+      r.appendChild(x.id ? copyButton(L.desFix, '/team-design fix ' + x.id, L.copiedStart, 'small', L.copyFailed) : el('span'));
+      card.appendChild(r);
+    });
+    [[L.desSkipped, skipped], [L.desFixed, fixed]].forEach(function (g) {
+      if (!g[1].length) return;
+      groupHead(card, g[0], g[1].length);
+      g[1].forEach(function (x) {
+        var r = el('div', 'list-row');
+        r.appendChild(el('span', 'sev', x.priority || ''));
         r.appendChild(el('span', 'tid', x.id || ''));
         var tt = el('div', 't'); tt.appendChild(document.createTextNode(x.title || '')); if (x.note) tt.appendChild(el('span', '', x.note)); r.appendChild(tt);
         r.appendChild(el('span'));
@@ -1340,6 +1393,10 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
         head.appendChild(el('span', 'tid', t.id));
         head.appendChild(el('span', 'ttitle', t.title));
         if (t.pr) head.appendChild(el('span', 'tpr', t.pr === 'merged' ? 'PR ✓' : 'PR #' + t.pr));
+        if (typeof t.prototype === 'string' && t.prototype.indexOf('file:///') === 0) {
+          var a = el('a', 'small', L.openPrototype); a.href = t.prototype; a.target = '_blank'; a.rel = 'noopener';
+          head.appendChild(a);
+        }
         row.appendChild(head);
         row.appendChild(stepper(t, L));
         if (t.waiting) {
@@ -1633,6 +1690,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     'reply-writer': '<ellipse class="hat-k" cx="30" cy="18.5" rx="12" ry="4.5" transform="rotate(-10 30 18.5)"/><circle class="hat-k" cx="29" cy="13.5" r="1.8"/>',
     'reviewer': '<circle class="ink-s" cx="38.5" cy="32" r="6.2" stroke-width="1.6"/><path class="ink-s" d="M44.5 34q3 6 0 12" stroke-width="1.2"/>',
     'security-engineer': '<path class="hat-g" d="M15.5 30a16.5 15 0 0 1 33 0v-1H15.5z"/><path class="hat-g" d="M31 14.5q1-6 6-7-2 4-1 7z"/><rect class="hat-g" x="15" y="26" width="34" height="3" rx="1.5"/>',
+    'designer': '<ellipse class="hat-p" cx="31" cy="21" rx="14" ry="5" transform="rotate(-8 31 21)"/><circle class="hat-p" cx="27" cy="15.5" r="1.8"/>',
     'social-media': '<path class="hat-p" d="M32 1.5l8 16H24z"/><path d="M27.5 12.5h9M25.8 16h12.4" stroke="#fff" stroke-width="1.4"/><circle class="spark" cx="32" cy="1.5" r="2.4" fill="#fcd34d"/>',
     'agent-maintainer': '<path class="ink-s" d="M32 17v-6" stroke-width="1.6"/><ellipse class="hat-y" cx="26.5" cy="10" rx="5.5" ry="2"/><ellipse class="hat-y" cx="37.5" cy="10" rx="5.5" ry="2"/>',
     '_': '<path d="M32 17q-1-6 3-9 1 5-3 9z" fill="#4ade80"/><path d="M32 17q-2-4-7-5 1 5 7 5z" fill="#22c55e"/>'
@@ -1774,7 +1832,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     var mine = running.filter(function (s) { return onTicket(s, t.id); });
     var loose = running.filter(function (s) { return tickets.length >= 2 && s.task && !tickets.some(function (x) { return s.task.indexOf(x.id) >= 0; }); });
     flowRunning = tickets.length ? mine.concat(loose) : running;
-    var key = JSON.stringify([list.length, tickets.map(function (x) { return [x.id, x.steps]; }), flowTicket, mine.map(function (s) { var a = s.actions[s.actions.length - 1]; return [s.id, s.agent, a && a.t]; }), pending, d.customAgents, L.workflow]);
+    var key = JSON.stringify([list.length, tickets.map(function (x) { return [x.id, x.steps, !!x.prototype]; }), flowTicket, mine.map(function (s) { var a = s.actions[s.actions.length - 1]; return [s.id, s.agent, a && a.t]; }), pending, d.customAgents, L.workflow]);
     if (key === flowKey) return;
     flowKey = key;
 
@@ -1817,10 +1875,18 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     var secCol = curStep >= 0 && curStep <= 2 ? 1 : 4;
     var secRun = mine.filter(function (s) { return s.agent === 'team:security-engineer'; })[0];
     var smRun = mine.concat(loose).filter(function (s) { return s.agent === 'team:social-media'; })[0];
-    [{ agent: 'team:security-engineer', col: 1, icon: 'shield', sub: L.threatCheck, run: secCol === 1 ? secRun : null },
-     { agent: 'team:security-engineer', col: 4, icon: 'shield', sub: L.securityReview, run: secCol === 4 ? secRun : null },
-     { agent: 'team:social-media', col: 5, icon: 'megaphone', sub: L.posts, run: smRun }].forEach(function (b) {
-      aux.push({ agent: b.agent, col: b.col, name: roleName(b.agent, L), run: b.run, icon: b.icon, sub: b.sub, builtin: true });
+    var desRun = mine.filter(function (s) { return s.agent === 'team:designer'; })[0];
+    var desCol = curStep >= 0 && curStep <= 2 ? 1 : 4;
+    var builtins = [{ agent: 'team:security-engineer', col: 1, icon: 'shield', sub: L.threatCheck, run: secCol === 1 ? secRun : null },
+     { agent: 'team:security-engineer', col: 4, icon: 'shield', sub: L.securityReview, run: secCol === 4 ? secRun : null }];
+    if (t.prototype || desRun) {
+      // the security nodes hold row 2 in these columns, so the designer sits one row lower
+      builtins.push({ agent: 'team:designer', col: 1, row: 3, icon: 'palette', sub: L.prototype, run: desCol === 1 ? desRun : null },
+        { agent: 'team:designer', col: 4, row: 3, icon: 'palette', sub: L.visualCheck, run: desCol === 4 ? desRun : null });
+    }
+    builtins.push({ agent: 'team:social-media', col: 5, icon: 'megaphone', sub: L.posts, run: smRun });
+    builtins.forEach(function (b) {
+      aux.push({ agent: b.agent, col: b.col, row: b.row, name: roleName(b.agent, L), run: b.run, icon: b.icon, sub: b.sub, builtin: true });
     });
     (Array.isArray(d.customAgents) ? d.customAgents : []).forEach(function (c) {
       var col = stepIndex(c.joins);
@@ -1839,17 +1905,18 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     });
     loose.forEach(function (s) {
       if (aux.some(function (a) { return a.run && a.run.id === s.id; })) return;
-      if (s.agent === 'team:social-media' || s.agent === 'team:security-engineer') return;
+      if (s.agent === 'team:social-media' || s.agent === 'team:security-engineer' || s.agent === 'team:designer') return;
       aux.push({ agent: s.agent, col: 5, name: roleName(s.agent, L), run: s, loose: true });
     });
     var used = {};
     aux.sort(function (a, b) { return (a.loose ? 1 : 0) - (b.loose ? 1 : 0); });
     aux.forEach(function (a) {
+      if (a.builtin && a.row === 3) used[a.col] = true;
       if (!a.loose && !a.builtin) { while (used[a.col] && a.col < 5) a.col++; used[a.col] = true; }
       var n = flowNode('aux ' + (a.run ? 'running' : 'todo'), a.agent, a.icon || 'agents', a.name, a.loose ? L.noTicket : a.run ? L.working : (a.sub || ''), a.run ? 'spin' : null);
       if (a.run) clickable(n, a.run.id);
       if (a.run) n.appendChild(liveBubble(a.run, L, now));
-      n.style.gridColumn = a.loose ? 'auto' : String(a.col + 1); n.style.gridRow = a.loose ? '4' : a.builtin ? '2' : '3';
+      n.style.gridColumn = a.loose ? 'auto' : String(a.col + 1); n.style.gridRow = a.loose ? '4' : a.row ? String(a.row) : a.builtin ? '2' : '3';
       grid.appendChild(n);
       a.node = n;
     });
@@ -1891,6 +1958,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     renderCrew(d, L);
     renderTickets(d, L);
     renderSecurity(d, L);
+    renderDesign(d, L);
     renderMarketing(d, L);
     renderArchive(d, L);
     renderBoard(d, L);

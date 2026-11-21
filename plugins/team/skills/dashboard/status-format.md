@@ -29,10 +29,11 @@ window.TEAM_STATUS = {
     "tabBoard": "Board", "board": "Tickets board", "newTicket": "New ticket", "open": "Open", "due": "due",
     "col_plan": "Plan", "col_do": "Do", "col_check": "Check", "col_done": "Done", "prio_high": "high", "prio_low": "low",
     "kindsShort": { "read": "Read", "edit": "Edit", "run": "Run", "search": "Search", "web": "Web", "tracker": "Tracker", "tool": "Other" },
-    "roles": { "product-manager": "Product Manager", "researcher": "Researcher", "project-manager": "Project Manager", "developer-lead": "Developer Lead", "qa-engineer": "QA Engineer", "reply-writer": "Reply Writer", "agent-maintainer": "Agent Maintainer", "reviewer": "Independent Reviewer", "security-engineer": "Security Engineer", "social-media": "Social Media" },
+    "roles": { "product-manager": "Product Manager", "researcher": "Researcher", "project-manager": "Project Manager", "developer-lead": "Developer Lead", "qa-engineer": "QA Engineer", "reply-writer": "Reply Writer", "agent-maintainer": "Agent Maintainer", "reviewer": "Independent Reviewer", "security-engineer": "Security Engineer", "social-media": "Social Media", "designer": "Designer" },
     "crew": "Team", "developers": "Developers", "qaPool": "QA", "free": "free", "waitsFor": "waits for",
     "kpiSecurity": "Security to-dos", "kpiSecuritySub": "{high} high",
     "security": "Security", "secOpen": "Open", "secFixed": "Fixed", "secAccepted": "Accepted risk", "secScan": "Scan again", "secFix": "Fix", "secNone": "No security list yet", "secAllDone": "Nothing open — well done",
+    "design": "Design", "desOpen": "Open", "desFixed": "Fixed", "desSkipped": "Skipped", "desScan": "Scan again", "desFix": "Fix", "desNone": "No design list yet", "desAllDone": "Nothing open — looks great", "prototype": "prototype", "visualCheck": "visual check", "openPrototype": "Open prototype", "kpiDesign": "Design to-dos",
     "marketing": "Marketing", "mkPlan": "Marketing plan", "mkDrafts": "Post drafts", "mkCalendar": "Next on the calendar", "mkNoPlan": "No marketing plan yet", "mkMake": "Make the plan", "mkWeek": "Weekly round-up",
     "draft": "draft", "posted": "posted", "approved": "approved", "threatCheck": "threat check", "securityReview": "security review", "posts": "posts" 
   },
@@ -43,7 +44,8 @@ window.TEAM_STATUS = {
       "steps": ["done", "done", "done", "current", "todo", "todo"],
       "build": { "done": 2, "total": 4 },
       "waiting": "you — approve task 3",
-      "pr": null
+      "pr": null,
+      "prototype": "file:///Users/<you>/recipe-box/.claude/team/work/active/rb-7/02b-prototype/index.html"
     }
   ],
   "plan": { "done": 0, "total": 2, "next": "Save a recipe",
@@ -80,6 +82,11 @@ window.TEAM_STATUS = {
       { "id": "SEC-2", "severity": "medium", "title": "Any signed-in user can delete any recipe", "effort": "S", "status": "open" },
       { "id": "SEC-3", "severity": "low", "title": "No rate limit on login", "status": "fixed", "note": "2026-11-22 · PR #41" }
     ] },
+  "design": { "open": 2, "high": 1, "medium": 1, "low": 0, "file": "project/design.md",
+    "items": [
+      { "id": "DES-1", "priority": "high", "title": "Five different button styles", "effort": "M", "status": "open" },
+      { "id": "DES-2", "priority": "medium", "title": "Hard-coded colours in the recipe card", "effort": "S", "status": "open" }
+    ] },
   "marketing": { "plan": "approved", "message": "Plan a week of meals in five minutes.",
     "calendar": [ { "day": "2026-11-21", "channel": "X", "idea": "Before/after of the meal planner", "goal": "awareness" } ],
     "posts": [ { "date": "2026-11-20", "ticket": "RB-9", "title": "Search by ingredient", "status": "draft", "channels": ["X", "LinkedIn"], "file": "2026-11-20-rb-9.md" } ] },
@@ -89,7 +96,7 @@ window.TEAM_STATUS = {
     "max": { "developers": 3, "qa": 3, "planning": 3 },
     "waiting": [ { "ticket": "RB-9", "for": "RB-7", "why": "both change src/lib/search.ts" } ]
   },
-  "customAgents": [ { "agent": "team-designer", "name": "Design Reviewer", "joins": "plan" } ],
+  "customAgents": [ { "agent": "team-a11y", "name": "Accessibility Reviewer", "joins": "qa" } ],
   "todo": {
     "updated": "2026-11-20T08:55:00+01:00",
     "today": [ { "ticket": "RB-12", "title": "Weekly meal planner", "why": "Sprint goal, unblocked", "next": "Requirements", "start": "/team-work RB-12" } ],
@@ -110,6 +117,8 @@ window.TEAM_STATUS = {
 - **`steps`:** six values in the order of `labels.steps`: `done`, `current`, `fail` (QA FAIL, back to build) or `todo`.
 - **`now`:** the agent running right now, or `null` while the team waits for the developer. With several tickets: a list, one `{ agent, task, since, ticket }` per running agent.
 - **`security`:** from `.claude/team/project/security.md`, or `null` when the file does not exist. `open`, `high`, `medium`, `low`: open items by severity (accepted risks do not count). `items`: every item — `id`, `severity`, the short `title` from its line, `effort`, `status` (`open`, `fixed`, `accepted`) and a `note` (the fixed date and PR, or the accepted reason) — open ones first, most dangerous first, at most 30. Never the file location, the fix text, or any secret value: the page shows the title only, and the Security section has a Fix button that copies `/team-security fix <id>`.
+- **`design`:** from `.claude/team/project/design.md`, or `null` when the file does not exist. `open`, `high`, `medium`, `low`: open items by priority (skipped items do not count). `items`: every item — `id`, `priority`, the short `title`, `effort`, `status` (`open`, `fixed`, `skipped`) and a `note` — open ones first, most important first, at most 30. The Design section has a Fix button that copies `/team-design fix <id>`.
+- **`tickets[].prototype`:** the `file:///` address of the ticket's `02b-prototype/index.html` once step 2b is approved, else `null`. Local only. The ticket card shows an "Open prototype" link.
 - **`marketing`:** from `.claude/team/marketing/`, or `null` when `Social posts` is `off` and the folder does not exist. `plan`: the status of `marketing-plan.md` (`draft`, `approved`) or `null`; `message`: its one-sentence message; `calendar`: the next five calendar rows from today — `day`, `channel`, `idea`, `goal`; `posts`: the drafts in `posts/`, newest first, at most 20 — `date`, `ticket` (or `week`), `title`, `status` (`draft`, `posted`), `channels`, `file`. The Marketing section shows them with buttons for `/team-social` and `/team-social week`.
 - **`crew`:** only while several tickets run (`/team-work` "Several tickets — the team"); leave it out otherwise and the Team card stays hidden. `developers` and `qa`: one entry per busy member — name, ticket, current step. `max`: the limits from `## Team size`. `waiting`: tickets held by the overlap check, with the ticket they wait for and why, one line in the reply language.
 - **`build`:** from the Tasks table of `03-plan.md`; `null` before the plan exists. **`pr`:** a number once open, `"merged"` when merged.
@@ -125,7 +134,7 @@ window.TEAM_STATUS = {
 - **`todo`:** the product manager's lists from `/team-work`, `/team-work week` and `/team-work sprint` — keep the other horizons when you write one. `why` and `next` one short line each in the reply language; `start` is the exact command to type.
 - **`board`:** only with `Local tickets: on` — every file in `.claude/team/tickets/`, Done only from the last 30 days. `status` is `plan`, `do`, `check` or `done`; `waiting` the ticket's Waiting line or `null`; `priority` `high`, `normal` or `low`; `due` a date or `null`; `step` the current `/team-work` step when a work folder is active, else `null`; `source` the platform's name for a ticket taken from one (`Linear`, `Jira`, `Notion`, `GitHub`), `null` for one written here. Leave `board` out for any other tracker: the Board tab then stays hidden.
 - **`archive`:** the rows of `.claude/team/work/history/INDEX.md`, newest first, at most 100. `result` is `merged` or `closed` (in the reply language is fine); `days` a number or `null`; `summary` one line or empty. The page's Archive tab shows them with search and filters.
-- **Custom agents** (`team-<slug>`): add their role name to `labels.roles` under the slug, e.g. `"designer": "Design Reviewer"`.
+- **Custom agents** (`team-<slug>`): add their role name to `labels.roles` under the slug, e.g. `"a11y": "Accessibility Reviewer"`.
 
 ## `live.js` — written by the plugin's hook, never by you
 
