@@ -51,7 +51,7 @@ When a ticket starts (no work folder yet), ask once, with the default from `Agen
   - Step 1: `team:researcher` reads the affected code while `team:product-manager` writes the requirements; step 2 then starts from that reading.
   - Step 2: `team:researcher` (feasibility) and `team:security-engineer` (threat check) run side by side.
   - Step 4: plan tasks that depend on no open task and touch no file another running task touches run as separate `team:developer-lead` agents at once. Show their results together; one approval covers that batch.
-  - Step 5: one `team:qa-engineer` per check (CI, local review, code review), merged into one `05-qa.md`, and `team:security-engineer` (security review, `05-security.md`) beside them. The independent review (5b) never runs alongside QA: it starts only after QA passes.
+  - Step 5: one `team:qa-engineer` per check (CI, local review, code review), merged into one `05-qa.md`, and `team:security-engineer` (security review, `05-security.md`) beside them, plus `team:designer` (visual check, `05-design.md`) on a ticket with an approved `02b-design.md`. The independent review (5b) never runs alongside QA: it starts only after QA passes.
   - Approvals never run in parallel: you still stop after every step.
 - With several tickets, this choice applies inside each ticket; the limits in `## Team size` count tickets, not agents.
 
@@ -93,10 +93,10 @@ The one page every agent reads before working on the ticket. You own it; agents 
 ### Stages and limits
 | Stage | Steps | Who | Limit (`## Team size`) |
 |---|---|---|---|
-| Planning | 1 Requirements, 2 Feasibility + Threat check, 3 Plan | product-manager, researcher, security-engineer, project-manager | Max tickets in planning |
+| Planning | 1 Requirements, 2 Feasibility + Threat check, 2b Design (UI tickets), 3 Plan | product-manager, researcher, security-engineer, designer, project-manager | Max tickets in planning |
 | Ready | plan approved, waiting for a developer | — | — |
 | Building | 4 Build | one developer-lead per ticket | Max developers |
-| Checking | 5 QA + Security review, 5b Independent review | one qa-engineer and one security-engineer per ticket, then the reviewer | Max QA engineers |
+| Checking | 5 QA + Security review + Visual check (UI tickets), 5b Independent review | one qa-engineer and one security-engineer per ticket, the designer on UI tickets, then the reviewer | Max QA engineers |
 | Hand-over | 6 PR, 7 PR rounds | you, then qa-engineer per round | — |
 
 **The team grows and shrinks by itself.** After every agent report and every approval, fill the free places — Checking first, then Building, then Planning — each with the oldest ticket waiting for that stage. A ticket that leaves a stage frees its place at once; a pool with no work has no members. Never go over a limit; a limit missing from `team.md` is 3.
@@ -117,7 +117,7 @@ git fetch origin
 git worktree add -b <branch> "<Worktree folder>/<ticket>" origin/<default branch>
 cd "<Worktree folder>/<ticket>" && <Worktree setup>
 ```
-The branch name follows step 4. Add `· **Worktree:** <absolute path>` to the brief's header line. The work folder stays in the main checkout's `.claude/team/work/active/<ticket>/`. Every developer, QA, security and reviewer prompt starts with: "Read `<absolute work folder>/00-brief.md` first. Work only inside `<worktree path>`; run every command there." After the PR is merged: archive as in `pr`, then give `git worktree remove "<path>"`.
+The branch name follows step 4. Add `· **Worktree:** <absolute path>` to the brief's header line. The work folder stays in the main checkout's `.claude/team/work/active/<ticket>/`. Every developer, QA, security, designer and reviewer prompt starts with: "Read `<absolute work folder>/00-brief.md` first. Work only inside `<worktree path>`; run every command there." After the PR is merged: archive as in `pr`, then give `git worktree remove "<path>"`.
 
 ### Running and asking
 - Start every agent in the background and move other tickets while it runs. Never wait on one ticket when another can move.
@@ -132,7 +132,7 @@ The branch name follows step 4. Add `· **Worktree:** <absolute path>` to the br
 3. Show its table. Dashboard on: write the rows to `todo.<horizon>` in `status.js`, each with `"start": "/team-work <ticket>"`. Ask which task to start. Stop.
 
 ## A ticket or idea
-Work folder: `.claude/team/work/active/<ticket>/`, ticket id in lower case, or a short slug. If it exists, continue from the first step that is not approved.
+Work folder: `.claude/team/work/active/<ticket>/`, ticket id in lower case, or a short slug. If it exists, continue from the first step that is not approved. Step 2b counts as done when `02b-design.md` is approved, the brief notes `Design: 2b skipped`, or `03-plan.md` already exists (a ticket started before 0.16.0). A `des-<n>` ticket typed directly (`/team-work des-3`) starts like `/team-design fix DES-3` (see the `team-design` skill): load the `DES-<n>` line from `.claude/team/project/design.md` into the requirements as the problem to solve, and its change as the first acceptance criterion.
 
 | Step | Agent | File | Written by |
 |---|---|---|---|
@@ -157,7 +157,7 @@ Each file starts with ticket, date, status (`draft`, `approved`, `done`). A redo
 - **2b → approval — UI tickets only.** After 2 is approved, decide whether the ticket changes what users see — new or changed screens, components, styles or visible text — from `01-requirements.md` and `02-research.md`. The developer can force it ("design it") or skip it ("no design"); a `des-<n>` ticket always has it. No: note `Design: 2b skipped — <reason>` under Decisions in the brief and go to 3. Yes: start `team:designer`, job **Prototype**. Show `02b-design.md` and the command to open the prototype in the developer's shell (`open`, `start ""` or `xdg-open` with the absolute path of `02b-prototype/index.html`). Approve → set its status to `approved`, note `Design: 2b done` in the brief, copy its Team notes, then 3. Change → the designer redoes it.
 - **3 → approval.** Nothing is built before the plan is approved; then set its status to `approved`. With an approved `02b-design.md`, `team:project-manager` plans from it and names it in each UI task.
 - **4.** First the branch. A branch already named in `03-plan.md` (a rollback) is used as it is. Otherwise its name follows `Branch name` in `team.md`: the tracker's own branch name for the ticket (Linear: `get_issue` field `gitBranchName`, e.g. `jane/abc-123-add-login`), or the pattern given there; for an idea without a ticket use `<user>/<slug>`. Check `git branch -a --list "*<ticket>*"` and name any existing branch. Several tickets at once: give the worktree commands from "Several tickets — the team" instead. Otherwise give the developer the commands — update `main`, create the branch from it — and wait until they say it is done. Note the branch in `03-plan.md`. Then build, one task at a time, approval after each.
-- **5.** `team:qa-engineer` runs its checks and `team:security-engineer` (job **Security review**) its review; a ticket with an approved `02b-design.md` also gets `team:designer`, job **Visual check** (it uses `Dev URL` from `team.md`; ask the developer to start the app first, or for the URL); show the verdicts together. Any FAIL goes back to 4, then all of them run everything again. `NOT TESTED` from the designer does not block: show the reason and ask whether to continue. Problems the security engineer found outside this ticket go to `security.md`, not into this ticket.
+- **5.** `team:qa-engineer` runs its checks and `team:security-engineer` (job **Security review**) its review; a ticket with an approved `02b-design.md` also gets `team:designer`, job **Visual check** (it uses `Dev URL` from `team.md`; ask the developer to start the app first, or for the URL). In worktree mode `Dev URL` is only the single-ticket default: ask the developer to start the app from that ticket's worktree and give its URL; show the verdicts together. Any FAIL goes back to 4, then all of them run everything again. `NOT TESTED` from the designer does not block: show the reason and ask whether to continue. Problems the security engineer found outside this ticket go to `security.md`, not into this ticket.
 - **5b.** On QA PASS, follow `Independent review` in `team.md` (`after QA` runs it, `ask` asks the developer, `off` skips it; missing means `ask`). Start `team:reviewer` with only the work folder path and the base branch — no summary of the plan, the build or QA, so it stays independent. Save its report in `05b-review.md`. Show it next to QA's verdict; on approval:
   - `PASS` → step 6.
   - `CHANGES` → the developer picks which findings to fix; `team:project-manager` adds them as tasks → 4 → 5 → 5b again. Findings the developer rejects go under Decisions in the brief with the reason.

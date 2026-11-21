@@ -175,7 +175,7 @@ the crew does the work.
 | [Claude Code](https://claude.com/claude-code) | Terminal, desktop app or IDE extension. Cloud sessions do not load local plugins. |
 | `bash` | Runs the dashboard hooks. On Windows: Git for Windows, which Claude Code normally uses anyway. |
 | [`gh`](https://cli.github.com/) signed in | Only for pull-request rounds (`/team-work pr`). |
-| `npx` (comes with Node.js) | Starts the Playwright MCP that comes with the plugin, for prototype screenshots and the visual check. |
+| `npx` (comes with Node.js) and Google Chrome | Starts the Playwright MCP that comes with the plugin, for prototype screenshots and the visual check. It uses Google Chrome: install Chrome, or run `npx playwright install chrome`. |
 
 ### 1. Install
 
@@ -253,7 +253,7 @@ Learn these three commands first:
 /team-work <ticket> -> /team-work pr -> /team-status
 ```
 
-![One ticket, step by step: 1 the product manager writes the requirements; 2 the researcher and the security engineer check feasibility and threats side by side; 3 the project manager plans; you create the branch; 4 the developer lead builds one task at a time; 5 QA and the security engineer check side by side; 5b an independent reviewer looks with fresh eyes; 6 you commit, push and open the PR; after the merge Rafi drafts the posts. You approve after every step; a FAIL goes back to the build.](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/workflow.png)
+![One ticket, step by step: 1 the product manager writes the requirements; 2 the researcher and the security engineer check feasibility and threats side by side; 2b for UI tickets Nour, the designer, makes a clickable prototype; 3 the project manager plans; you create the branch; 4 the developer lead builds one task at a time; 5 QA and the security engineer check side by side; 5b an independent reviewer looks with fresh eyes; 6 you commit, push and open the PR; after the merge Rafi drafts the posts. You approve after every step; a FAIL goes back to the build.](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/workflow.png)
 
 <details>
 <summary>Text version</summary>
@@ -277,6 +277,7 @@ Learn these three commands first:
  │
 5  qa-engineer       CI, local + code review
    security-engineer security review
+   designer          visual check (UI tickets)
  │                   any FAIL → 4
 5b reviewer          requirements + diff
  │                   changes → 4
@@ -351,7 +352,7 @@ Name more than one ticket and the crew works like a real team:
 
 | What | How it works |
 | --- | --- |
-| **Stages** | Planning (requirements, feasibility, threat check, plan) → Ready → Building → Checking (QA, security review, independent review) → Hand-over. |
+| **Stages** | Planning (requirements, feasibility, threat check, design for UI tickets, plan) → Ready → Building → Checking (QA, security review, visual check for UI tickets, independent review) → Hand-over. |
 | **Grows and shrinks by itself** | A ticket whose plan is approved gets a developer as soon as a place is free; a ticket whose build is done gets a QA engineer and a security engineer. When a ticket leaves a stage its place is free again. You never set the size. |
 | **Limits** | At most 3 tickets in planning, 3 developers and 3 QA engineers — `## Team size` in `team.md`. The limits count tickets, not agents. |
 | **Isolation** | Every developer and QA engineer works on one ticket only and never sees another. Each ticket gets its own **git worktree** — a second checkout of the repository in its own folder, on its own branch. |
@@ -422,7 +423,7 @@ Nour, the team's designer, looks after how the product looks and feels.
 - **Prototype first** — every ticket that changes what users see gets step **2b**: a clickable HTML prototype with every state (empty, loading, error, right-to-left, mobile) and screenshots, in the ticket's work folder. You open it and approve it before anything is planned.
 - **Visual check** — in QA, Nour opens the running app (`Dev URL` in `team.md`) and compares it with the approved prototype.
 
-Playwright (for screenshots) comes with the plugin and runs through `npx`, so Node.js 18 or newer is enough. Optional tools you turn on in `/team-setup` and install yourself: the doop MCP, the frontend-design plugin, the ui-ux-pro-max skill, and Figma when you ask for it. doop and ui-ux-pro-max are third-party — design context goes to them.
+Playwright (for screenshots) comes with the plugin and runs through `npx`, so Node.js 18 or newer is enough, plus Google Chrome — install Chrome, or run `npx playwright install chrome`. Optional tools you turn on in `/team-setup` and install yourself: the doop MCP, the frontend-design plugin, the ui-ux-pro-max skill, and Figma when you ask for it. doop and ui-ux-pro-max are third-party — design context goes to them.
 
 ## Models and tokens
 
@@ -570,7 +571,7 @@ and only while the dashboard is on. `/team-dashboard off` stops it.
 | `team:qa-engineer` | CI, local review, code review; reads PR comments | Tests + its reports | No |
 | `team:reviewer` | Independent review after QA: sees only the requirements and the diff | No | No |
 | `team:reply-writer` | Drafts replies to PR, GitHub and tracker comments in your style | No | No |
-| `team:designer` — **Nour** | Design scan, prototypes, visual check | `design.md` and its step files in the work folder | No |
+| `team:designer` — **Nour** | Design scan, prototypes, visual check | `design.md` and its step files in the work folder | Design references and the tools you turn on |
 | `team:social-media` — **Rafi** | Marketing plan, feature posts, weekly round-up — drafts only | `.claude/team/marketing/` only | Research only |
 | `team:agent-maintainer` | Keeps the project profile up to date | `.claude/team/team.md` only | No |
 

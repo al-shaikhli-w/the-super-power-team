@@ -37,6 +37,7 @@ ABC-123  Add login
 | ✘ | QA FAIL, back to build |
 | ○ | not started |
 
+- **Design** (step 2b, UI tickets) sits between Research and Plan once `02b-design.md` exists: `● Design` while Nour works on it or it waits for approval, `✔ Design` when approved. Omitted when the brief notes `Design: 2b skipped`, and for tickets without 2b.
 - **Build** shows `done/total` tasks from `03-plan.md`.
 - **QA** is ✔ only when `05-qa.md` and `05-security.md` passed, `05-design.md` passed or is NOT TESTED or does not exist, and `05b-review.md` passed or does not exist; a security FAIL or a `CHANGES` review is ✘.
 - **PR** shows `#<n>` once it is open, and `merged` when it is.

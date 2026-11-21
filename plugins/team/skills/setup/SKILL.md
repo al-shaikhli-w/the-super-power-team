@@ -92,7 +92,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 
 ### Both
 
-10. **Write `.claude/team/team.md`** from the template with every answer and fact so far. `Team version` is the `version` in this plugin's `.claude-plugin/plugin.json` (two folders up from this skill).
+10. **Write `.claude/team/team.md`** from the template with every answer and fact so far. `Team version` is the `version` in this plugin's `.claude-plugin/plugin.json` (two folders up from this skill). `Dev URL: none` when the project has no user interface or no code yet.
 11. **Ask for the rest**, one at a time, only what is still `<…>`:
     - **Branch name:** the tracker's own branch name for the ticket, or `<user>/<ticket>-<slug>`, or `<user>/<feature>` — show the developer's `git config user.name`, made lower case with dashes.
     - **Full CI gate** (code only), **review tool** or `none`, **product notes**.

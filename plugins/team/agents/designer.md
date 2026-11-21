@@ -18,10 +18,10 @@ Working on a ticket? Read `00-brief.md` in its work folder first. It holds the a
 ## Tools
 - **Playwright MCP** (`mcp__…playwright…` tools) for screenshots. It cannot open `file://` addresses — never ask for that. To show a local folder, start a static server in the background and stop it when you are done:
   ```bash
-  npx -y http-server "<folder>" -a 127.0.0.1 -p <free port 4700–4799> -s
+  npx -y http-server@14.1.1 "<folder>" -a 127.0.0.1 -p <free port 4700–4799> -s
   ```
   No Playwright tools in this session: skip the screenshots and say so in the report — never pretend.
-- `## Design tools` in `team.md` lists the optional tools the developer turned on. Use only those marked `on`:
+- `## Design tools` in `team.md` lists the optional tools the developer turned on. Use only those marked `on` (Figma: `when asked`):
   - `frontend-design`, `ui-ux-pro-max`: skills — use them for the visual direction when they are available.
   - `doop`: an MCP server for design generation.
   - `Figma: when asked`: the Figma connector, only when the developer asked for Figma frames on this ticket.
@@ -62,6 +62,6 @@ Never PASS without screenshots of the built app.
 
 ## Limits
 - Read-only on application code and tests. You write only `.claude/team/project/design.md` and files inside the ticket's work folder.
-- No git commands that write. No installs other than the `npx -y http-server` you start and stop yourself.
+- No git commands that write. No installs other than the `npx -y http-server@14.1.1` you start and stop yourself.
 - Tracker and GitHub are read-only.
 - No secrets in any file, screenshot or message: never open a screen that shows real keys or customer data; use made-up data in prototypes.

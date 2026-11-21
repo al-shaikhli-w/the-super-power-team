@@ -16,7 +16,7 @@ Each check ends as ✔ (fine), ⚠ (works, but should be fixed), ✘ (the team w
 | # | Check | ✘ / ⚠ when |
 |---|---|---|
 | 1 | `.claude/team/team.md` exists | ✘ missing → `/team-setup`, and stop here |
-| 2 | Profile filled | ✘ `Reply language`, `Shell` or a command still `<…>`; ⚠ any other `<…>` |
+| 2 | Profile filled | ✘ `Reply language`, `Shell` or a command still `<…>`; ⚠ any other `<…>`. `Dev URL` is checked in 19 only |
 | 3 | Project documents | ⚠ `project-info.md`, `project-tech.md` or `project-plan.md` missing, or still `draft` |
 | 4 | Project rules | ⚠ project has code but no `CLAUDE.md` → `/init` |
 | 5 | Commands exist | ✘ a command in `team.md` names a script missing from the manifest, or a program not on the path (`command -v` / `Get-Command`). `(planned)` commands: ⚠ until they exist |
@@ -33,7 +33,7 @@ Each check ends as ✔ (fine), ⚠ (works, but should be fixed), ✘ (the team w
 | 16 | Security list | ⚠ the project has code but `.claude/team/project/security.md` is missing → `/team-security`; ⚠ an item marked `high` has been open for more than 30 days (its line's date or the file's `Updated`) |
 | 17 | Worktrees | ⚠ a brief names a `**Worktree:**` path that does not exist, or `git worktree list` shows a worktree under `Worktree folder` with no active ticket → give the `git worktree add` or `remove` command |
 | 18 | Marketing | ⚠ `Social posts` is `after merge` or `ask` but `.claude/team/marketing/marketing-plan.md` is missing → `/team-social`; ⚠ `## Team names` has no row for `team:social-media` → `/team-names` (Rafi is the default) |
-| 19 | Design | ⚠ the project has UI code but `.claude/team/project/design.md` is missing → `/team-design`; ⚠ no Playwright MCP tools in this session → prototypes and visual checks run without screenshots (restart the session; Node 18+ and `npx` must work); ⚠ a tool marked `on` under `## Design tools` is missing (doop: no `doop` MCP tools; frontend-design or ui-ux-pro-max: no such skill) → its command from `team.md`; ⚠ `Dev URL` is `<…>` in a UI project; ⚠ `## Team names` has no row for `team:designer` → `/team-names` (Nour is the default) |
+| 19 | Design | UI projects only (UI code, or the developer said at setup that it has a user interface); otherwise ✔. ⚠ `.claude/team/project/design.md` is missing → `/team-design`; ⚠ no Playwright MCP tools in this session → prototypes and visual checks run without screenshots (restart the session; Node 18+ and `npx` must work, and Google Chrome must be installed, or run `npx playwright install chrome`); ⚠ a tool marked `on` under `## Design tools` is missing (doop: no `doop` MCP tools; frontend-design or ui-ux-pro-max: no such skill) → its command from `team.md`; ⚠ `Dev URL` is `<…>`; ⚠ `## Team names` has no row for `team:designer` → `/team-names` (Nour is the default) |
 
 ## Output
 All ✔:
