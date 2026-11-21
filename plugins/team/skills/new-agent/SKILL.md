@@ -12,9 +12,9 @@ Template: `agent-template.md` in this skill's folder. Speak `Reply language` fro
 
 ## Rules
 - One question at a time, with numbered choices.
-- The ten plugin agents stay as they are. A new agent never replaces one; it adds a check or a job.
+- The eleven plugin agents stay as they are. A new agent never replaces one; it adds a check or a job.
 - Every new agent keeps the team's safety rules: read-only git, read-only tracker and GitHub, no PASS without output, the shared brief. Never remove them, whatever the developer asks — say why.
-- Name: `team-<slug>`, lower case with dashes, e.g. `team-designer`. It must not match a plugin agent or an existing file.
+- Name: `team-<slug>`, lower case with dashes, e.g. `team-a11y`. It must not match a plugin agent or an existing file.
 
 ## New agent
 1. **The job.** No argument: ask "What should the new agent do?" Then, one at a time, only what is unclear:
@@ -41,7 +41,7 @@ Template: `agent-template.md` in this skill's folder. Speak `Reply language` fro
 
    | Agent | Role | Joins at | May touch | Where |
    |---|---|---|---|---|
-   | team-designer | Design reviewer | after Plan | read only | project |
+   | team-a11y | Accessibility reviewer | before or with QA | read only | project |
 
    Dashboard on: add the role name to `labels.roles` in `status.js`.
 8. **Say**, short: the file, when `/team-work` will use it, and that a **new session** is needed before Claude Code sees a new agent.

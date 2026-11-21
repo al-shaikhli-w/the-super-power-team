@@ -36,6 +36,7 @@ Each ticket worked next to others gets its own git worktree, so developers never
 - `.claude/team/project/project-tech.md` — stack, structure, commands, risks (read from the code, or proposed)
 - `.claude/team/project/project-plan.md` — the features in order
 - `.claude/team/project/security.md` — the security picture and to-do list (`/team-security`)
+- `.claude/team/project/design.md` — the design picture and redesign to-do list (`/team-design`)
 - `.claude/team/marketing/marketing-plan.md` and `marketing/posts/` — the marketing plan and post drafts (`/team-social`)
 - `.claude/team/ideas/idea-v<N>.md` — wishes not planned yet (`/team-new-idea`)
 
@@ -50,6 +51,7 @@ Each ticket worked next to others gets its own git worktree, so developers never
 - Quick checks: `<lint / type check / format check>`
 - Unit tests: `<command>`
 - Build: `<command>`
+- Dev URL: <the address the app runs on locally, e.g. http://localhost:5173, or "none"> — Nour's visual check opens it
 
 ## Tests
 - <where tests live, and any list or registry that must be kept in sync>
@@ -68,10 +70,18 @@ Each ticket worked next to others gets its own git worktree, so developers never
 - Local review: `<command, or "none">`. Review bot on PRs: `<name, or "none">`.
 - Commit style: <the project's rule>
 
+## Design tools
+Optional tools Nour (`team:designer`) may use. Playwright comes with the plugin. Turn one on only after installing it yourself.
+- doop: <on | off> — `claude mcp add --transport http doop https://doop.design/mcp` (third-party: design context goes to doop.design)
+- frontend-design: <on | off> — `/plugin install frontend-design@claude-plugins-official`
+- ui-ux-pro-max: <on | off> — `npx skills add nextlevelbuilder/ui-ux-pro-max-skill --skill ui-ux-pro-max --agent claude-code` (third-party)
+- Figma: <when asked | off> — the Figma connector, only when you ask for Figma on a ticket
+
 ## Team names
 | Agent | Name |
 |---|---|
 | team:social-media | Rafi |
+| team:designer | Nour |
 
 ## Custom agents
 | Agent | Role | Joins at | May touch | Where |
@@ -88,6 +98,7 @@ Which model each job runs on. `inherit` = your session's model. Cheaper models f
 | qa-engineer | code review | inherit |
 | security-engineer | all | inherit |
 | social-media | all | sonnet |
+| designer | all | inherit |
 | product-manager, project-manager, developer-lead, reviewer | all | inherit |
 
 ## Product notes

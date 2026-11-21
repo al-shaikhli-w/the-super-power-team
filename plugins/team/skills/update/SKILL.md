@@ -31,7 +31,7 @@ Build one numbered table: `# | File | Change | Why`. Compare against the templat
 
 | What | Compare with | A change when |
 |---|---|---|
-| `team.md` fields | `../setup/team-template.md` | a field or `##` section of the template is missing. Never rewrite a field that has a value. New fields get their default: `Independent review: ask`, `Agents per ticket: one at a time`, `Dashboard: off`, `Social posts: ask`, `Right-to-left in the terminal` the template's lines; a `team:social-media | Rafi` row in `## Team names` unless the developer named it; `## Team size` and `## Models` the template's values; `Worktree folder` `../<repo folder>-worktrees`. A missing `## Models` row for an agent gets the template's row; rows the developer changed stay. A field that needs the developer's answer stays `<…>` and becomes a question in step 3. |
+| `team.md` fields | `../setup/team-template.md` | a field or `##` section of the template is missing. Never rewrite a field that has a value. New fields get their default: `Independent review: ask`, `Agents per ticket: one at a time`, `Dashboard: off`, `Social posts: ask`, `Right-to-left in the terminal` the template's lines; a `team:social-media | Rafi` row in `## Team names` unless the developer named it; `## Design tools` all `off` and Figma `off` (a question in step 3 when the project has UI); `Dev URL` stays `<…>` and becomes a question for UI projects; a `team:designer | Nour` row in `## Team names` unless the developer named it; `## Team size` and `## Models` the template's values; `Worktree folder` `../<repo folder>-worktrees`. A missing `## Models` row for an agent gets the template's row; rows the developer changed stay. A field that needs the developer's answer stays `<…>` and becomes a question in step 3. |
 | `Team version` | the installed version | it differs or is missing |
 | `.claude/team/dashboard.html` | `../dashboard/dashboard.html` | `Dashboard: on` and the copy is not identical |
 | `.claude/team/status.js` | `../dashboard/status-format.md` | `Dashboard: on` and a label from the format is missing, e.g. a new role in `labels.roles` |
@@ -42,6 +42,7 @@ Build one numbered table: `# | File | Change | Why`. Compare against the templat
 | Custom agents | `../new-agent/agent-template.md` | a `team-*.md` listed under `## Custom agents` lacks a section the template has ("Language and project documents", "Shared brief", "Limits"): add the section, never change its job |
 | Folders: `marketing/` | — | `Social posts` is not `off` and `.claude/team/marketing/` is missing: create it |
 | `security.md` | `../security/security-template.md` | the project has code and `.claude/team/project/security.md` is missing: offer `/team-security` after the update — the security engineer writes it, not you |
+| `design.md` | `../design/design-template.md` | the project has UI code and `.claude/team/project/design.md` is missing: offer `/team-design` after the update — the designer writes it, not you |
 | Git excludes | `../dashboard/SKILL.md`, section Git | `Git` is "share" or "commit all" and a local dashboard file is not in `.git/info/exclude` |
 
 Nothing to change: print one line, e.g. `✔ Team files are up to date — 0.11.0.`, and stop.
@@ -57,4 +58,4 @@ Ask once: apply all, pick numbers, or stop. Then, one change at a time, only the
 Never touch: the project's code, `CLAUDE.md`, the project documents' content (`project-info.md`, `project-tech.md`, `project-plan.md`), idea files, or anything inside `work/active/` and `work/history/` other than the `INDEX.md` header. No git writes; files to commit go to the developer as commands in a block for their shell when `Git` is "share" or "commit all".
 
 ## 4. Doctor
-Run the `team-doctor` skill and print its result line. Then one line on what is new for the developer in this version, from the changes you applied — e.g. "New: `/team-work review` and `/team-rollback`."
+Run the `team-doctor` skill and print its result line. Then one line on what is new for the developer in this version, from the changes you applied — e.g. "New: Nour the designer — `/team-design` and prototypes for UI tickets."

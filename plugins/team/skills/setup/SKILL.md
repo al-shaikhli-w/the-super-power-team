@@ -55,6 +55,8 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 
    Then: "Rafi, the team's social media manager, can draft posts for every feature you ship and a marketing plan (`/team-social`). Drafts only — you publish." — 1. **after every merge** (`after merge`), 2. **ask each time** (`ask`, default), 3. **never** (`off`). Note it as `Social posts` in `team.md`.
 
+   Then: "Does the project have a user interface (web pages, app screens)?" — yes or no. Yes: "Nour, the team's designer, scans the UI once and makes a clickable prototype for every ticket that changes what users see. Playwright for screenshots comes with the plugin. Turn on any of these optional tools?" — ask each one, one at a time, yes or no, with its command and, for doop and ui-ux-pro-max, the line "third-party — design context and parts of the code go to them": doop, frontend-design, ui-ux-pro-max; and Figma: "use Figma when I ask for it?" Note the answers under `## Design tools`; a yes means the developer runs the command now — give it in a block, never run it. No UI: every tool `off`, Figma `off`.
+
 3. **Look.** Is this a git repository? Is there a `CLAUDE.md`? Does `.claude/team/` exist?
    - `.claude/team/team.md` or `.claude/team/project/` exists: show what is there and ask — keep, or write again. Never overwrite without a yes. Never touch `.claude/team/work/`.
    - Create `.claude/team/work/active/` and `.claude/team/work/history/INDEX.md` with the header `| Date | Ticket | Title | PR | Result | Days | Summary |`.
@@ -65,6 +67,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 
 5. **No `CLAUDE.md`?** Say the agents take the project rules from it, suggest `/init`, and ask whether to continue without it.
 6. **Project scan.** Start `team:researcher`, job **Project scan**, and `team:security-engineer`, job **Security scan** (template: `../security/security-template.md`), side by side. Fill `project-tech.md` from the researcher's report — every fact with its evidence. The security engineer writes `.claude/team/project/security.md` itself; show its open count by severity and the three most dangerous items, and say the full to-do list is in that file and `/team-security fix SEC-<n>` fixes one.
+   UI project: also start `team:designer`, job **Design scan** (template: `../design/design-template.md`), side by side; show its open count by priority and the three most important items, and say `/team-design fix DES-<n>` fixes one.
 7. **Profile facts**, from the repository only: OS and shell; commands (manifest scripts, CI workflow files, rules files); test folders; repository and default branch (`git remote -v`, `git symbolic-ref refs/remotes/origin/HEAD`); a local review tool on the path; the ticket id pattern (recent `git log` subjects).
 8. **What the code cannot show** — ask, one at a time, only what is still open: the idea in two sentences, the users, the goals, what comes next, rules the code cannot show. Write `project-info.md`.
 9. **Plan.** Draft `project-plan.md`: what already works goes under "Done" without tickets; what the developer named as next goes into "Features in order".
@@ -93,6 +96,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
 11. **Ask for the rest**, one at a time, only what is still `<…>`:
     - **Branch name:** the tracker's own branch name for the ticket, or `<user>/<ticket>-<slug>`, or `<user>/<feature>` — show the developer's `git config user.name`, made lower case with dashes.
     - **Full CI gate** (code only), **review tool** or `none`, **product notes**.
+    - **Dev URL** (UI projects with code): the local address the app runs on — suggest it from the dev script (Vite 5173, Next 3000, …) — or `none`.
     - **Worktree setup** (code only): what a fresh checkout needs before the gate runs — suggest the install command from the lock file (`npm ci`, `pnpm install --frozen-lockfile`, `uv sync`, …) or `none`. `Worktree folder` defaults to `../<repo folder>-worktrees`; `## Team size` and `## Models` keep the template's values.
 12. **Tracker tools.** `none`: skip. A tracker with a connector (Linear, Jira, Notion, another): check that its read tools are available in this session. Not connected: say that `team:product-manager`, `team:project-manager` and `team:reply-writer` cannot read tickets until it is connected (`/mcp`).
 13. **Git.** Ask, and note the answer under `Git` in `team.md`:
@@ -103,4 +107,4 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
     No git repository yet: note the choice and give the commands for later. Write only the exclude lines; never stage or commit. For 2 and 3, give the `git add` and `git commit` commands in a block for the developer's shell.
 14. **Dashboard** `on`: run the `team-dashboard` skill.
 15. **Doctor.** Run the `team-doctor` skill. Any ✘ or ⚠: offer to fix them now, one at a time (its `fix` part).
-16. **Report**, short, in the reply language: files written, the doctor's result line, the open security items (with code), and the next command — `/team-work`, or for a new project `/team-work "<first feature from the plan>"`. New wishes any time: `/team-new-idea`; personal names for the agents: `/team-names`; a marketing plan from Rafi: `/team-social`.
+16. **Report**, short, in the reply language: files written, the doctor's result line, the open security items (with code), the open design items (UI projects), and the next command — `/team-work`, or for a new project `/team-work "<first feature from the plan>"`. New wishes any time: `/team-new-idea`; personal names for the agents: `/team-names`; a marketing plan from Rafi: `/team-social`; the design to-do list from Nour: `/team-design`.

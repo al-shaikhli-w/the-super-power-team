@@ -10,7 +10,7 @@ Request: `$ARGUMENTS`
 
 Speak `Reply language` from `.claude/team/team.md`. No `team.md`? Suggest `/team-setup`; stop.
 
-A name is a nickname for an agent; the agent itself (`team:project-manager`, `team-designer`) stays the same. Names live in `team.md`:
+A name is a nickname for an agent; the agent itself (`team:project-manager`, `team-a11y`) stays the same. Names live in `team.md`:
 
 ```markdown
 ## Team names
@@ -22,7 +22,7 @@ A name is a nickname for an agent; the agent itself (`team:project-manager`, `te
 
 ## Rules
 - One name per agent, and no two agents with the same name. Pool roles — `developer-lead`, `qa-engineer`, `security-engineer` — may have several names, comma-separated, one per member when several tickets run at once (`Omar, Sami, Lina`). A name is a single word or two, letters only — no `:`, `/`, quotes or brackets.
-- Any agent can have one: the ten plugin agents (Rafi is `team:social-media`'s name until you change it) and every custom agent in `## Custom agents`.
+- Any agent can have one: the eleven plugin agents (Rafi is `team:social-media`'s name and Nour is `team:designer`'s until you change them) and every custom agent in `## Custom agents`.
 - Accept the role in any form: `project-manager`, `project manager`, `team:project-manager`, the role in the reply language, or its current name.
 
 ## No argument

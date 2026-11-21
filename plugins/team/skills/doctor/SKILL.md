@@ -33,12 +33,13 @@ Each check ends as ✔ (fine), ⚠ (works, but should be fixed), ✘ (the team w
 | 16 | Security list | ⚠ the project has code but `.claude/team/project/security.md` is missing → `/team-security`; ⚠ an item marked `high` has been open for more than 30 days (its line's date or the file's `Updated`) |
 | 17 | Worktrees | ⚠ a brief names a `**Worktree:**` path that does not exist, or `git worktree list` shows a worktree under `Worktree folder` with no active ticket → give the `git worktree add` or `remove` command |
 | 18 | Marketing | ⚠ `Social posts` is `after merge` or `ask` but `.claude/team/marketing/marketing-plan.md` is missing → `/team-social`; ⚠ `## Team names` has no row for `team:social-media` → `/team-names` (Rafi is the default) |
+| 19 | Design | ⚠ the project has UI code but `.claude/team/project/design.md` is missing → `/team-design`; ⚠ no Playwright MCP tools in this session → prototypes and visual checks run without screenshots (restart the session; Node 18+ and `npx` must work); ⚠ a tool marked `on` under `## Design tools` is missing (doop: no `doop` MCP tools; frontend-design or ui-ux-pro-max: no such skill) → its command from `team.md`; ⚠ `Dev URL` is `<…>` in a UI project; ⚠ `## Team names` has no row for `team:designer` → `/team-names` (Nour is the default) |
 
 ## Output
 All ✔:
 
 ```text
-✔ Team ready — 18 checks passed.
+✔ Team ready — 19 checks passed.
 ```
 
 Otherwise only the failing lines, ✘ first, each with its fix in a few words, then one count line:
