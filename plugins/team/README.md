@@ -7,7 +7,7 @@
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.15.0-155eef?style=flat-square" alt="version 0.15.0">
+  <img src="https://img.shields.io/badge/version-0.16.0-155eef?style=flat-square" alt="version 0.16.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="https://github.com/al-shaikhli-w/the-super-power-team/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
@@ -463,7 +463,7 @@ team's reply language, and the page remembers your choice.
 | --- | --- |
 | **Needs you** | The crew's open question with Approve, Change and Stop buttons that copy your answer. |
 | **Ready to commit** | The commit message and every command — stage, commit, push, PR — each with a copy button. The page never runs anything. |
-| **Workflow** | Each ticket's steps as small animated characters, one per agent with its own hat, with the security engineer under Research (threat check) and QA (security review) Nour under Research (prototype) and QA (visual check), and Rafi under PR (posts). A character sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails; a sheet of paper travels along the line when work is handed on. The running agent shows what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
+| **Workflow** | Each ticket's steps as small animated characters, one per agent with its own hat, with the security engineer under Research (threat check) and QA (security review), Nour under Research (prototype) and QA (visual check), and Rafi under PR (posts). A character sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails; a sheet of paper travels along the line when work is handed on. The running agent shows what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
 | **Team** | With several tickets: each developer and QA engineer with the ticket and step they are on, the free places, and the tickets waiting for another one. |
 | **Security** | Your security to-do list from `security.md`: open items by severity with a **Fix** button (copies `/team-security fix SEC-<n>`), accepted risks and fixed items. A counter in the workflow bar turns red when an item is high. Only titles are shown — never the fix or a secret. |
 | **Design** | Your design to-do list from `design.md`: open items by priority with a **Fix** button (copies `/team-design fix DES-<n>`), skipped and fixed items. A counter in the workflow bar shows the open design to-dos. Each ticket with a prototype has an **Open prototype** link. |
@@ -691,7 +691,7 @@ back.
 | Task | Command |
 | --- | --- |
 | **Update to the newest version** | `npx the-super-power-team@latest` |
-| **Install a specific version** | `npx the-super-power-team@0.15.0` |
+| **Install a specific version** | `npx the-super-power-team@0.16.0` |
 | **See which version you have** | `claude plugin list` |
 | **Uninstall** | `npx the-super-power-team uninstall` |
 | **Help** | `npx the-super-power-team help` |
