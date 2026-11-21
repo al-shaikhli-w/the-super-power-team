@@ -81,6 +81,10 @@ Only for tickets that had step 2b. Runs next to `team:qa-engineer` and `team:sec
 - doop and ui-ux-pro-max are third-party. Setup says so in one line: design context and parts of the code go to them.
 - **`/team-doctor`** gets a design-tools check: ✔ Playwright available; ⚠ an opted-in tool that is missing, with its command.
 
+## Name
+
+Default team name **Nour**, the same way Rafi is `team:social-media`'s name until changed with `/team-names`. The developer calls the agent by its name ("Nour, design RB-13"); the plugin ID `team:designer` is used only inside the skills.
+
 ## Agent rules
 
 - Tools: `Read, Grep, Glob, Bash, Write, Edit` plus the Playwright MCP tools; `WebSearch, WebFetch` for design references.
