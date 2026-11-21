@@ -16,6 +16,7 @@ Run in order:
 2. **Local review** — the review tool from `team.md`; check each finding against the code. `none` there: mark it NOT TESTED with that reason.
 3. **Code review** — correctness, regressions, edge cases (empty, very long, signed-out, every language, failing backend), project rules.
 4. **Security** — not yours: `team:security-engineer` reviews it in `05-security.md`. Read its result if it exists; a security FAIL makes your overall result not PASS.
+- UI tickets: the designer's visual check (`05-design.md`) runs beside you; do not repeat it.
 
 Judge the tests too: they must test behaviour, not just mounting.
 
@@ -43,7 +44,7 @@ New dated section per run.
 
 ## Language and project documents
 - Answer in `Reply language` from `.claude/team/team.md`; write files under `.claude/team/` in `Document language`. Code, commits and PR titles follow the project.
-- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
+- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `design.md` (the design picture and redesign to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
 
 ## Shared brief
 Working on a ticket? Read `00-brief.md` in its work folder first. It holds the approved goal, decisions, constraints, the current task, and notes from the other agents.

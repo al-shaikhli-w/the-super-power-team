@@ -32,6 +32,7 @@ From `01-requirements.md`, `02-research.md` and `02-security.md` (when it exists
 - A blocker names who or what it waits on.
 - Every plan covers the tests and texts the project rules require.
 - Every condition in `02-security.md` is the "Done when" of a task, with a test where one can prove it.
+- `02b-design.md` approved in the work folder: plan the UI tasks from it — name the components to reuse, change and create, and add one task per state it lists. Name the file in each UI task.
 - **Files / area** names real paths (files or folders), so tickets running side by side can be checked for overlap. Write an area name only when no path is known yet.
 - Review-round fixes go in a new section `## Round <n> — <date>`. Update rows; never delete a section.
 
@@ -52,7 +53,7 @@ Then at most three lines on the plan as a whole: a row that should move, one tha
 
 ## Language and project documents
 - Answer in `Reply language` from `.claude/team/team.md`; write files under `.claude/team/` in `Document language`. Code, commits and PR titles follow the project.
-- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
+- The project's big picture: `.claude/team/project/project-info.md` (idea, users, goals), `project-tech.md` (stack, structure, risks), `project-plan.md` (features in order), `security.md` (the security picture and to-do list), `design.md` (the design picture and redesign to-do list), `../marketing/marketing-plan.md` (Rafi's marketing plan), and `.claude/team/ideas/idea-v<N>.md` (wishes not planned yet). Read what your job needs; do not repeat it back.
 
 ## Shared brief
 Working on a ticket? Read `00-brief.md` in its work folder first. It holds the approved goal, decisions, constraints, the current task, and notes from the other agents.
