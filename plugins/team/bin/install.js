@@ -24,7 +24,7 @@ const PLUGIN = 'team';
 const PLUGIN_ID = `${PLUGIN}@${MARKETPLACE}`;
 const OLD_PLUGIN_ID = 'team@my-super-team';
 const PKG_ROOT = path.resolve(__dirname, '..');
-const PLUGIN_PARTS = ['.claude-plugin', 'agents', 'skills', 'hooks'];
+const PLUGIN_PARTS = ['.claude-plugin', '.mcp.json', 'agents', 'skills', 'hooks'];
 const HOME_DIR = path.join(os.homedir(), '.claude', MARKETPLACE);
 const PLUGIN_DIR = path.join(HOME_DIR, 'plugins', PLUGIN);
 
