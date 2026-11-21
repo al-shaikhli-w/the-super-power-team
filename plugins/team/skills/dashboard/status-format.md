@@ -7,6 +7,7 @@ window.TEAM_STATUS = {
   "updated": "2026-11-20T14:05:12+01:00",
   "project": "Recipe box",
   "dir": "ltr",
+  "lang": "en",
   "labels": {
     "now": "Working now", "idle": "Nobody is working — waiting for you",
     "tickets": "Tickets", "plan": "Plan", "ideas": "Ideas", "activity": "Activity",
@@ -105,7 +106,7 @@ window.TEAM_STATUS = {
 }
 ```
 
-- **Language:** every `labels` value (all of them — the page falls back to English for a missing one), `task`, `waiting` and `text` in `Reply language`. `dir` is `rtl` for Arabic, Hebrew, Persian and Urdu, else `ltr`.
+- **Language:** every `labels` value (all of them — the page falls back to English for a missing one), `task`, `waiting` and `text` in `Reply language`. `dir` is `rtl` for Arabic, Hebrew, Persian and Urdu, else `ltr`. `lang` is the reply language's code (`ar`, `fr`, `en`, …). The page opens in English and has a switch for English, German and the reply language — `labels` are what it shows when the developer picks the reply language.
 - **`steps`:** six values in the order of `labels.steps`: `done`, `current`, `fail` (QA FAIL, back to build) or `todo`.
 - **`now`:** the agent running right now, or `null` while the team waits for the developer. With several tickets: a list, one `{ agent, task, since, ticket }` per running agent.
 - **`security`:** from `.claude/team/project/security.md`, or `null` when the file does not exist. `open`, `high`, `medium`, `low`: open items by severity (accepted risks do not count). `items`: every item — `id`, `severity`, the short `title` from its line, `effort`, `status` (`open`, `fixed`, `accepted`) and a `note` (the fixed date and PR, or the accepted reason) — open ones first, most dangerous first, at most 30. Never the file location, the fix text, or any secret value: the page shows the title only, and the Security section has a Fix button that copies `/team-security fix <id>`.

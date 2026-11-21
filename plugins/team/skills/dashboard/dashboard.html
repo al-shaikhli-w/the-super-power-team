@@ -1,3 +1,4 @@
+fd
 <!doctype html>
 <html lang="en">
 <head>
@@ -363,6 +364,132 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 .stat .mini { width: 44px; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .stat .mini i { display: block; height: 100%; background: var(--ok); border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { .fn.running .fn-box, .edge.active, .edge.aux.active, .fn.running .fn-badge::after { animation: none; } }
+/* Language switch in the header: English by default, German, or the team's reply language. */
+.lang { display: inline-flex; padding: 2px; gap: 2px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.lang button { appearance: none; border: 0; background: none; color: var(--text-3); font: inherit; font-size: 11.5px; font-weight: 650; height: 22px; padding: 0 9px; border-radius: 999px; cursor: pointer; }
+.lang button:hover { color: var(--text); }
+.lang button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+.lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* Workflow buddies: one small character per agent. Its face and moves follow the step:
+   sleeping (not started), thinking (its turn, nobody running), working, waiting for you,
+   happy (done), handing the work on (done and the next step is busy) and dizzy (QA failed). */
+.fn .fn-box svg.buddy { width: 64px; height: 64px; overflow: visible; color: var(--role); }
+.fn.aux .fn-box svg.buddy { width: 48px; height: 48px; }
+.flow-body.has-panel .fn .fn-box svg.buddy { width: 54px; height: 54px; }
+.flow-body.has-panel .fn.aux .fn-box svg.buddy { width: 42px; height: 42px; }
+.buddy :is(.bd, .arm-l, .arm-r, .pupils, .prop, .e-open, .fx text, .fx .drop, .fx .spark, .fx .ask) { transform-box: fill-box; }
+.buddy .skin { fill: var(--role); }
+.buddy .skin-d { fill: color-mix(in srgb, var(--role) 62%, #0b0d12); }
+.buddy .belly { fill: #fff; opacity: .2; }
+.buddy .eye-w { fill: #fff; }
+.buddy .ink { fill: #1d1b2b; }
+.buddy .ink-s { fill: none; stroke: #1d1b2b; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.buddy .glint { fill: #fff; }
+.buddy .cheek { fill: #ff7aa8; opacity: .5; }
+.buddy .shadow { fill: currentColor; opacity: .16; }
+.buddy .tongue { fill: #ff7aa8; }
+.buddy .prop-bg { fill: #fff; stroke: color-mix(in srgb, var(--role) 62%, #0b0d12); stroke-width: 1.4; }
+.buddy .prop path { fill: none; stroke: color-mix(in srgb, var(--role) 70%, #0b0d12); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.buddy .hat-y { fill: #fcd34d; } .buddy .hat-g { fill: #cbd5e1; } .buddy .hat-k { fill: #1d1b2b; } .buddy .hat-p { fill: #f472b6; } .buddy .hat-w { fill: #fff; }
+.buddy .bulb { fill: #fde68a; }
+.buddy .fx text { font: 800 12px/1 ui-rounded, system-ui, sans-serif; fill: var(--text-2); letter-spacing: 0 !important; }
+.buddy .fx .dot { fill: var(--text-3); }
+.buddy .fx .bubble { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.buddy .fx .drop { fill: #7dd3fc; }
+.buddy .fx .spark { fill: #fcd34d; }
+
+/* Everything a state does not use stays hidden. */
+.buddy .e-sleep, .buddy .e-happy, .buddy .e-x, .buddy .m-smile, .buddy .m-o, .buddy .m-focus, .buddy .m-sad, .buddy .m-grin,
+.buddy .fx > g { display: none; }
+.fn .buddy .e-open, .fn .buddy .m-smile { display: inline; }
+
+/* sleeping */
+.fn.todo .buddy .e-open, .fn.todo .buddy .m-smile { display: none; }
+.fn.todo .buddy .e-sleep, .fn.todo .buddy .m-o, .fn.todo .buddy .fx .zzz { display: inline; }
+.fn.todo .buddy .bd { filter: saturate(.35); opacity: .8; transform-origin: 50% 100%; animation: b-breathe 3.4s ease-in-out infinite; }
+.fn.todo .buddy .fx .zzz text { fill: var(--text-2); animation: b-z 3s ease-in infinite; opacity: 0; }
+.fn.todo .buddy .fx .zzz text:nth-child(2) { animation-delay: 1s; }
+.fn.todo .buddy .fx .zzz text:nth-child(3) { animation-delay: 2s; }
+.fn.todo .buddy .bulb { fill: #cbd5e1; }
+
+/* working */
+.fn.running .buddy .m-smile { display: none; }
+.fn.running .buddy .m-focus, .fn.running .buddy .fx .sweat { display: inline; }
+.fn.running .buddy .bd { transform-origin: 50% 100%; animation: b-bounce .55s ease-in-out infinite; }
+.fn.running .buddy .arm-l { transform-origin: 80% 20%; animation: b-type .28s ease-in-out infinite alternate; }
+.fn.running .buddy .arm-r { transform-origin: 20% 20%; animation: b-type .28s ease-in-out infinite alternate-reverse; }
+.fn.running .buddy .pupils { animation: b-read 1.8s steps(1) infinite; }
+.fn.running .buddy .prop { transform-origin: 50% 50%; animation: b-wiggle .55s ease-in-out infinite alternate; }
+.fn.running .buddy .fx .sweat .drop { animation: b-drop 2.2s ease-in infinite; }
+.fn.running .buddy .bulb { animation: b-glow 1.1s ease-in-out infinite alternate; }
+
+/* thinking */
+.fn.current .buddy .m-smile { display: none; }
+.fn.current .buddy .m-o, .fn.current .buddy .fx .think { display: inline; }
+.fn.current .buddy .pupils { animation: b-ponder 4s ease-in-out infinite; }
+.fn.current .buddy .bd { transform-origin: 50% 100%; animation: b-tilt 4s ease-in-out infinite; }
+.fn.current .buddy .arm-r { transform-origin: 20% 20%; transform: rotate(-120deg) translate(-2px, 2px); }
+.fn.current .buddy .fx .think .dot { animation: b-dots 1.5s ease-in-out infinite; }
+.fn.current .buddy .fx .think .dot:nth-child(2) { animation-delay: .25s; }
+.fn.current .buddy .fx .think .dot:nth-child(3) { animation-delay: .5s; }
+.fn.current .buddy .bulb { animation: b-glow 1.6s ease-in-out infinite alternate; }
+
+/* waiting for you */
+.fn.waiting .buddy .fx .ask { display: inline; }
+.fn.waiting .buddy .m-smile { display: none; } .fn.waiting .buddy .m-grin { display: inline; }
+.fn.waiting .buddy .arm-r { transform-origin: 20% 15%; animation: b-wave .45s ease-in-out infinite alternate; }
+.fn.waiting .buddy .bd { transform-origin: 50% 100%; animation: b-hop 1.6s ease-in-out infinite; }
+.fn.waiting .buddy .fx .ask { transform-origin: 50% 100%; animation: b-pop 1.6s ease-in-out infinite; }
+
+/* done: happy, and passing the work on when the next step is busy */
+.fn.done .buddy .e-open { display: none; } .fn.done .buddy .e-happy { display: inline; }
+.fn.done .buddy .bd { transform-origin: 50% 100%; animation: b-sway 3.2s ease-in-out infinite; }
+.fn.done .buddy .fx .sparks { display: inline; }
+.fn.done .buddy .fx .sparks .spark { transform-origin: 50% 50%; animation: b-twinkle 2.4s ease-in-out infinite; opacity: 0; }
+.fn.done .buddy .fx .sparks .spark:nth-child(2) { animation-delay: 1.2s; }
+.fn.done.sharing .buddy .m-smile { display: none; } .fn.done.sharing .buddy .m-grin { display: inline; }
+.fn.done.sharing .buddy .prop { animation: b-give 1.6s ease-in-out infinite; }
+:root[dir="rtl"] .fn.done.sharing .buddy .prop { animation-name: b-give-rtl; }
+
+/* QA failed: dizzy */
+.fn.fail .buddy .e-open, .fn.fail .buddy .m-smile { display: none; }
+.fn.fail .buddy .e-x, .fn.fail .buddy .m-sad { display: inline; }
+.fn.fail .buddy .bd { transform-origin: 50% 100%; animation: b-shake 2.4s ease-in-out infinite; }
+
+/* Eyes blink now and then when open. */
+.fn:is(.running, .current, .waiting) .buddy .e-open { transform-origin: 50% 50%; animation: b-blink 4.2s infinite; }
+.fn.aux:nth-child(odd) .buddy .e-open { animation-delay: 1.3s; }
+
+/* A small sheet of paper slides along a busy edge — the hand-over between agents. */
+.edge-paper { fill: var(--surface); stroke: var(--accent); stroke-width: 1.5; }
+.edge-paper-line { stroke: var(--accent); stroke-width: 1.2; stroke-linecap: round; }
+
+@keyframes b-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.04, .95); } }
+@keyframes b-z { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(7px, -14px) scale(1.15); } }
+@keyframes b-bounce { 0%, 100% { transform: translateY(0) scale(1, 1); } 50% { transform: translateY(-3px) scale(.98, 1.03); } }
+@keyframes b-type { from { transform: rotate(-18deg); } to { transform: rotate(14deg); } }
+@keyframes b-read { 0% { transform: translate(-1.2px, 1px); } 50% { transform: translate(1.2px, 1px); } }
+@keyframes b-wiggle { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+@keyframes b-drop { 0%, 40% { opacity: 0; transform: translateY(-2px); } 55% { opacity: 1; } 100% { opacity: 0; transform: translateY(9px); } }
+@keyframes b-glow { from { fill: #fde68a; } to { fill: #facc15; filter: drop-shadow(0 0 3px #facc15); } }
+@keyframes b-ponder { 0%, 100% { transform: translate(-1.4px, -1.6px); } 45% { transform: translate(1.4px, -1.8px); } 70% { transform: translate(0, -2px); } }
+@keyframes b-tilt { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes b-dots { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes b-wave { from { transform: rotate(-150deg); } to { transform: rotate(-100deg); } }
+@keyframes b-hop { 0%, 60%, 100% { transform: translateY(0); } 70% { transform: translateY(-5px); } 80% { transform: translateY(0); } 88% { transform: translateY(-2px); } }
+@keyframes b-pop { 0%, 60%, 100% { transform: scale(1); } 70% { transform: scale(1.18); } }
+@keyframes b-sway { 0%, 100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
+@keyframes b-twinkle { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 40% { opacity: 1; transform: scale(1) rotate(45deg); } 70% { opacity: 0; } }
+@keyframes b-give { 0%, 100% { transform: translateX(0) rotate(0); } 45%, 60% { transform: translateX(7px) rotate(12deg); } }
+@keyframes b-give-rtl { 0%, 100% { transform: translateX(0) rotate(0); } 45%, 60% { transform: translateX(-7px) rotate(-12deg); } }
+@keyframes b-shake { 0%, 70%, 100% { transform: rotate(0); } 75% { transform: rotate(-5deg); } 80% { transform: rotate(5deg); } 85% { transform: rotate(-4deg); } 90% { transform: rotate(3deg); } }
+@keyframes b-blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+@media (prefers-reduced-motion: reduce) {
+  .buddy *, .buddy .fx text { animation: none !important; }
+  .fn.todo .buddy .fx .zzz text { opacity: .8; }
+  .edge-paper-g { display: none; }
+}
 @media (max-width: 1040px) { .flow-body { flex-direction: column; } .flow-panel { width: auto; border-inline-start: 0; border-top: 1px solid var(--line); max-height: none; } }
 @media (max-width: 720px) { .brows li { grid-template-columns: 26px minmax(0, 1fr) auto; } .brows .tid, .brows .next-pill { display: none; } .tickets-tools { margin-inline-start: 0; width: 100%; } }
 @media (max-width: 560px) { .code .lbl { display: none; } .ask .btns { width: 100%; } .ask .btn { flex: 1; justify-content: center; } }
@@ -410,6 +537,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
       <button class="tab" role="tab" id="tab-archive" aria-controls="view-archive" aria-selected="false"><span id="tab-archive-text">Archive</span><span class="badge" id="tab-archive-badge" hidden></span></button>
     </nav>
     <div class="spacer"></div>
+    <div class="lang" id="lang" role="group" aria-label="Language"></div>
     <span class="muted" id="updated"></span>
     <span class="pill" id="live"><span class="led"></span><span id="live-text">Idle</span></span>
   </div>
@@ -550,6 +678,74 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     }
   };
 
+  var DE = {
+    subtitle: 'Agenten-Dashboard', live: 'Live', idle: 'Ruhig', updated: 'Aktualisiert', stale: 'Seit einer Weile kein Update',
+    kpiAgents: 'Agenten aktiv', kpiAgentsSub: 'gerade jetzt', kpiTickets: 'Aktive Tickets', kpiPlan: 'Plan', kpiIdeas: 'Offene Ideen', kpiSecurity: 'Sicherheits-To-dos', kpiSecuritySub: '{high} hoch',
+    security: 'Sicherheit', secOpen: 'Offen', secFixed: 'Behoben', secAccepted: 'Akzeptiertes Risiko', secScan: 'Erneut prüfen', secFix: 'Beheben', secNone: 'Noch keine Sicherheitsliste', secAllDone: 'Nichts offen — gut gemacht',
+    marketing: 'Marketing', mkPlan: 'Marketingplan', mkDrafts: 'Post-Entwürfe', mkCalendar: 'Als Nächstes im Kalender', mkNoPlan: 'Noch kein Marketingplan', mkMake: 'Plan erstellen', mkWeek: 'Wochenrückblick', mkPost: 'Posts schreiben', draft: 'Entwurf', posted: 'gepostet', approved: 'freigegeben', threatCheck: 'Risikoprüfung', securityReview: 'Sicherheitsreview', posts: 'Posts',
+    crew: 'Team', developers: 'Entwickler', qaPool: 'QA', free: 'frei', waitsFor: 'wartet auf',
+    agents: 'Agenten', timeline: 'Zeitachse', lastMinutes: 'letzte {n} Min.', tickets: 'Tickets', activity: 'Aktivität',
+    task: 'Aufgabe', working: 'Arbeitet', finished: 'Fertig', started: 'gestartet', waiting: 'Wartet auf',
+    allQuiet: 'Alles ruhig', allQuietSub: 'Kein Agent arbeitet — das Team wartet auf dich.', none: 'Noch nichts',
+    action: 'Aktion', actions: 'Aktionen', files: 'Dateien', changed: 'geändert', readOnly: 'gelesen', report: 'Bericht', showMore: 'Alles zeigen', showLess: 'Weniger zeigen',
+    range30: '30 Min.', rangeToday: 'Heute', rangeWeek: 'Woche', rangeSprint: 'Sprint', rangeAll: 'Alle Projekte', total: 'Gesamt',
+    run: 'Lauf', runs: 'Läufe', inProgress: 'In Arbeit', todayTasks: 'Heute', onThePlan: 'Im Plan', notStarted: 'Nicht begonnen', plan_next: 'als Nächstes', plan_later: 'später', plan_in_progress: 'in Arbeit',
+    noHistory: 'Noch kein Verlauf — er füllt sich, wenn Agenten fertig werden', noAllHistory: 'Noch kein Verlauf aus anderen Projekten', next: 'Als Nächstes', footer: 'Aktualisiert alle 4 Sekunden · liest status.js, live.js, actions.js und history.js',
+    tabLive: 'Live', tabArchive: 'Archiv', tabBoard: 'Board', board: 'Ticket-Board', newTicket: 'Neues Ticket', open: 'Offen', due: 'fällig',
+    col_plan: 'Planen', col_do: 'Umsetzen', col_check: 'Prüfen', col_done: 'Fertig', prio_high: 'hoch', prio_low: 'niedrig', archive: 'Abgeschlossene Tickets', searchPlaceholder: 'Tickets suchen…',
+    all: 'Alle', merged: 'Gemergt', closed: 'Geschlossen', done: 'Fertig', last30: 'Letzte 30 Tage', avgDays: 'Durchschnittliche Dauer',
+    days: 'Tage', date: 'Datum', ticket: 'Ticket', titleCol: 'Titel', result: 'Ergebnis', pr: 'PR', noArchive: 'Noch keine abgeschlossenen Tickets',
+    todo: 'To-do', today: 'Heute', week: 'Woche', sprint: 'Sprint', refresh: 'Aktualisieren', startNext: 'Nächstes starten', start: 'Starten',
+    noTicket: 'Ohne Ticket', copiedStart: 'Kopiert — in Claude Code einfügen, um zu starten', notLoaded: 'Noch nicht geladen — aktualisieren', workflow: 'Ablauf', needsYouShort: 'Wartet auf dich',
+    needsYou: 'Braucht dich', copy: 'Kopieren', copyFailed: 'Dein Browser hat das Kopieren blockiert — tippe:', copied: 'Kopiert — in Claude Code einfügen', copiedCmd: 'Kopiert — im Terminal ausführen', commitMessage: 'Commit-Nachricht',
+    kinds: { read: 'Liest', edit: 'Bearbeitet', run: 'Führt aus', search: 'Sucht', web: 'Surft', tracker: 'Tracker', tool: 'Werkzeug' },
+    kindsShort: { read: 'Lesen', edit: 'Bearbeiten', run: 'Ausführen', search: 'Suche', web: 'Web', tracker: 'Tracker', tool: 'Andere' },
+    steps: ['Anforderungen', 'Recherche', 'Plan', 'Umsetzung', 'QA', 'PR'],
+    roles: {
+      'product-manager': 'Produktmanager', 'researcher': 'Rechercheur', 'project-manager': 'Projektmanager',
+      'developer-lead': 'Lead-Entwickler', 'qa-engineer': 'QA-Ingenieur', 'reply-writer': 'Antwortschreiber', 'agent-maintainer': 'Agenten-Pfleger', 'reviewer': 'Unabhängiger Reviewer', 'security-engineer': 'Sicherheitsingenieur', 'social-media': 'Social Media'
+    }
+  };
+  // Page language: English by default; German; or 'team' = the labels the team writes in the reply language.
+  var LANG_KEY = 'spt-dashboard-lang';
+  var langPick = 'en';
+  try { langPick = localStorage.getItem(LANG_KEY) || 'en'; } catch (e) { /* storage blocked: stay on English */ }
+  function teamLangName(d) {
+    var code = d && d.lang ? String(d.lang) : '';
+    if (code) {
+      try { var n = new Intl.DisplayNames([code], { type: 'language' }).of(code); if (n) return n.charAt(0).toLocaleUpperCase(code) + n.slice(1); } catch (e) { /* unknown code */ }
+      return code.toUpperCase();
+    }
+    var sample = JSON.stringify((d && d.labels) || {});
+    if (/[؀-ۿ]/.test(sample)) return 'العربية';
+    if (/[֐-׿]/.test(sample)) return 'עברית';
+    return 'Team';
+  }
+  function hasTeamLang(d) {
+    var code = String((d && d.lang) || '').toLowerCase().split('-')[0];
+    return !!(d && d.labels && Object.keys(d.labels).length) && code !== 'en' && code !== 'de';
+  }
+  function langMode(d) { return langPick === 'team' && !hasTeamLang(d) ? 'en' : langPick === 'de' || langPick === 'team' ? langPick : 'en'; }
+  function renderLang(d) {
+    var box = $('lang'); var mode = langMode(d);
+    var opts = [['en', 'EN', 'English'], ['de', 'DE', 'Deutsch']];
+    if (hasTeamLang(d)) { var nm = teamLangName(d); opts.push(['team', nm, nm]); }
+    var key = JSON.stringify([opts, mode]);
+    if (box.getAttribute('data-key') === key) return;
+    box.setAttribute('data-key', key); clear(box);
+    opts.forEach(function (o) {
+      var b = el('button', '', o[1]); b.type = 'button'; b.title = o[2]; b.lang = o[0] === 'team' ? (d.lang || '') : o[0];
+      b.setAttribute('aria-pressed', String(o[0] === mode));
+      b.addEventListener('click', function () {
+        langPick = o[0];
+        try { localStorage.setItem(LANG_KEY, langPick); } catch (e) { /* not saved: still switches for this visit */ }
+        flowKey = null; needsKey = null;
+        if (lastData) render(lastData, lastLive, lastActions);
+      });
+      box.appendChild(b);
+    });
+  }
+
   var $ = function (id) { return document.getElementById(id); };
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -608,11 +804,15 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
   function setRole(node, agent) { node.style.setProperty('--role', 'var(' + roleVar(agent) + ')'); }
   function setKind(node, k) { node.style.setProperty('--k', 'var(--k-' + (KINDS.indexOf(k) >= 0 ? k : 'tool') + ')'); }
   function labels(d) {
-    var L = {}, src = (d && d.labels) || {};
-    Object.keys(EN).forEach(function (k) { L[k] = src[k] !== undefined ? src[k] : EN[k]; });
-    L.kinds = Object.assign({}, EN.kinds, src.kinds || {});
-    L.kindsShort = Object.assign({}, EN.kindsShort, src.kindsShort || {});
-    L.roles = Object.assign({}, EN.roles, src.roles || {});
+    var mode = langMode(d);
+    var L = {}, team = (d && d.labels) || {}, src = mode === 'team' ? team : {}, base = mode === 'de' ? DE : EN;
+    Object.keys(EN).forEach(function (k) { L[k] = src[k] !== undefined ? src[k] : base[k] !== undefined ? base[k] : EN[k]; });
+    L.kinds = Object.assign({}, EN.kinds, base.kinds, src.kinds || {});
+    L.kindsShort = Object.assign({}, EN.kindsShort, base.kindsShort, src.kindsShort || {});
+    // custom agents' role names only exist in the team's labels, so they stay as a fallback
+    L.roles = Object.assign({}, team.roles || {}, EN.roles, base.roles, src.roles || {});
+    L.dir = mode === 'team' && d.dir === 'rtl' ? 'rtl' : 'ltr';
+    L.lang = mode === 'team' ? String(d.lang || '') : mode;
     L.names = (d && d.names) || {};
     (Array.isArray(d && d.customAgents) ? d.customAgents : []).forEach(function (c) { if (c && c.agent && c.name && !L.roles[role(c.agent)]) L.roles[role(c.agent)] = c.name; });
     if (src.now && !src.kpiAgents) L.kpiAgents = src.now;
@@ -663,7 +863,9 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
 
   function renderTop(d, L, running, stale) {
     $('logo').replaceChildren(icon('logo'));
-    document.documentElement.dir = d.dir === 'rtl' ? 'rtl' : 'ltr';
+    document.documentElement.dir = L.dir;
+    if (L.lang) document.documentElement.lang = L.lang; else document.documentElement.removeAttribute('lang');
+    renderLang(d);
     $('project').textContent = d.project || L.subtitle;
     document.title = (d.project ? d.project + ' · ' : '') + (running ? '● ' : '') + 'The Super Power Team';
     $('updated').textContent = d.updated ? L.updated + ' ' + hhmm(d.updated) : '';
@@ -1422,11 +1624,61 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
     return -1;
   }
 
+  // Hats: one per role so each buddy is easy to tell apart. Static markup, no data in it.
+  var HATS = {
+    'product-manager': '<path class="ink-s" d="M32 17V9" stroke-width="1.8"/><circle class="bulb" cx="32" cy="6.5" r="4"/><path class="ink-s" d="M30.5 10.5h3" stroke-width="1.4"/>',
+    'researcher': '<g class="ink-s" stroke-width="1.6"><circle cx="25.5" cy="32" r="6"/><circle cx="38.5" cy="32" r="6"/><path d="M31.5 31.5h1"/></g>',
+    'project-manager': '<path class="hat-y" d="M17 25a15 12 0 0 1 30 0z"/><rect class="hat-y" x="14" y="23.5" width="36" height="3.5" rx="1.75"/><path d="M32 14v10" stroke="#d97706" stroke-width="2"/>',
+    'developer-lead': '<path class="ink-s" d="M14.5 33a17.5 17.5 0 0 1 35 0" stroke-width="2.6"/><rect class="hat-k" x="11" y="29" width="6" height="10" rx="3"/><rect class="hat-k" x="47" y="29" width="6" height="10" rx="3"/>',
+    'qa-engineer': '<path class="hat-k" d="M19 24q13-14 26 0z"/><path class="hat-k" d="M16 24.5h32" stroke="#1d1b2b" stroke-width="3" stroke-linecap="round"/><circle class="hat-w" cx="32" cy="19" r="2"/>',
+    'reply-writer': '<ellipse class="hat-k" cx="30" cy="18.5" rx="12" ry="4.5" transform="rotate(-10 30 18.5)"/><circle class="hat-k" cx="29" cy="13.5" r="1.8"/>',
+    'reviewer': '<circle class="ink-s" cx="38.5" cy="32" r="6.2" stroke-width="1.6"/><path class="ink-s" d="M44.5 34q3 6 0 12" stroke-width="1.2"/>',
+    'security-engineer': '<path class="hat-g" d="M15.5 30a16.5 15 0 0 1 33 0v-1H15.5z"/><path class="hat-g" d="M31 14.5q1-6 6-7-2 4-1 7z"/><rect class="hat-g" x="15" y="26" width="34" height="3" rx="1.5"/>',
+    'social-media': '<path class="hat-p" d="M32 1.5l8 16H24z"/><path d="M27.5 12.5h9M25.8 16h12.4" stroke="#fff" stroke-width="1.4"/><circle class="spark" cx="32" cy="1.5" r="2.4" fill="#fcd34d"/>',
+    'agent-maintainer': '<path class="ink-s" d="M32 17v-6" stroke-width="1.6"/><ellipse class="hat-y" cx="26.5" cy="10" rx="5.5" ry="2"/><ellipse class="hat-y" cx="37.5" cy="10" rx="5.5" ry="2"/>',
+    '_': '<path d="M32 17q-1-6 3-9 1 5-3 9z" fill="#4ade80"/><path d="M32 17q-2-4-7-5 1 5 7 5z" fill="#22c55e"/>'
+  };
+  var BUDDY = '<ellipse class="shadow" cx="32" cy="59" rx="14" ry="2.6"/>' +
+    '<g class="bd">' +
+    '<rect class="skin-d" x="24" y="50" width="6" height="8" rx="3"/><rect class="skin-d" x="34" y="50" width="6" height="8" rx="3"/>' +
+    '<g class="arm-l"><ellipse class="skin-d" cx="14.5" cy="42" rx="3.6" ry="6.5" transform="rotate(20 14.5 42)"/></g>' +
+    '<path class="skin" d="M32 16c10.5 0 18 7.6 18 18.5v7c0 8.2-6.2 13.5-13.5 13.5h-9C20.2 55 14 49.7 14 41.5v-7C14 23.6 21.5 16 32 16z"/>' +
+    '<ellipse class="belly" cx="32" cy="45" rx="10" ry="7.5"/>' +
+    '<g class="e-open"><ellipse class="eye-w" cx="25.5" cy="32" rx="4.6" ry="5"/><ellipse class="eye-w" cx="38.5" cy="32" rx="4.6" ry="5"/>' +
+    '<g class="pupils"><circle class="ink" cx="26" cy="33" r="2.5"/><circle class="ink" cx="39" cy="33" r="2.5"/><circle class="glint" cx="27" cy="32" r=".9"/><circle class="glint" cx="40" cy="32" r=".9"/></g></g>' +
+    '<g class="e-sleep ink-s"><path d="M21.5 33q4 3 8 0M34.5 33q4 3 8 0"/></g>' +
+    '<g class="e-happy ink-s"><path d="M21.5 34q4-6 8 0M34.5 34q4-6 8 0"/></g>' +
+    '<g class="e-x ink-s" stroke-width="1.8"><path d="M23 30l5 5M28 30l-5 5M36 30l5 5M41 30l-5 5"/></g>' +
+    '<ellipse class="cheek" cx="20.5" cy="39" rx="3" ry="1.8"/><ellipse class="cheek" cx="43.5" cy="39" rx="3" ry="1.8"/>' +
+    '<path class="m-smile ink-s" d="M28.5 40q3.5 3.2 7 0"/>' +
+    '<g class="m-grin"><path class="ink" d="M27.5 39.5h9q-.5 5.5-4.5 5.5t-4.5-5.5z"/><path class="tongue" d="M29.5 43.2q2.5-2 5 0-1 1.8-2.5 1.8t-2.5-1.8z"/></g>' +
+    '<ellipse class="m-o ink" cx="32" cy="41" rx="1.8" ry="2.1"/>' +
+    '<g class="m-focus"><path class="ink-s" d="M28.5 41h7"/><path class="tongue" d="M33 41.5h2.6q0 2.6-1.3 2.6t-1.3-2.6z"/></g>' +
+    '<path class="m-sad ink-s" d="M28.5 43q3.5-3 7 0"/>' +
+    '<g class="hat">{hat}</g>' +
+    '<g class="arm-r"><ellipse class="skin-d" cx="49.5" cy="42" rx="3.6" ry="6.5" transform="rotate(-20 49.5 42)"/></g>' +
+    '<g class="prop"><circle class="prop-bg" cx="50" cy="47" r="7.5"/><path transform="translate(45.2 42.2) scale(.4)" d="{icon}"/></g>' +
+    '</g>' +
+    '<g class="fx">' +
+    '<g class="zzz"><text x="44" y="19">z</text><text x="49" y="13" font-size="10">z</text><text x="43" y="9" font-size="14">Z</text></g>' +
+    '<g class="think"><circle class="dot" cx="46" cy="16" r="1.6"/><circle class="dot" cx="50" cy="11" r="2.1"/><circle class="dot" cx="55" cy="5.5" r="2.7"/></g>' +
+    '<g class="sweat"><path class="drop" d="M48 19q2.4 3.4 0 4.6-2.4-1.2 0-4.6z"/></g>' +
+    '<g class="ask"><rect class="bubble" x="43" y="1" width="15" height="13" rx="6.5"/><text x="47.3" y="11" style="fill:var(--accent)">?</text></g>' +
+    '<g class="sparks"><path class="spark" d="M13 14l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z"/><path class="spark" d="M51 9l1 2.4 2.4 1-2.4 1-1 2.4-1-2.4-2.4-1 2.4-1z"/></g>' +
+    '</g>';
+  function buddy(agent, iconName) {
+    var wrap = document.createElement('div');
+    var hat = HATS[role(agent)] || HATS._;
+    wrap.innerHTML = '<svg class="buddy" viewBox="0 0 64 64" aria-hidden="true">' +
+      BUDDY.replace('{hat}', hat).replace('{icon}', ICONS[iconName] || ICONS.agents || ICONS.tool) + '</svg>';
+    return wrap.firstChild;
+  }
+
   function flowNode(cls, agent, iconName, label, sub, badge) {
     var n = el('div', 'fn ' + cls);
     setRole(n, agent);
     var b = el('div', 'fn-box');
-    b.appendChild(icon(iconName));
+    b.appendChild(buddy(agent, iconName));
     if (badge) { var bd = el('div', 'fn-badge'); if (badge !== 'spin') bd.appendChild(icon(badge)); b.appendChild(bd); }
     n.appendChild(b);
     n.appendChild(el('div', 'fn-label', label));
@@ -1484,6 +1736,21 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
       var p = document.createElementNS(ns, 'path');
       p.setAttribute('d', d); p.setAttribute('class', 'edge ' + e.cls);
       svg.appendChild(p);
+      if (e.cls === 'active') {
+        // the hand-over: a sheet of paper travels from the finished step to the busy one
+        var g = document.createElementNS(ns, 'g'); g.setAttribute('class', 'edge-paper-g');
+        var sheet = document.createElementNS(ns, 'rect');
+        sheet.setAttribute('x', -5); sheet.setAttribute('y', -6.5); sheet.setAttribute('width', 10); sheet.setAttribute('height', 13); sheet.setAttribute('rx', 2); sheet.setAttribute('class', 'edge-paper');
+        g.appendChild(sheet);
+        [-2.5, 0, 2.5].forEach(function (ly) {
+          var ln = document.createElementNS(ns, 'path'); ln.setAttribute('d', 'M-2.5 ' + ly + 'h5'); ln.setAttribute('class', 'edge-paper-line'); g.appendChild(ln);
+        });
+        var mo = document.createElementNS(ns, 'animateMotion');
+        mo.setAttribute('dur', '2.2s'); mo.setAttribute('repeatCount', 'indefinite'); mo.setAttribute('path', d);
+        mo.setAttribute('keyPoints', '0;1;1'); mo.setAttribute('keyTimes', '0;.75;1'); mo.setAttribute('calcMode', 'linear');
+        g.appendChild(mo);
+        svg.appendChild(g);
+      }
       [[x1, y1], [x2, y2]].forEach(function (pt) {
         var c = document.createElementNS(ns, 'circle');
         c.setAttribute('cx', pt[0]); c.setAttribute('cy', pt[1]); c.setAttribute('r', 3.5); c.setAttribute('class', 'port');
@@ -1594,6 +1861,7 @@ footer { margin-top: 36px; display: flex; justify-content: center; gap: 8px; col
       var a = states[i], b = mainNodes[i + 1].state;
       var cls = a === 'done' && (b === 'done') ? 'done' : a === 'done' && b !== 'todo' ? 'active' : '';
       edges.push({ from: mainNodes[i].node, to: mainNodes[i + 1].node, cls: cls });
+      if (cls === 'active') mainNodes[i].node.classList.add('sharing');
     }
     aux.forEach(function (x) { if (x.loose) return; edges.push({ from: mainNodes[x.col].node, to: x.node, cls: 'aux' + (x.run ? ' active' : ''), down: true }); });
     lastEdges = edges;
