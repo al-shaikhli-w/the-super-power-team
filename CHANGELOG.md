@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0
+
+- **New role: `team:designer` — Nour.** On a project with UI, setup scans it and writes `.claude/team/project/design.md` — tokens, components, inconsistencies and a redesign to-do list (`DES-1 · high · …`).
+- **Prototype first:** every ticket that changes what users see gets step 2b — a clickable HTML prototype with every state and Playwright screenshots in `02b-prototype/`, approved before the plan. The project manager plans from it and the developer lead builds from it.
+- **Visual check in QA:** Nour compares the running app (`Dev URL` in `team.md`) with the prototype — `05-design.md` with PASS, FAIL or NOT TESTED.
+- **`/team-design`**: scan or rescan, `list`, `fix DES-<n>` (works the item as a ticket and ticks it on merge), `skip DES-<n> <reason>`.
+- Playwright MCP now comes with the plugin (`.mcp.json`). Optional design tools in `## Design tools`: doop MCP, frontend-design, ui-ux-pro-max, Figma when asked — setup asks; you install.
+- Dashboard: a Design section with Fix buttons, a design to-dos counter, Nour in the Workflow, and an "Open prototype" link on each ticket.
+- Doctor checks `design.md`, Playwright and the design tools; `/team-update` adds `## Design tools`, `Dev URL` and Nour's name.
+
 ## 0.15.0
 
 - Dashboard in your language: a switch in the header for English (the default), German and the team's reply language. The page remembers the choice. `status.js` gains an optional `lang` code so the switch shows the reply language by its own name (`العربية`, `Français`).

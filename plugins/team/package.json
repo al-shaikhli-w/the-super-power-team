@@ -1,7 +1,7 @@
 {
   "name": "the-super-power-team",
-  "version": "0.15.0",
-  "description": "The Super Power Team: ten Claude Code agents that take a ticket from idea to pull request — and tell the world about it, with your approval after every step.",
+  "version": "0.16.0",
+  "description": "The Super Power Team: eleven Claude Code agents that take a ticket from idea to pull request — with a prototype for every screen — and tell the world about it, with your approval after every step.",
   "license": "MIT",
   "author": "Waleed Al Shaikhli",
   "homepage": "https://github.com/al-shaikhli-w/the-super-power-team#readme",
@@ -32,7 +32,10 @@
     "qa",
     "linear",
     "jira",
-    "github"
+    "github",
+    "design",
+    "prototype",
+    "playwright"
   ],
   "files": [
     ".claude-plugin",

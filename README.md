@@ -22,9 +22,10 @@
   <a href="https://github.com/al-shaikhli-w/the-super-power-team/issues">Issues</a>
 </p>
 
-The Super Power Team gives Claude Code a crew of ten specialised agents — product
+The Super Power Team gives Claude Code a crew of eleven specialised agents — product
 manager, researcher, security engineer, project manager, developer lead, QA
-engineer, independent reviewer, reply writer, agent maintainer, and Rafi, the
+engineer, independent reviewer, reply writer, agent maintainer, Nour, the
+designer who shows every new screen before it is built, and Rafi, the
 social media manager who tells the world what you shipped. They work a
 ticket step by step and stop after every step for your approval — or several
 tickets at once, like a real team, with a pool of developers and QA engineers
@@ -44,9 +45,10 @@ Start with the [Quick start](#quick-start) below.
 
 | | |
 | --- | --- |
-| **What it is** | A Claude Code plugin: ten agents, thirteen commands, a live dashboard. |
-| **What it does** | Takes a ticket from idea → requirements → security check → plan → code → QA → review → pull request. Up to three tickets build at the same time. |
+| **What it is** | A Claude Code plugin: eleven agents, fourteen commands, a live dashboard. |
+| **What it does** | Takes a ticket from idea → requirements → security check → prototype (UI tickets) → plan → code → QA → review → pull request. Up to three tickets build at the same time. |
 | **Security** | A security engineer writes `security.md` — your security to-do list — and checks every ticket before and after it is built. |
+| **Design** | Nour scans your UI into `design.md` with a redesign to-do list, and shows a clickable prototype of every new screen before it is planned. |
 | **Marketing** | Rafi writes a marketing plan and drafts social media posts for every feature you ship — you publish them. |
 | **Saves tokens** | Every agent is a sub-agent with a short brief; simple jobs run on a cheaper model. |
 | **Who decides** | You. The team stops after every step and waits for approve, change or stop. |
@@ -69,18 +71,19 @@ Start with the [Quick start](#quick-start) below.
 6. [Several tickets at once](#several-tickets-at-once)
 7. [Security](#security)
 8. [Marketing with Rafi](#marketing-with-rafi)
-9. [Models and tokens](#models-and-tokens)
-10. [Live dashboard](#live-dashboard)
-11. [What do you need?](#what-do-you-need)
-12. [Command map](#command-map)
-13. [The team](#the-crew)
-14. [Tickets](#tickets)
-15. [File-backed project state](#file-backed-project-state)
-16. [Review and verification](#review-and-verification)
-17. [Rolling back](#rolling-back)
-18. [Tool support](#tool-support)
-19. [Status and updates](#status-and-updates)
-20. [Support and contributing](#support-and-contributing)
+9. [Design with Nour](#design-with-nour)
+10. [Models and tokens](#models-and-tokens)
+11. [Live dashboard](#live-dashboard)
+12. [What do you need?](#what-do-you-need)
+13. [Command map](#command-map)
+14. [The team](#the-crew)
+15. [Tickets](#tickets)
+16. [File-backed project state](#file-backed-project-state)
+17. [Review and verification](#review-and-verification)
+18. [Rolling back](#rolling-back)
+19. [Tool support](#tool-support)
+20. [Status and updates](#status-and-updates)
+21. [Support and contributing](#support-and-contributing)
 
 ## Explained for kids
 
@@ -92,6 +95,7 @@ Each helper is good at **one** thing:
 | 📋 **Product manager** | Listens to your wish and writes down exactly what the castle needs: "a tower, a gate, a bridge". |
 | 🔎 **Researcher** | Looks at the bricks you already have and says: "Yes, we can build that" — or "we are missing blue bricks". |
 | 🛡️ **Security engineer** | The castle guard. Checks that no door is left open, no key is lying around, and nobody can sneak in. They keep a list of everything that still needs a lock — that is `security.md`. |
+| 🎨 **Nour, designer** | Draws the picture of the new screen first, so everyone agrees how it should look before anyone builds it. |
 | 🗺️ **Project manager** | Cuts the big job into small steps: "first the wall, then the tower". |
 | 🧱 **Developer** | Builds it, one step at a time. |
 | ✅ **QA engineer** | Tests everything: does the gate open? does the tower stand? They only say "it works" when they have *seen* it work. |
@@ -171,6 +175,7 @@ the crew does the work.
 | [Claude Code](https://claude.com/claude-code) | Terminal, desktop app or IDE extension. Cloud sessions do not load local plugins. |
 | `bash` | Runs the dashboard hooks. On Windows: Git for Windows, which Claude Code normally uses anyway. |
 | [`gh`](https://cli.github.com/) signed in | Only for pull-request rounds (`/team-work pr`). |
+| `npx` (comes with Node.js) | Starts the Playwright MCP that comes with the plugin, for prototype screenshots and the visual check. |
 
 ### 1. Install
 
@@ -262,6 +267,8 @@ Learn these three commands first:
 2  researcher        feasibility          ✋ approve
    security-engineer threat check         (one approval for both)
  │                   not feasible / not safe → 1
+2b designer          prototype (UI tickets) ✋ approve
+ │
 3  project-manager   plan                 ✋ approve
  │
  ├─ you create the branch
@@ -291,11 +298,13 @@ Every ✋ is a stop: nothing moves on until you approve. Each step has a narrow 
 | 1 Requirements | product-manager reads the ticket, comments, linked tickets | `01-requirements.md` | approve |
 | 2 Feasibility | researcher reads the code, runs existing tests | `02-research.md` | approve |
 | 2 Threat check | security-engineer: what this ticket changes for security, and the rules the build must follow | `02-security.md` | approve (with feasibility) |
+| 2b Design (UI tickets) | designer (Nour) makes a clickable HTML prototype with every state and screenshots — the plan is made from it | `02b-design.md`, `02b-prototype/` | open it, approve it |
 | 3 Plan | project-manager splits the work into tasks | `03-plan.md` | approve |
 | — Branch | the coordinator gives you the commands | noted in `03-plan.md` | run them, say "done" |
 | 4 Build | developer-lead, one task at a time | `04-implementation.md` | approve each task |
 | 5 QA | qa-engineer runs CI, local review and code review | `05-qa.md` | read the verdict |
 | 5 Security review | security-engineer checks every rule from step 2 and the diff | `05-security.md` | read the verdict |
+| 5 Visual check (UI tickets) | designer (Nour) opens the running app and compares it with the prototype | `05-design.md` | read the verdict |
 | 5b Independent review | reviewer, who never saw the plan, the build or QA's report | `05b-review.md` | pick which findings to fix |
 | 6 Hand-over | the coordinator | `06-pr.md` | commit, push, open the PR |
 | 7 PR rounds | `/team-work pr` — QA reads new comments and checks | `07-pr-rounds.md` | approve the fixes, post the drafted replies |
@@ -405,6 +414,16 @@ you publish, then set the draft to `posted`. Rafi writes only about features
 that are merged, and never mentions security findings, open tickets, internal
 links, or customer and colleague names. Rename Rafi with `/team-names`.
 
+## Design with Nour
+
+Nour, the team's designer, looks after how the product looks and feels.
+
+- **Design scan** — `/team-design` reads the UI once and writes `.claude/team/project/design.md`: tokens, components, what drifts, and a redesign to-do list (`DES-1 · high · Five different button styles`). `/team-design fix DES-<n>` works one item as a ticket.
+- **Prototype first** — every ticket that changes what users see gets step **2b**: a clickable HTML prototype with every state (empty, loading, error, right-to-left, mobile) and screenshots, in the ticket's work folder. You open it and approve it before anything is planned.
+- **Visual check** — in QA, Nour opens the running app (`Dev URL` in `team.md`) and compares it with the approved prototype.
+
+Playwright (for screenshots) comes with the plugin and runs through `npx`, so Node.js 18 or newer is enough. Optional tools you turn on in `/team-setup` and install yourself: the doop MCP, the frontend-design plugin, the ui-ux-pro-max skill, and Figma when you ask for it. doop and ui-ux-pro-max are third-party — design context goes to them.
+
 ## Models and tokens
 
 Every agent is a **sub-agent**: it starts with a clean context and gets only
@@ -422,7 +441,7 @@ Simple jobs run on a cheaper model, hard ones on yours. `## Models` in
 | researcher | all | sonnet |
 | qa-engineer | CI gate, local review, PR round check | sonnet |
 | qa-engineer | code review | your model |
-| security-engineer, product-manager, project-manager, developer-lead, reviewer | all | your model |
+| security-engineer, designer (Nour), product-manager, project-manager, developer-lead, reviewer | all | your model |
 
 Change any row. A job that turns out too hard for its model is run once more
 on your model, and the crew says so.
@@ -444,9 +463,10 @@ team's reply language, and the page remembers your choice.
 | --- | --- |
 | **Needs you** | The crew's open question with Approve, Change and Stop buttons that copy your answer. |
 | **Ready to commit** | The commit message and every command — stage, commit, push, PR — each with a copy button. The page never runs anything. |
-| **Workflow** | Each ticket's steps as small animated characters, one per agent with its own hat, with the security engineer under Research (threat check) and QA (security review) and Rafi under PR (posts). A character sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails; a sheet of paper travels along the line when work is handed on. The running agent shows what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
+| **Workflow** | Each ticket's steps as small animated characters, one per agent with its own hat, with the security engineer under Research (threat check) and QA (security review) Nour under Research (prototype) and QA (visual check), and Rafi under PR (posts). A character sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails; a sheet of paper travels along the line when work is handed on. The running agent shows what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
 | **Team** | With several tickets: each developer and QA engineer with the ticket and step they are on, the free places, and the tickets waiting for another one. |
 | **Security** | Your security to-do list from `security.md`: open items by severity with a **Fix** button (copies `/team-security fix SEC-<n>`), accepted risks and fixed items. A counter in the workflow bar turns red when an item is high. Only titles are shown — never the fix or a secret. |
+| **Design** | Your design to-do list from `design.md`: open items by priority with a **Fix** button (copies `/team-design fix DES-<n>`), skipped and fixed items. A counter in the workflow bar shows the open design to-dos. Each ticket with a prototype has an **Open prototype** link. |
 | **Marketing** | Rafi's marketing plan and its one-sentence message, the next days on the post calendar, and every post draft with its channels and status (`draft` or `posted`). |
 | **Timeline** | The last 30 minutes as bars, or Today, Week, Sprint and All projects as a heat map per agent. |
 | **Tickets** | What is in progress, the list for Today, Week or Sprint, and what is next on the plan — each with a Start button. |
@@ -470,6 +490,8 @@ and only while the dashboard is on. `/team-dashboard off` stops it.
 | "Work three tickets at once." | `/team-work RB-12 RB-13 RB-14` |
 | "How secure is my project?" | `/team-security` |
 | "Fix a security problem." | `/team-security fix SEC-2` |
+| "How does my UI look? What should be redesigned?" | `/team-design` |
+| "Fix a design problem." | `/team-design fix DES-2` |
 | "How do I market this project?" | `/team-social` |
 | "Write posts about what we shipped." | `/team-social post RB-12` or `/team-social week` |
 | "Where does everything stand?" | `/team-status` |
@@ -514,6 +536,12 @@ and only while the dashboard is on. `/team-dashboard off` stops it.
 | --- | --- |
 | **/team-security** | Scan the project and write or refresh `security.md`; `list`, `fix SEC-<n>`, `accept SEC-<n> <reason>`. |
 
+### Design
+
+| Command | Purpose |
+| --- | --- |
+| **/team-design** | Scan the UI; `list`, `fix DES-<n>`, `skip DES-<n> <reason>`. |
+
 ### Marketing
 
 | Command | Purpose |
@@ -542,6 +570,7 @@ and only while the dashboard is on. `/team-dashboard off` stops it.
 | `team:qa-engineer` | CI, local review, code review; reads PR comments | Tests + its reports | No |
 | `team:reviewer` | Independent review after QA: sees only the requirements and the diff | No | No |
 | `team:reply-writer` | Drafts replies to PR, GitHub and tracker comments in your style | No | No |
+| `team:designer` — **Nour** | Design scan, prototypes, visual check | `design.md` and its step files in the work folder | No |
 | `team:social-media` — **Rafi** | Marketing plan, feature posts, weekly round-up — drafts only | `.claude/team/marketing/` only | Research only |
 | `team:agent-maintainer` | Keeps the project profile up to date | `.claude/team/team.md` only | No |
 
@@ -583,22 +612,23 @@ Everything lives under `.claude/team/` in your project:
 | `project/project-tech.md` | Stack, structure, commands and risks — read from the code, or proposed. |
 | `project/project-plan.md` | The features in order. |
 | `project/security.md` | The security picture and your security to-do list. |
+| `project/design.md` | The design picture (tokens, components, what drifts) and your redesign to-do list. |
 | `marketing/marketing-plan.md` | Rafi's marketing plan. |
 | `marketing/posts/` | Post drafts, one file per shipped ticket or week. |
 | `ideas/idea-v<N>.md` | Wishes not planned yet. |
 | `tickets/<ID>.md` | The local board, when it is on. |
-| `work/active/<ticket>/` | One file per step, plus `00-brief.md` (which names the ticket's worktree when several tickets run). |
+| `work/active/<ticket>/` | One file per step, plus `00-brief.md` (which names the ticket's worktree when several tickets run). UI tickets add `02b-design.md`, the `02b-prototype/` folder (`index.html` and screenshots) and `05-design.md`. |
 | `work/history/` | Finished tickets and `INDEX.md`. |
 
 ```text
 .claude/team/
 ├── team.md
-├── project/      project-info.md · project-tech.md · project-plan.md · security.md
+├── project/      project-info.md · project-tech.md · project-plan.md · security.md · design.md
 ├── ideas/        idea-v1.md (closed) · idea-v2.md (open)
 ├── tickets/      RB-12.md · ABC-41.md
 ├── marketing/    marketing-plan.md · posts/2026-11-22-rb-12.md
 └── work/
-    ├── active/abc-123/   00-brief.md · 01-requirements.md · 02-security.md · … · 05-security.md · 07-pr-rounds.md
+    ├── active/abc-123/   00-brief.md · 01-requirements.md · 02-security.md · 02b-prototype/ · … · 05-security.md · 07-pr-rounds.md
     └── history/          INDEX.md · 2026-11-19-abc-123/
 ```
 
@@ -614,6 +644,7 @@ it.
 | **Local review** | qa-engineer | Your review tool's findings, each checked against the code. |
 | **Code review** | qa-engineer | Correctness, regressions, edge cases, project rules, and tests that test behaviour. |
 | **Threat check** | security-engineer | Before the plan: the security rules this ticket must follow. |
+| **Visual check** | designer | UI tickets: the running app matches the approved prototype, with screenshots. |
 | **Security review** | security-engineer | Every rule from the threat check holds; no secrets, unescaped input, missing server checks, leaking data or vulnerable new dependencies. |
 | **Independent review** | reviewer | A fresh look with only the requirements and the diff. |
 | **PR rounds** | qa-engineer | Every new review comment and failed check: valid, not valid, or already fixed. |

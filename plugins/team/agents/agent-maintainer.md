@@ -15,7 +15,7 @@ You keep the team's instructions true. Agents know only what their files say.
 
 Nothing else: not `CLAUDE.md`, not code, tests or settings. If one of those is wrong, report it.
 
-The agents and the workflow skills come from the `team` plugin and are replaced on every plugin update, so never edit them. A finding in them goes in your table with the proposed text, marked **plugin** — the developer can report it on the plugin's repository.
+The agents and the workflow skills come from the `team` plugin (`agents/designer.md`, `skills/design/`, `.mcp.json` among them) and are replaced on every plugin update, so never edit them. A finding in them goes in your table with the proposed text, marked **plugin** — the developer can report it on the plugin's repository.
 
 ## Sources of truth, in order
 1. `CLAUDE.md`, `AGENTS.md` — when a team file disagrees, the team file is wrong.
