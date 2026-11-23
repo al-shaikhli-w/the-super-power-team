@@ -7,7 +7,7 @@
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.17.0-0A0A0A?style=flat-square" alt="version 0.17.0">
+  <img src="https://img.shields.io/badge/version-0.17.1-E10600?style=flat-square" alt="version 0.17.1">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="https://github.com/al-shaikhli-w/the-super-power-team/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
@@ -454,13 +454,15 @@ your browser. It refreshes every 4 seconds, works offline, and needs no server
 or install. It opens in English; the switch at the top changes it to German or to your
 team's reply language, and the page remembers your choice.
 
-Three colours only: black and white for everything, **red for what is working now or
-waits for you**. The workflow is a pit lane — each step a stall with its agent, a red
-line up to the step at work, characters red while they work, white when done, grey
-while they sleep — with a ticker under it that types what the working agent does this
-second.
+A white page with black text and **red as the primary colour** — the main buttons, the
+open tab, and everything that is working now or waits for you. It stays white in macOS
+and Windows dark mode. The workflow is a pit lane: each step a stall with its agent, a
+red line up to the step at work, and characters that are always alive — they breathe and
+blink while they sleep, and while they work they bounce, type, read or search with a red
+glow pulsing round their stall and little bits of code floating up. A ticker under the
+lane types what the working agent does this second.
 
-![The Super Power Team dashboard in black, white and red: a question waiting for approval with Approve, Change and Stop, and the ticket's workflow as a pit lane — Requirements, Research and Plan done in white, the developer lead working in red at Build 3/4 with an Explore helper under him, QA and PR asleep — and a ticker typing "Editing validate.ts"](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
+![The Super Power Team dashboard, white with red as the primary colour: a question waiting for approval with Approve, Change and Stop, and the ticket's workflow as a pit lane — Requirements, Research and Plan done in white, the developer lead working in red at Build 3/4 with an Explore helper under him, QA and PR asleep — and a ticker typing "Editing validate.ts"](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
 
 ```text
 /team-dashboard
@@ -736,7 +738,7 @@ back.
 | Task | Command |
 | --- | --- |
 | **Update to the newest version** | `npx the-super-power-team@latest` |
-| **Install a specific version** | `npx the-super-power-team@0.17.0` |
+| **Install a specific version** | `npx the-super-power-team@0.17.1` |
 | **See which version you have** | `claude plugin list` |
 | **Uninstall** | `npx the-super-power-team uninstall` |
 | **Help** | `npx the-super-power-team help` |

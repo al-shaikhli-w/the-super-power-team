@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17.1
+
+- **Dashboard always white, red as the primary colour.** The dark theme is gone — the page stays white when the system is in dark mode. Primary buttons, the open tab, the selected ticket and the Live pill are red.
+- **Characters work visibly.** A working agent's stall pulses red, and code symbols float up from the character — `{ } ; </>` while editing, `> $` while running, `?` while searching, `@` while browsing — on the workflow and on the Agents page, besides its bounce, typing, reading and blinking. Reduced motion still turns it off.
+- New screenshots in the README.
+
 ## 0.17.0
 
 - **`/team-doctor` check 20 — skills and updates:** the team's commands and every skill named under `## Design tools` or in a custom agent are loaded (with the claude.ai skill-sync needs: Claude Code 2.1.273+, the same signed-in account, `syncClaudeAiSkills` not off, the skill toggled on); every skill in `.claude/skills/` and `~/.claude/skills/` has a `SKILL.md` with `name` (matching its folder, lowercase letters, digits, hyphens) and a `description` that says when to use it; skills from outside the plugin that bundle scripts or reach other servers get a review warning; a newer plugin release on npm points to `npx the-super-power-team@latest`, a new session and `/team-update`, which `fix` offers to run.

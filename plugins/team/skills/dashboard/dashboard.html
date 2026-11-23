@@ -16,17 +16,6 @@
   --k-read: #64748b; --k-edit: #2563eb; --k-run: #7c3aed; --k-search: #0d9488; --k-web: #d97706; --k-tracker: #db2777; --k-tool: #94a3b8;
   --radius: 14px;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b0d12; --surface: #12151c; --surface-2: #161a22; --text: #e8ebf1; --text-2: #a3acbd; --text-3: #6b7486;
-    --line: #232834; --line-2: #1b1f29; --shadow: none;
-    --accent: #6d9bff; --accent-soft: #172341; --ok: #34d399; --ok-soft: #0f2a21; --bad: #f87171; --bad-soft: #2c1517;
-    --warn: #fbbf24; --warn-soft: #2b2110;
-    --r-pm: #a78bfa; --r-rs: #2dd4bf; --r-pj: #fbbf24; --r-dl: #6d9bff; --r-qa: #fb7185; --r-rw: #94a3b8; --r-am: #8a94a6; --r-rv: #22d3ee; --r-se: #f59e0b; --r-sm: #f472b6; --r-ds: #c084fc;
-    --r-x1: #22d3ee; --r-x2: #e879f9; --r-x3: #a3e635; --r-x4: #fb923c; --r-x5: #818cf8;
-    --k-read: #94a3b8; --k-edit: #6d9bff; --k-run: #a78bfa; --k-search: #2dd4bf; --k-web: #fbbf24; --k-tracker: #f472b6; --k-tool: #6b7486;
-  }
-}
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body {
@@ -889,24 +878,12 @@ body.sheet-on { overflow: hidden; }
   --kerb: #E10600; --asphalt: #0E0E0E; --asphalt-2: #1A1A1A;
   --round: ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0A0A0A; --surface: #141414; --surface-2: #1B1B1B; --text: #F2F2F2; --text-2: #BDBDBD; --text-3: #7A7A7A;
-    --line: #2A2A2A; --line-2: #1F1F1F; --shadow: none;
-    --accent: #FF2A1F; --accent-soft: #2A0E0D; --ok: #F2F2F2; --ok-soft: #222222; --bad: #FF2A1F; --bad-soft: #2A0E0D; --warn: #BDBDBD; --warn-soft: #222222;
-    --r-pm: #EDEDED; --r-rs: #CFCFCF; --r-pj: #B0B0B0; --r-dl: #EDEDED; --r-qa: #CFCFCF; --r-rw: #9A9A9A; --r-am: #8A8A8A; --r-rv: #B0B0B0; --r-se: #DADADA; --r-sm: #9A9A9A; --r-ds: #CFCFCF;
-    --r-x1: #DADADA; --r-x2: #BDBDBD; --r-x3: #A0A0A0; --r-x4: #888888; --r-x5: #C4C4C4;
-    --k-read: #8A8A8A; --k-edit: #FF2A1F; --k-run: #F2F2F2; --k-search: #B0B0B0; --k-web: #CFCFCF; --k-tracker: #6A6A6A; --k-tool: #555555;
-    --asphalt: #050505; --asphalt-2: #141414;
-  }
-}
 .title b, .section-head h2, .sec-h, .pn b, .pw-big b { font-family: var(--round); }
 /* logo: black tile, white bolt, kerb stripe */
 .logo { position: relative; background: #0A0A0A; color: #fff; box-shadow: none; overflow: hidden; width: 36px; height: 36px; border-radius: 10px; }
 .logo svg { position: relative; z-index: 1; margin-bottom: 6px; }
 .logo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: repeating-linear-gradient(90deg, var(--kerb) 0 6px, #fff 6px 12px); }
 .title b { font-weight: 800; letter-spacing: -.02em; }
-@media (prefers-color-scheme: dark) { .logo { box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); } }
 /* header tabs: quiet links, red mark on the open one */
 .tabs { background: transparent; border: 0; padding: 0; gap: 4px; }
 .tab { height: 32px; border-radius: 999px; padding: 0 12px; }
@@ -1011,6 +988,32 @@ body.sheet-on { overflow: hidden; }
 .st.current .node::after { background: var(--kerb); } .st.current .st-name { color: var(--kerb); }
 @media (max-width: 560px) { .pw-row { grid-template-columns: 30px minmax(0, 1fr) auto; } .pw-st { display: none; } }
 @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+
+/* Always light: white page, red is the primary colour */
+:root { color-scheme: light; }
+.btn.primary { background: var(--kerb); border-color: var(--kerb); color: #fff; }
+.btn.primary:hover { background: #B80500; border-color: #B80500; color: #fff; }
+.tab[aria-selected="true"] { background: var(--kerb); color: #fff; }
+.tab[aria-selected="true"] .badge { background: #fff; color: var(--kerb); }
+.flow-tab[aria-pressed="true"] { background: var(--kerb); color: #fff; border-color: var(--kerb); }
+.flow-tab[aria-pressed="true"] .dot.on { background: #fff; }
+.seg button[aria-pressed="true"] { color: var(--kerb); }
+.pill.on { background: var(--kerb); border-color: var(--kerb); color: #fff; }
+.pill.on .led { background: #fff; }
+/* Working: the stall breathes red and code floats up from the character */
+.fn.running .fn-box { animation: stall-pulse 1.6s ease-in-out infinite; }
+@keyframes stall-pulse { 0%, 100% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--kerb) 14%, transparent), 0 0 18px color-mix(in srgb, var(--kerb) 30%, transparent); } 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--kerb) 22%, transparent), 0 0 36px color-mix(in srgb, var(--kerb) 55%, transparent); } }
+.work-fx { position: absolute; inset: -6px 0 auto 0; height: 0; pointer-events: none; z-index: 3; }
+.work-fx i { position: absolute; left: 50%; top: 0; font: 800 14px/1 ui-monospace, SFMono-Regular, Consolas, monospace; font-style: normal; color: var(--kerb); opacity: 0; animation: code-up 2.4s ease-out infinite; }
+.flow .work-fx i { color: #fff; text-shadow: 0 0 6px var(--kerb); }
+.work-fx i:nth-child(1) { --x: -26px; animation-delay: 0s; }
+.work-fx i:nth-child(2) { --x: 18px; animation-delay: .6s; }
+.work-fx i:nth-child(3) { --x: -8px; animation-delay: 1.2s; }
+.work-fx i:nth-child(4) { --x: 28px; animation-delay: 1.8s; }
+@keyframes code-up { 0% { opacity: 0; transform: translate(calc(var(--x) * .3), 10px) scale(.7); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x), -42px) scale(1.15); } }
+.lane .ab { position: relative; }
+.lane.on .ab svg.buddy { filter: drop-shadow(0 0 8px color-mix(in srgb, var(--kerb) 45%, transparent)); }
+@media (prefers-reduced-motion: reduce) { .fn.running .fn-box, .work-fx i { animation: none !important; } .work-fx { display: none; } }
 </style>
 </head>
 <body>
@@ -2404,6 +2407,13 @@ body.sheet-on { overflow: hidden; }
     setTimeout(function () { n.classList.remove('enter'); }, 1400);
   }
 
+  // Little symbols that float up while an agent works — what they show depends on what it does.
+  var WORK_FX = { edit: ['{', '}', ';', '</>'], read: ['¶', '…', 'Aa', '¶'], run: ['>', '$', '▶', '>_'], search: ['?', '⌕', '*', '?'], web: ['@', '://', '#', '@'], tracker: ['#', '✓', '#', '•'], tool: ['•', '+', '•', '+'] };
+  function workFx(kind) {
+    var w = el('div', 'work-fx'); w.setAttribute('aria-hidden', 'true');
+    (WORK_FX[kind] || WORK_FX.edit).forEach(function (c) { w.appendChild(el('i', '', c)); });
+    return w;
+  }
   function flowNode(cls, agent, iconName, label, sub, badge, kind) {
     var n = el('div', 'fn ' + cls + (kind ? ' k-' + kind : ''));
     setRole(n, agent);
@@ -2415,6 +2425,7 @@ body.sheet-on { overflow: hidden; }
     b.appendChild(buddy(agent, kind && ICONS[kind] ? kind : iconName));
     b.addEventListener('pointerdown', function () { poke(n); });
     if (badge) { var bd = el('div', 'fn-badge'); if (badge !== 'spin') bd.appendChild(icon(badge)); b.appendChild(bd); }
+    if (/\brunning\b/.test(cls)) b.appendChild(workFx(kind));
     n.appendChild(b);
     n.appendChild(el('div', 'fn-label', label));
     if (sub) n.appendChild(el('div', 'fn-sub', sub));
@@ -3302,6 +3313,7 @@ body.sheet-on { overflow: hidden; }
     var last = cur && cur.actions[cur.actions.length - 1];
     var ab = el('div', 'ab fn ' + mood + (last ? ' k-' + last.k : ''));
     ab.appendChild(buddy(agent, last ? last.k : 'agents'));
+    if (on) ab.appendChild(workFx(last ? last.k : 'edit'));
     ab.addEventListener('pointerdown', function (e) { e.stopPropagation(); poke(ab); });
     lane.appendChild(ab);
     var who = el('div', 'who');
