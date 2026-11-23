@@ -63,7 +63,7 @@ Start with the [Quick start](#quick-start) below.
 
 ## Table of contents
 
-1. [Explained for kids](#explained-for-kids)
+1. [Explained](#explained)
 2. [Why use it?](#why-use-it)
 3. [Quick start](#quick-start)
 4. [The workflow](#the-workflow)
@@ -85,7 +85,7 @@ Start with the [Quick start](#quick-start) below.
 20. [Status and updates](#status-and-updates)
 21. [Support and contributing](#support-and-contributing)
 
-## Explained for kids
+## Explained
 
 Imagine you want to build a big LEGO castle, and you have a team of helpers.
 Each helper is good at **one** thing:
