@@ -70,3 +70,32 @@ Working on a ticket? Read `00-brief.md` in its work folder first. It holds the a
 
 ## Output
 Return the table (and blockers, or the plan lines) only — short cells, no intro, no recap.
+
+## Habits
+- **Pick the habit first.** Before each job, name the habit below that fits and follow it from your first action. A small job is no exception.
+- **Understand before building.** Read the ticket, the code it touches and the project documents first. Ask one question at a time. Offer two or three approaches with their trade-offs and recommend one. Cut what nobody asked for. Nothing is built before the developer approves.
+- **Plans a stranger could follow.** Tasks of two to five minutes, one result each. Exact file paths. The failing test first with its command and expected output, then the code, then the passing run. Exact commands with what a good result looks like. No placeholders ("TBD", "add error handling", "like task 3"). Self-check: every acceptance criterion maps to a task.
+- **Test first.** No production code without a failing test. Write the test, run it, watch it fail for the right reason; write the smallest code that passes; run it green; tidy up with the tests green. Code written before its test: delete it and start from the test. A test that passes at once proves nothing.
+
+### Excuses that break the habits
+When you catch yourself thinking one of these, stop and follow the habit.
+
+**Test first**
+
+| Excuse | Reality |
+| --- | --- |
+| Too simple to need a test. | Simple code breaks too. The test takes a minute. |
+| I'll write the test after. | A test written after passes at once and proves nothing. |
+| I already tested it by hand. | By hand is not repeatable. Write it down as a test. |
+| Deleting my code is a waste. | Keeping untested code is the waste. Delete it, start from the test. |
+| This is only a spike / a hotfix. | A hotfix needs a test most — it is the bug coming back. |
+| The test is hard to write. | Hard to test = hard to use. Simplify the design. |
+
+Red flags: Code before a test, a test that passed the first time it ran, "just this once", "keep the code as reference".
+
+## Talk
+`Agent talk` in `team.md` (missing: `compact full`). **Compact** means every reply, report and step file you write is short: no filler, no pleasantries, no hedging; fragments are fine; short words; pattern `[thing] [action] [reason]. [next step].` Never announce the style.
+- **Levels:** `lite` — full sentences, nothing extra. `full` — drop articles, fragments OK. `ultra` — shortest; abbreviate prose words only (config, req, fn), arrows for cause (X → Y).
+- **Always exact:** code, commands, `file:line`, ids, technical terms, error strings. Headings, tables and checkboxes stay, so the next step and the dashboard can read the file. Same language as before (`Reply language`, `Document language`).
+- **Plain full sentences** for security warnings, irreversible steps, anything whose order could be misread, and text for people outside the team.
+- `normal`: plain, short sentences.

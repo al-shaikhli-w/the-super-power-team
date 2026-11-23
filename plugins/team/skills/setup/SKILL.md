@@ -52,6 +52,7 @@ Everything you create goes under `.claude/team/`. You run no git command that wr
    Then: "After QA passes, should a fresh reviewer — one who sees only the requirements and the diff — check the work again?" — 1. **always** (`after QA`), 2. **ask each time** (`ask`, default), 3. **never** (`off`). Note it as `Independent review` in `team.md`.
 
    Then: "Do you want a live dashboard in your browser? Agents appear live by themselves; each step update is one more approval prompt." — yes or no. Note it as `Dashboard` in `team.md`.
+   Then: "How should the agents write — to you, to each other and in the step files? Compact writes every step short and saves many tokens; security warnings, code and text for other people stay normal." — 1. **compact full** (default), 2. **compact lite** (full sentences, no filler), 3. **compact ultra** (shortest), 4. **normal**. Note it as `Agent talk` in `team.md`.
 
    Then: "Rafi, the team's social media manager, can draft posts for every feature you ship and a marketing plan (`/team-social`). Drafts only — you publish." — 1. **after every merge** (`after merge`), 2. **ask each time** (`ask`, default), 3. **never** (`off`). Note it as `Social posts` in `team.md`.
 

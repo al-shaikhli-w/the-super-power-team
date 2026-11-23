@@ -45,21 +45,25 @@ append() {
 is_team() {
   case "$1" in team:*|team-*) return 0 ;; *) return 1 ;; esac
 }
+# Sub-agents outside the team (Explore, general-purpose, …) show as helpers: "h":1.
+helper=""
+[ -n "$agent" ] && ! is_team "$agent" && helper=',"h":1'
 
 case "$event" in
   start)
-    [ -n "$agent" ] && is_team "$agent" || exit 0
-    append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"start\",\"a\":\"$agent\",\"id\":\"$id\"});" 400
+    [ -n "$agent" ] || exit 0
+    append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"start\",\"a\":\"$agent\",\"id\":\"$id\"$helper});" 400
     mkdir -p "$team/.run" && [ -n "$id" ] && printf '%s' "$now" > "$team/.run/$id"
     ;;
   stop)
-    [ -n "$agent" ] && is_team "$agent" || exit 0
+    [ -n "$agent" ] || exit 0
     report="$(clean "$(text last_assistant_message)" 600)"
-    [ -n "$report" ] && append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"report\",\"a\":\"$agent\",\"id\":\"$id\",\"r\":\"$report\"});" 400
-    append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"stop\",\"a\":\"$agent\",\"id\":\"$id\"});" 400
+    [ -n "$report" ] && append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"report\",\"a\":\"$agent\",\"id\":\"$id\",\"r\":\"$report\"$helper});" 400
+    append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"stop\",\"a\":\"$agent\",\"id\":\"$id\"$helper});" 400
     start=""
     [ -n "$id" ] && [ -f "$team/.run/$id" ] && start="$(tr -cd '0-9TZ:-' < "$team/.run/$id")" && rm -f "$team/.run/$id"
-    [ -n "$start" ] || exit 0
+    # history.js keeps team agents only
+    [ -n "$start" ] && is_team "$agent" || exit 0
     count=0
     [ -f "$team/actions.js" ] && count="$(grep -c "\"id\":\"$id\"" "$team/actions.js")"
     append "$team/history.js" TEAM_HISTORY "TEAM_HISTORY.push({\"s\":\"$start\",\"e\":\"$now\",\"a\":\"$agent\",\"n\":${count:-0}});" 6000
@@ -70,15 +74,19 @@ case "$event" in
     ;;
   tool)
     tool="$(field tool_name | tr -cd 'A-Za-z0-9_-' | cut -c1-80)"
-    if [ -z "$agent" ]; then
-      [ "$tool" = "Agent" ] || exit 0
+    if [ "$tool" = "Agent" ] || [ "$tool" = "Task" ]; then
+      # The coordinator (no agent) or an agent starts a sub-agent: record its task, and who started it.
       sub="$(field subagent_type | tr -cd 'A-Za-z0-9:_.-' | cut -c1-80)"
-      is_team "$sub" || exit 0
+      [ -n "$sub" ] || sub="general-purpose"
       task="$(clean "$(field description)")"
-      append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"task\",\"a\":\"$sub\",\"d\":\"$task\"});" 400
-      exit 0
+      parent=""
+      [ -n "$agent" ] && [ -n "$id" ] && parent=",\"p\":\"$id\""
+      subh=""
+      is_team "$sub" || subh=',"h":1'
+      append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"task\",\"a\":\"$sub\",\"d\":\"$task\"$parent$subh});" 400
+      [ -n "$agent" ] || exit 0
     fi
-    is_team "$agent" || exit 0
+    [ -n "$agent" ] || exit 0
     if [ "$tool" = "SubagentHandback" ]; then
       report="$(clean "$(text message)" 600)"
       [ -n "$report" ] && append "$team/live.js" TEAM_LIVE "TEAM_LIVE.push({\"t\":\"$now\",\"e\":\"report\",\"a\":\"$agent\",\"id\":\"$id\",\"r\":\"$report\",\"full\":true});" 400
@@ -95,7 +103,7 @@ case "$event" in
       *) kind=tool; target="$tool" ;;
     esac
     target="$(clean "$target")"
-    append "$team/actions.js" TEAM_ACTIONS "TEAM_ACTIONS.push({\"t\":\"$now\",\"a\":\"$agent\",\"id\":\"$id\",\"k\":\"$kind\",\"x\":\"$target\"});" 600
+    append "$team/actions.js" TEAM_ACTIONS "TEAM_ACTIONS.push({\"t\":\"$now\",\"a\":\"$agent\",\"id\":\"$id\",\"k\":\"$kind\",\"x\":\"$target\"$helper});" 600
     ;;
 esac
 exit 0

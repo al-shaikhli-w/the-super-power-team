@@ -7,7 +7,7 @@
 <p align="center"><strong>An agent team for Claude Code that takes a ticket from idea to pull request — while you stay in the driver's seat.</strong></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.16.0-155eef?style=flat-square" alt="version 0.16.0">
+  <img src="https://img.shields.io/badge/version-0.17.0-0A0A0A?style=flat-square" alt="version 0.17.0">
   <a href="https://www.npmjs.com/package/the-super-power-team"><img src="https://img.shields.io/npm/v/the-super-power-team?style=flat-square&color=155eef&label=npm" alt="npm package"></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-155eef?style=flat-square" alt="Claude Code plugin">
   <a href="https://github.com/al-shaikhli-w/the-super-power-team/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-155eef?style=flat-square" alt="MIT license"></a>
@@ -454,27 +454,43 @@ your browser. It refreshes every 4 seconds, works offline, and needs no server
 or install. It opens in English; the switch at the top changes it to German or to your
 team's reply language, and the page remembers your choice.
 
-![The Super Power Team dashboard: a question waiting for approval, the commands ready to commit, and a ticket's workflow as small characters — three done and happy, the developer lead working, the rest asleep — and the developer lead's live panel](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
+Three colours only: black and white for everything, **red for what is working now or
+waits for you**. The workflow is a pit lane — each step a stall with its agent, a red
+line up to the step at work, characters red while they work, white when done, grey
+while they sleep — with a ticker under it that types what the working agent does this
+second.
+
+![The Super Power Team dashboard in black, white and red: a question waiting for approval with Approve, Change and Stop, and the ticket's workflow as a pit lane — Requirements, Research and Plan done in white, the developer lead working in red at Build 3/4 with an Explore helper under him, QA and PR asleep — and a ticker typing "Editing validate.ts"](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-live.png)
 
 ```text
 /team-dashboard
 ```
+
+| Agents | Security |
+| --- | --- |
+| ![The Agents page: one lane per agent, working ones on top in red with what they do now and a strip of the day, the helper under the agent that started it](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-agents.png) | ![The Security page: the open count by severity, a bar of the ten OWASP Top 10:2025 categories, and a card per category with its checks ticked, crossed or not checked yet](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-security.png) |
 
 | View | What it shows |
 | --- | --- |
 | **Needs you** | The crew's open question with Approve, Change and Stop buttons that copy your answer. |
 | **Ready to commit** | The commit message and every command — stage, commit, push, PR — each with a copy button. The page never runs anything. |
 | **Workflow** | Each ticket's steps as small animated characters, one per agent with its own hat, with the security engineer under Research (threat check) and QA (security review), Nour under Research (prototype) and QA (visual check), and Rafi under PR (posts). A character sleeps until its step starts, thinks when it is its turn, works when its agent runs, waves when it waits for you, is happy when done and dizzy when QA fails; a sheet of paper travels along the line when work is handed on. The running agent shows what it does this second. Click a step for its agent's panel: task, timer, every step, files changed and read, and its final report. |
+| **Who is working** | A live tree: the coordinator (the main Claude Code session), every agent it started, and the helper sub-agents (`Explore`, `general-purpose`, …) each agent started — with what each one does this second and a timer. Click any of them for its details. |
 | **Team** | With several tickets: each developer and QA engineer with the ticket and step they are on, the free places, and the tickets waiting for another one. |
-| **Security** | Your security to-do list from `security.md`: open items by severity with a **Fix** button (copies `/team-security fix SEC-<n>`), accepted risks and fixed items. A counter in the workflow bar turns red when an item is high. Only titles are shown — never the fix or a secret. |
+| **Security** | Your security to-do list from `security.md`: open items by severity, each tagged with its OWASP category, with a **Fix** button (copies `/team-security fix SEC-<n>`), accepted risks and fixed items. A counter in the workflow bar turns red when an item is high. Never a file path or a secret. |
 | **Design** | Your design to-do list from `design.md`: open items by priority with a **Fix** button (copies `/team-design fix DES-<n>`), skipped and fixed items. A counter in the workflow bar shows the open design to-dos. Each ticket with a prototype has an **Open prototype** link. |
 | **Marketing** | Rafi's marketing plan and its one-sentence message, the next days on the post calendar, and every post draft with its channels and status (`draft` or `posted`). |
 | **Timeline** | The last 30 minutes as bars, or Today, Week, Sprint and All projects as a heat map per agent. |
 | **Tickets** | What is in progress, the list for Today, Week or Sprint, and what is next on the plan — each with a Start button. |
-| **Board** | Your local tickets in four columns: Plan, Do, Check, Done. |
-| **Archive** | Every finished ticket with result, PR, days and a summary, with search and filters. |
+| **Plan** | How far the project plan is (done / total with a meter), what is next, and every open row with its status and a Start button. |
+| **Open ideas** | The ideas still waiting for a decision, each with a **Work on it** button. |
+| **Agents tab** | A lane for every agent: working ones on top with their task, what they do this second and their last steps; helpers under the agent that started them; and a strip of the day showing when each agent worked. Click a lane for every run — task, who started it, every step with its time, files changed and read, helpers it started and its final report. |
+| **Board** | Your local tickets in four columns: Plan, Do, Check, Done. Click a ticket for its details: steps, what it is, acceptance criteria, notes, branch, PR, source link, and every agent that worked on it. |
+| **Security tab** | Built on the **OWASP Top 10:2025**: a bar of the ten categories coloured by result, then a card per category with its checks — passed, failed with the SEC item behind it, not checked yet, or does not apply — and a progress meter. Below, every finding with search and filters by open, fixed or accepted. Each finding opens with its category, what can go wrong, how to fix it, CWE, where in the app, and **Fix** and **Accept risk** buttons. |
+| **Ideas tab** | Every idea from every idea file, with filters (open, planned, later, dropped), search and a details panel: why, who asked, size, decision and notes. |
+| **Archive** | Every finished ticket with result, PR, days and a summary, with search and filters. Click a row for its details. |
 
-Live events come from the plugin's hooks: every agent start, step and finish,
+Live events come from the plugin's hooks: every agent and helper sub-agent start, step and finish,
 with no approval prompt. Only file names, command descriptions, web domains and
 tool names are recorded — no paths, file contents, full commands or secrets —
 and only while the dashboard is on. `/team-dashboard off` stops it.
@@ -589,7 +605,7 @@ board**, alone or next to your tracker:
 | --- | --- | --- | --- |
 | written down; requirements and plan not approved yet | being built | QA, independent review, PR open | merged or closed |
 
-![The Super Power Team board with Plan, Do, Check and Done columns; cards show priority, what they wait for, and tickets taken from Linear and GitHub](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-board.png)
+![The Super Power Team board in black, white and red: Plan, Do, Check and Done columns; cards show priority, what they wait for in red, and tickets taken from Linear and GitHub](https://raw.githubusercontent.com/al-shaikhli-w/the-super-power-team/master/assets/dashboard-board.png)
 
 `/team-ticket new` first asks where the ticket comes from:
 
@@ -654,6 +670,34 @@ Verdicts are **PASS** (run in this session, with output), **FAIL** (output,
 steps, expected vs. actual) or **NOT TESTED** (with the reason). Anything but
 PASS goes back to the build.
 
+**Working habits.** Every agent file carries the team's habits for its role:
+
+| Habit | Who uses it |
+| --- | --- |
+| **Pick the habit first** | The coordinator before every step, and every agent |
+| **Understand before building** | Product manager, researcher, project manager, designer, Rafi |
+| **Plans a stranger could follow** | Project manager writes them; developer lead works them |
+| **Test first** | Developer lead builds test first, project manager plans it, reviewer checks it |
+| **Root cause before any fix** | Developer lead on every bug and QA FAIL, QA names the cause, security engineer |
+| **Evidence before "done"** | Developer lead, QA, reviewer, security engineer, designer, product manager |
+| **Asking for a review** | Developer lead, QA, reviewer |
+| **Taking a review** | Developer lead, security engineer, reply writer |
+| **Finishing the branch** | QA at the hand-over |
+| **Writing agent and skill files** | Agent maintainer, `/team-new-agent` |
+
+**Compact text at every step.** With `Agent talk: compact full` (default; also `compact lite`,
+`compact ultra`, `normal`) every step is short: the coordinator's messages, agent reports, step
+files `00-brief.md`…`06-pr.md`, plans, requirements, `security.md` and `design.md`. Findings are
+one line each (`path:line — problem — fix`), commit messages Conventional Commits with a short
+subject. Security warnings, irreversible steps, code, commands, the PR description, drafted replies
+and posts stay in normal sentences.
+
+**Saving tokens:** every step is saved in its file, so after each step the coordinator offers `/compact` with the exact text to keep (ticket, next step, work folder); `/team-work <ticket>` picks up from the files afterwards. Only you can run `/compact`.
+
+The habits draw on ideas from [superpowers](https://github.com/obra/superpowers) by Jesse Vincent,
+and compact talk on [caveman](https://github.com/JuliusBrussee/caveman) by Julius Brussee — both
+MIT. Both are built into the team; neither plugin is needed.
+
 **The crew always**
 
 - stops after each step until you approve;
@@ -692,7 +736,7 @@ back.
 | Task | Command |
 | --- | --- |
 | **Update to the newest version** | `npx the-super-power-team@latest` |
-| **Install a specific version** | `npx the-super-power-team@0.16.0` |
+| **Install a specific version** | `npx the-super-power-team@0.17.0` |
 | **See which version you have** | `claude plugin list` |
 | **Uninstall** | `npx the-super-power-team uninstall` |
 | **Help** | `npx the-super-power-team help` |

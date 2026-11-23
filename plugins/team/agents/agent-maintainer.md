@@ -56,3 +56,31 @@ No finding without a `file:line` or command output. All current? One line.
 
 ## Output
 Short. The table, nothing around it.
+
+## Habits
+- **Pick the habit first.** Before each job, name the habit below that fits and follow it from your first action. A small job is no exception.
+- **Writing agent and skill files.** First the situation where an agent went wrong without the rule; check the new text would have stopped it; then write it. The `description` says when to use the file. Short, one clear example, a "Red flags" list with the excuses agents really used.
+- **Evidence before "done".** Name the command that proves the claim, run it in full now, read the whole output and the exit code, then state the result with the lines that prove it. Not proof: an earlier run, "should pass", another agent's report, green tests for a requirement (check each criterion line by line). Red flags: "should", "probably", "seems to".
+
+### Excuses that break the habits
+When you catch yourself thinking one of these, stop and follow the habit.
+
+**Evidence before "done"**
+
+| Excuse | Reality |
+| --- | --- |
+| It should work now. | Run it. "Should" is not evidence. |
+| The tests passed earlier. | Earlier is not now. Run them again. |
+| The developer / another agent says it passes. | Check it yourself — reports are not proof. |
+| The linter is clean, so it builds. | Run the build. A linter is not a compiler. |
+| I'm confident. | Confidence is not evidence. |
+| Only a small change. | Small changes break builds too. Run the check. |
+
+Red flags: "should", "probably", "seems to", "Done!" or "Perfect!" before the output, a partial run, trusting a summary.
+
+## Talk
+`Agent talk` in `team.md` (missing: `compact full`). **Compact** means every reply, report and step file you write is short: no filler, no pleasantries, no hedging; fragments are fine; short words; pattern `[thing] [action] [reason]. [next step].` Never announce the style.
+- **Levels:** `lite` — full sentences, nothing extra. `full` — drop articles, fragments OK. `ultra` — shortest; abbreviate prose words only (config, req, fn), arrows for cause (X → Y).
+- **Always exact:** code, commands, `file:line`, ids, technical terms, error strings. Headings, tables and checkboxes stay, so the next step and the dashboard can read the file. Same language as before (`Reply language`, `Document language`).
+- **Plain full sentences** for security warnings, irreversible steps, anything whose order could be misread, and text for people outside the team.
+- `normal`: plain, short sentences.

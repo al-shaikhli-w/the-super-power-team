@@ -1,2 +1,5 @@
 .claude/
 test-project/
+plugins/team/skills/.DS_Store
+docs/
+.playwright-mcp/

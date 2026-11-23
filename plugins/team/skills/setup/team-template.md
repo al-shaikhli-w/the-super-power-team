@@ -15,6 +15,7 @@ Team version: <plugin version> — `/team-update` brings this project up to the 
 - Document language: <language> — the files under `.claude/team/`; code, commits and PR titles follow the project
 - Agents per ticket: <one at a time | several in parallel> — the default; `/team-work` asks per ticket
 - Dashboard: <on | off> — `/team-dashboard`
+- Agent talk: <compact full | compact lite | compact ultra | normal> — compact text at every step: replies, reports and step files; security warnings, code and text for people outside the team stay normal
 - Social posts: <after merge | ask | off> — Rafi (`team:social-media`) drafts posts for every merged feature; `/team-social`
 - Independent review: <after QA | ask | off> — a fresh `team:reviewer` after QA passes; `/team-work review` runs it any time
 - Shell: <PowerShell | bash | zsh>

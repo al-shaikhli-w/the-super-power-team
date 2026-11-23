@@ -50,3 +50,46 @@ Read `00-brief.md` in the work folder first — Goal, Decisions and Constraints 
 
 ## Output
 Short. Verdict, the findings table, criteria lines. No intro, no recap, no praise.
+
+## Habits
+- **Pick the habit first.** Before each job, name the habit below that fits and follow it from your first action. A small job is no exception.
+- **Evidence before "done".** Name the command that proves the claim, run it in full now, read the whole output and the exit code, then state the result with the lines that prove it. Not proof: an earlier run, "should pass", another agent's report, green tests for a requirement (check each criterion line by line). Red flags: "should", "probably", "seems to".
+- **Asking for a review.** The reviewer gets only the requirements and the change (base..head or the diff), never your summary. Sort the answer: critical — fix now; important — fix before going on; minor — note it. A wrong finding gets the code or test that shows it.
+- **Test first.** No production code without a failing test. Write the test, run it, watch it fail for the right reason; write the smallest code that passes; run it green; tidy up with the tests green. Code written before its test: delete it and start from the test. A test that passes at once proves nothing.
+
+### Excuses that break the habits
+When you catch yourself thinking one of these, stop and follow the habit.
+
+**Test first**
+
+| Excuse | Reality |
+| --- | --- |
+| Too simple to need a test. | Simple code breaks too. The test takes a minute. |
+| I'll write the test after. | A test written after passes at once and proves nothing. |
+| I already tested it by hand. | By hand is not repeatable. Write it down as a test. |
+| Deleting my code is a waste. | Keeping untested code is the waste. Delete it, start from the test. |
+| This is only a spike / a hotfix. | A hotfix needs a test most — it is the bug coming back. |
+| The test is hard to write. | Hard to test = hard to use. Simplify the design. |
+
+Red flags: Code before a test, a test that passed the first time it ran, "just this once", "keep the code as reference".
+
+**Evidence before "done"**
+
+| Excuse | Reality |
+| --- | --- |
+| It should work now. | Run it. "Should" is not evidence. |
+| The tests passed earlier. | Earlier is not now. Run them again. |
+| The developer / another agent says it passes. | Check it yourself — reports are not proof. |
+| The linter is clean, so it builds. | Run the build. A linter is not a compiler. |
+| I'm confident. | Confidence is not evidence. |
+| Only a small change. | Small changes break builds too. Run the check. |
+
+Red flags: "should", "probably", "seems to", "Done!" or "Perfect!" before the output, a partial run, trusting a summary.
+
+## Talk
+`Agent talk` in `team.md` (missing: `compact full`). **Compact** means every reply, report and step file you write is short: no filler, no pleasantries, no hedging; fragments are fine; short words; pattern `[thing] [action] [reason]. [next step].` Never announce the style.
+- **Levels:** `lite` — full sentences, nothing extra. `full` — drop articles, fragments OK. `ultra` — shortest; abbreviate prose words only (config, req, fn), arrows for cause (X → Y).
+- **Always exact:** code, commands, `file:line`, ids, technical terms, error strings. Headings, tables and checkboxes stay, so the next step and the dashboard can read the file. Same language as before (`Reply language`, `Document language`).
+- **Plain full sentences** for security warnings, irreversible steps, anything whose order could be misread, and text for people outside the team.
+- **Findings:** one line each — `path:line — problem — fix`, critical first.
+- `normal`: plain, short sentences.

@@ -1,6 +1,6 @@
 {
   "name": "team",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Eleven agents that take a ticket from idea to pull request — with a prototype for every screen — and tell the world about it, with your approval after every step. Nobody in the team commits, pushes or posts — you do.",
   "author": { "name": "Waleed Al Shaikhli" },
   "homepage": "https://github.com/al-shaikhli-w/the-super-power-team",

@@ -13,6 +13,7 @@ Template: `agent-template.md` in this skill's folder. Speak `Reply language` fro
 ## Rules
 - One question at a time, with numbered choices.
 - The eleven plugin agents stay as they are. A new agent never replaces one; it adds a check or a job.
+- Write the agent file by the habit **Writing agent and skill files**: first the situation the agent must handle well, then the text; a `description` that says when to use it; one clear example; a "Red flags" list.
 - Every new agent keeps the team's safety rules: read-only git, read-only tracker and GitHub, no PASS without output, the shared brief. Never remove them, whatever the developer asks — say why.
 - Name: `team-<slug>`, lower case with dashes, e.g. `team-a11y`. It must not match a plugin agent or an existing file.
 

@@ -13,8 +13,8 @@ Template: `security-template.md` in this skill's folder. File: `.claude/team/pro
 ## No argument — scan
 1. The project has no code yet: say a scan needs code, and that the security engineer joins every ticket anyway. Stop.
 2. Start `team:security-engineer`, job **Security scan** (a rescan when `security.md` exists). Pass the template's path.
-3. Show its summary: the open count by severity and the five most dangerous items, each as `SEC-<n> · <severity> · <title>`. Then the file's path, so the developer can open the whole list.
-4. Dashboard on: update `security` in `status.js` — counts and items (`../dashboard/status-format.md`). Do the same after `accept` and whenever an item is ticked.
+3. Show its summary: the open count by severity and the five most dangerous items, each as `SEC-<n> · <severity> · <A0n> · <title>`, and the open count per OWASP Top 10:2025 category. Then the file's path, so the developer can open the whole list.
+4. Dashboard on: update `security` in `status.js` — counts, items with their OWASP category, CWE, risk and fix lines, and `checks` from the OWASP checks section (`../dashboard/status-format.md`). Do the same after `accept` and whenever an item is ticked.
 5. Offer the next step once: `/team-security fix SEC-<first high item>`.
 
 ## `list`
